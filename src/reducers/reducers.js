@@ -1,11 +1,22 @@
-import { FETCH_USER } from "../actions/types";
+import { FETCH_USER, SET_CURRENT_USER } from "../actions/types";
 
 export const userReducer = (state = [], action) => {
-  console.log("State is", state);
-  console.log("Action is", action);
+  console.log("USER REDUCER -- State is", state);
+  console.log("USER REDUCER -- Action is", action);
   switch (action.type) {
     case FETCH_USER:
       return state;
+    default:
+      return state;
+  }
+};
+
+export const authReducer = (state = { currentUser: {} }, action) => {
+  console.log("AUTH REDUCER -- State is", state);
+  console.log("AUTH REDUCER -- Action is", action);
+  switch (action.type) {
+    case SET_CURRENT_USER:
+      return { ...state, currentUser: action.user };
     default:
       return state;
   }

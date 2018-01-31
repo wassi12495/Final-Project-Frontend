@@ -15,7 +15,7 @@ export class Login extends Component {
   render() {
     return (
       <div>
-        <p>This is the log in</p>
+        <p>This is the "Login" component</p>
       </div>
     );
   }

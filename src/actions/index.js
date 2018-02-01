@@ -1,5 +1,13 @@
-import { FETCH_USER, SET_CURRENT_USER } from "./types";
+import { ASYNC_START, SET_CURRENT_USER, CREATE_NEW_USER } from "./types";
+import { adapter } from "../services";
 
 export const setCurrentUser = () => {
   return { type: SET_CURRENT_USER, user: {} };
+};
+
+export const createNewUser = user => dispatch => {
+  dispatch({ type: ASYNC_START });
+  adapter.users.signup(user).then(console.log);
+
+  // return { type: CREATE_NEW_USER, user };
 };

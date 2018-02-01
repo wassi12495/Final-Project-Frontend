@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Login } from "./components/Login/login";
+import { Switch, Route } from "react-router-dom";
+import Login from "./components/login/Login";
+import SignupContainer from "./components/signup/SignupContainer";
 
 class App extends Component {
   render() {
@@ -9,6 +11,9 @@ class App extends Component {
         <header>This is the app header</header>
         <p>This is the App's body!</p>
         <Login />
+        <Switch>
+          <Route path="/signup" component={SignupContainer} />
+        </Switch>
       </div>
     );
   }

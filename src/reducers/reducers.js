@@ -1,10 +1,11 @@
-import { FETCH_USER, SET_CURRENT_USER } from "../actions/types";
+import { CREATE_NEW_USER, SET_CURRENT_USER } from "../actions/types";
 
 export const userReducer = (state = [], action) => {
   console.log("USER REDUCER -- State is", state);
   console.log("USER REDUCER -- Action is", action);
   switch (action.type) {
-    case FETCH_USER:
+    case CREATE_NEW_USER:
+      console.log("CREATE_NEW_USER");
       return state;
     default:
       return state;

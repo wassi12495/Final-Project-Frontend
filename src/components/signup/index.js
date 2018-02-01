@@ -2,11 +2,7 @@ import React from "react";
 import SignupForm from "./SignupForm";
 
 const SignupContainer = () => {
-  return (
-    <div>
-      <SignupForm />
-    </div>
-  );
+  return <SignupForm />;
 };
 
 export default SignupContainer;

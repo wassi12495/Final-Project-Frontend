@@ -1,4 +1,4 @@
-import { CREATE_NEW_USER, SET_CURRENT_USER } from "../actions/types";
+import { CREATE_NEW_USER, SET_CURRENT_USER, LOGOUT } from "../actions/types";
 
 export const userReducer = (state = [], action) => {
   console.log("USER REDUCER -- State is", state);
@@ -17,7 +17,13 @@ export const authReducer = (state = { currentUser: {} }, action) => {
   console.log("AUTH REDUCER -- Action is", action);
   switch (action.type) {
     case SET_CURRENT_USER:
-      return { ...state, currentUser: action.user };
+      const { id, username, first_name, last_name, workouts } = action.user;
+      return {
+        ...state,
+        currentUser: { id, username, first_name, last_name, workouts }
+      };
+    case LOGOUT:
+      return { ...state, currentUser: {} };
 
     default:
       return state;

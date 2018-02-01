@@ -13,12 +13,18 @@ const signup = user => {
 };
 
 const login = user => {
-  // TODO: Add fetch request
-  return;
+  return fetch(`${API_URL}/login`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(user)
+  }).then(res => res.json());
 };
 
 const getCurrentUser = () => {
-  return;
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/currentUser`, {
+    headers: { Authorization: token }
+  }).then(res => res.json());
 };
 
 export const adapter = {

@@ -5,9 +5,9 @@ export const setCurrentUser = () => {
   return { type: SET_CURRENT_USER, user: {} };
 };
 
-export const createNewUser = user => dispatch => {
+export const createNewUser = (user, history) => dispatch => {
   dispatch({ type: ASYNC_START });
-  adapter.users.signup(user).then(console.log);
+  adapter.users.signup(user).then(res => console.log(res));
 
   // return { type: CREATE_NEW_USER, user };
 };

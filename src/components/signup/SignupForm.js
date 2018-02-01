@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { adapter } from "../../services";
 
 class Signup extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class Signup extends Component {
   }
 
   handleChange = e => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
 
     this.setState({
       [e.target.name]: e.target.value
@@ -34,8 +36,16 @@ class Signup extends Component {
       first_name: this.state.first_name,
       last_name: this.state.last_name
     };
-
-    this.props.createNewUser(user);
+    adapter.users.signup(user).then(res => {
+      console.log("New User response", res);
+      if (res.error) {
+        this.setState({
+          error: true
+        });
+      } else {
+        this.props.history.push("/");
+      }
+    });
   };
 
   // TODO: Add Password confirmation after validations added
@@ -46,7 +56,8 @@ class Signup extends Component {
       password,
       password_confirmation,
       first_name,
-      last_name
+      last_name,
+      error
     } = this.state;
 
     console.log("Signup state", this.state);
@@ -54,6 +65,7 @@ class Signup extends Component {
     return (
       <div>
         <h1>Signup component</h1>
+        {error ? <h3> Invalid Signup </h3> : null}
         <div>
           <form onSubmit={this.handleSubmit}>
             <label>Username</label>
@@ -105,4 +117,4 @@ class Signup extends Component {
   }
 }
 
-export default connect(null, actions)(Signup);
+export default withRouter(connect(null, actions)(Signup));

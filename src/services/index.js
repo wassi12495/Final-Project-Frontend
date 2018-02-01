@@ -5,12 +5,11 @@ const headers = {
   Accepts: "application/json"
 };
 const signup = user => {
-  console.log("Signup(adapter)", user);
   return fetch(`${API_URL}/users`, {
     method: "POST",
     headers,
     body: JSON.stringify(user)
-  }).then(res => console.log(res));
+  }).then(res => res.json());
 };
 
 const login = user => {

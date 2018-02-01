@@ -13,7 +13,9 @@ class App extends Component {
     console.log("App Props", this.props);
     return (
       <div className="App">
-        <NavBarContainer />
+        <header>
+          <NavBarContainer />
+        </header>
 
         <p>This is the App's body!</p>
         <div className="container">

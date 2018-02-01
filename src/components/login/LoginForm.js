@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { adapter } from "../../services";
 
 class LoginForm extends Component {
   constructor(props) {

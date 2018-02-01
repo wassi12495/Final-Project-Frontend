@@ -1,7 +1,7 @@
 import { ASYNC_START, SET_CURRENT_USER, LOGOUT } from "./types";
 import { adapter } from "../services";
 
-export const setCurrentUser = () => dispatch => {
+export const fetchUser = () => dispatch => {
   dispatch({ type: ASYNC_START });
   adapter.auth.getCurrentUser().then(user => {
     return { type: SET_CURRENT_USER, user };

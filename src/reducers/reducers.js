@@ -20,7 +20,13 @@ export const authReducer = (state = { currentUser: {} }, action) => {
       const { id, username, first_name, last_name, workouts } = action.user;
       return {
         ...state,
-        currentUser: { id, username, first_name, last_name, workouts }
+        currentUser: {
+          id,
+          username,
+          firstName: first_name,
+          lastName: last_name,
+          workouts
+        }
       };
     case LOGOUT:
       return { ...state, currentUser: {} };

@@ -2,10 +2,24 @@ import React from "react";
 import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import { Link } from "react-router-dom";
 
 const Profile = props => {
+  const { firstName, lastName } = props.currentUser;
+  const fullName = `${firstName} ${lastName}`;
   console.log("Profile props", props.currentUser);
-  return <h1>Profile page</h1>;
+  return (
+    <div>
+      <h1>Profile page</h1>
+      <h2>{fullName}</h2>
+      <div>
+        <h3>Previous Workouts</h3>
+      </div>
+      <div>
+        <Link to="/profile/new_workout">Add Workout</Link>
+      </div>
+    </div>
+  );
 };
 
 const mapStateToProps = state => {

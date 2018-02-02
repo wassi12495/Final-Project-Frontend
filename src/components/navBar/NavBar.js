@@ -25,12 +25,17 @@ const NavBar = props => {
           Login
         </NavLink>
       )}
+      <NavLink exact to="/profile">
+        Profile
+      </NavLink>
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  loggedIn: !!state.auth.currentUser.id
-});
+const mapStateToProps = state => {
+  return {
+    loggedIn: !!state.auth.currentUser.id
+  };
+};
 
 export default withRouter(connect(mapStateToProps, actions)(NavBar));

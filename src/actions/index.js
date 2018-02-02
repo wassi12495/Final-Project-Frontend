@@ -4,7 +4,7 @@ import { adapter } from "../services";
 export const fetchUser = () => dispatch => {
   dispatch({ type: ASYNC_START });
   adapter.auth.getCurrentUser().then(user => {
-    return { type: SET_CURRENT_USER, user };
+    dispatch({ type: SET_CURRENT_USER, user });
   });
 };
 

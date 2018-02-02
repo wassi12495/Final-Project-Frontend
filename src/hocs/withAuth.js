@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../services";
+import * as actions from "../actions";
 import { Redirect } from "react-router-dom";
 
-const withAuth = wrappedComponent => {
+const withAuth = WrappedComponent => {
   class AuthenticatedComponent extends Component {
     state = { authenticated: this.props.loggedIn };
     componentDidMount() {
@@ -23,12 +23,12 @@ const withAuth = wrappedComponent => {
     render() {
       if (this.state.authenticated) {
         return this.props.loggedIn ? (
-          <wrappedComponent {...this.props} />
+          <WrappedComponent {...this.props} />
         ) : (
           <Redirect to="/login" />
         );
       } else {
-        null;
+        return null;
       }
     }
   }

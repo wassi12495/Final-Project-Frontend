@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -58,6 +58,7 @@ class LoginForm extends Component {
             />
             <input type="submit" />
           </form>
+          <Link to="/signup">Not a user? Sign up here!</Link>
         </div>
       </div>
     );

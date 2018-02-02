@@ -11,15 +11,15 @@ const NavBar = props => {
         About
       </NavLink>
       {props.loggedIn ? (
-        <div
-          onClick={() => {
-            props.logout();
-          }}
-        >
-          <NavLink exact to="/">
+        <NavLink exact to="/">
+          <div
+            onClick={() => {
+              props.logout();
+            }}
+          >
             Logout
-          </NavLink>
-        </div>
+          </div>
+        </NavLink>
       ) : (
         <NavLink exact to="/login">
           Login

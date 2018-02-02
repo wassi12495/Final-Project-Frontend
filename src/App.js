@@ -7,7 +7,7 @@ import NavBarContainer from "./components/navBar";
 import LoginContainer from "./components/login";
 import SignupContainer from "./components/signup/";
 import About from "./components/about/About";
-import Profile from "./components/profile/Profile";
+import ProfileContainer from "./components/profile";
 
 class App extends Component {
   componentDidMount() {
@@ -30,7 +30,7 @@ class App extends Component {
             <Route exact path="/" component={About} />
             <Route path="/login" component={LoginContainer} />
             <Route path="/signup" component={SignupContainer} />
-            <Route path="/profile" component={Profile} />
+            <Route path="/profile" component={ProfileContainer} />
           </Switch>
         </div>
       </div>

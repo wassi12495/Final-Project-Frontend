@@ -34,7 +34,6 @@ class NewRoutineForm extends Component {
   };
 
   handleChange = e => {
-    console.log("Routine Form State", this.state);
     this.setState({
       [e.target.name]: e.target.value
     });

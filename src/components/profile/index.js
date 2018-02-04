@@ -5,13 +5,13 @@ import Profile from "./Profile";
 import WorkoutFormNew from "../workout/WorkoutFormNew";
 import RoutinesContainer from "../routines";
 
-const ProfileContainer = () => {
+const ProfileContainer = ({ match }) => {
   return (
     <div>
       <Switch>
         <Route exact path="/profile" component={Profile} />
-        <Route path="/profile/new_workout" component={WorkoutFormNew} />
-        <Route path="/profile/routines" component={RoutinesContainer} />
+        <Route path={`${match.url}/new_workout`} component={WorkoutFormNew} />
+        <Route path={`${match.url}/routines`} component={RoutinesContainer} />
       </Switch>
     </div>
   );

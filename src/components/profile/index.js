@@ -1,7 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import withAuth from "../../hocs/withAuth";
 import Profile from "./Profile";
 import WorkoutFormNew from "../workout/WorkoutFormNew";
+import RoutinesContainer from "../routines";
 
 const ProfileContainer = () => {
   return (
@@ -9,9 +11,10 @@ const ProfileContainer = () => {
       <Switch>
         <Route exact path="/profile" component={Profile} />
         <Route path="/profile/new_workout" component={WorkoutFormNew} />
+        <Route path="/profile/routines" component={RoutinesContainer} />
       </Switch>
     </div>
   );
 };
 
-export default ProfileContainer;
+export default withAuth(ProfileContainer);

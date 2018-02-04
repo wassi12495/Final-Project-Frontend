@@ -24,7 +24,7 @@ class NewRoutineForm extends Component {
       if (res.error) {
         this.setState({ error: true, errorMessage: res.error });
       } else {
-        this.props.addRoutine(res);
+        // this.props.addRoutine(res);
         this.props.history.push("/profile");
       }
     });

@@ -1,11 +1,18 @@
-import { SET_CURRENT_USER, LOGOUT, ADD_NEW_ROUTINE } from "../actions/types";
+import { SET_CURRENT_USER, LOGOUT } from "../actions/types";
 
 export const authReducer = (state = { currentUser: {} }, action) => {
   console.log("AUTH REDUCER -- State is", state);
   console.log("AUTH REDUCER -- Action is", action);
   switch (action.type) {
     case SET_CURRENT_USER:
-      const { id, username, first_name, last_name, workouts } = action.user;
+      const {
+        id,
+        username,
+        first_name,
+        last_name,
+        workouts,
+        routines
+      } = action.user;
       return {
         ...state,
         currentUser: {
@@ -13,7 +20,8 @@ export const authReducer = (state = { currentUser: {} }, action) => {
           username,
           firstName: first_name,
           lastName: last_name,
-          workouts
+          workouts,
+          routines
         }
       };
     case LOGOUT:
@@ -24,11 +32,12 @@ export const authReducer = (state = { currentUser: {} }, action) => {
   }
 };
 
-export const routinesReducer = (state = [], action) => {
-  switch (action.type) {
-    case ADD_NEW_ROUTINE:
-      return [...state, action.routine];
-    default:
-      return state;
-  }
-};
+// TODO: Determine if I need to store routines in state (probs not)
+// export const routinesReducer = (state = [], action) => {
+//   switch (action.type) {
+//     case ADD_NEW_ROUTINE:
+//       return [...state, action.routine];
+//     default:
+//       return state;
+//   }
+// };

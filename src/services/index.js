@@ -27,6 +27,15 @@ const getCurrentUser = () => {
   }).then(res => res.json());
 };
 
+const createRoutine = routine => {
+  console.log("Create Routine", routine);
+  return fetch(`${API_URL}/routines`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(routine)
+  }).then(res => res.json());
+};
+
 export const adapter = {
   auth: {
     login,
@@ -34,5 +43,8 @@ export const adapter = {
   },
   users: {
     signup
+  },
+  routines: {
+    createRoutine
   }
 };

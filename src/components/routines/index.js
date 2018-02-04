@@ -2,12 +2,12 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import NewRoutineForm from "./NewRoutineForm";
 
-const RoutinesContainer = () => {
+const RoutinesContainer = ({ match }) => {
   return (
     <div>
       <h1>Routines Container</h1>
       <Switch>
-        <Route path="/profile/routines/new" component={NewRoutineForm} />
+        <Route path={`${match.url}/new`} component={NewRoutineForm} />
       </Switch>
     </div>
   );

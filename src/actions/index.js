@@ -1,4 +1,9 @@
-import { ASYNC_START, SET_CURRENT_USER, LOGOUT } from "./types";
+import {
+  ASYNC_START,
+  SET_CURRENT_USER,
+  LOGOUT,
+  ADD_NEW_ROUTINE
+} from "./types";
 import { adapter } from "../services";
 
 export const fetchUser = () => dispatch => {
@@ -27,4 +32,8 @@ export const loginUser = (username, password, history) => dispatch => {
 export const logout = () => {
   localStorage.removeItem("token");
   return { type: LOGOUT };
+};
+
+export const addRoutine = routine => dispatch => {
+  dispatch({ type: ADD_NEW_ROUTINE, routine });
 };

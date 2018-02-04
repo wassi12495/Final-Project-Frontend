@@ -22,7 +22,10 @@ class NewRoutineForm extends Component {
     };
     adapter.routines.createRoutine(routine).then(res => {
       if (res.error) {
-        this.setState({ error: true, errorMessage: res.error });
+        this.setState({
+          error: true,
+          errorMessage: `Routine title ${res.error.title[0]}`
+        });
       } else {
         // this.props.addRoutine(res);
         this.props.history.push("/profile");
@@ -44,7 +47,7 @@ class NewRoutineForm extends Component {
         <h1>New Routine</h1>
         {error ? <h4>{errorMessage}</h4> : null}
         <form onSubmit={this.handleSubmit}>
-          <label>Title</label>
+          <label>Title:</label>
           <input
             type="text"
             name="title"

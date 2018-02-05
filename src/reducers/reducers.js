@@ -2,7 +2,8 @@ import {
   SET_CURRENT_USER,
   LOGOUT,
   GET_EXERCISE_CATEGORIES,
-  GET_USER_WORKOUTS
+  GET_USER_WORKOUTS,
+  GET_EXERCISES
 } from "../actions/types";
 
 export const authReducer = (
@@ -44,6 +45,16 @@ export const exerciseCategoryReducer = (state = [], action) => {
   switch (action.type) {
     case GET_EXERCISE_CATEGORIES:
       return action.data;
+    default:
+      return state;
+  }
+};
+
+export const exercisesReducer = (state = [], action) => {
+  switch (action.type) {
+    case GET_EXERCISES:
+      return action.data;
+
     default:
       return state;
   }

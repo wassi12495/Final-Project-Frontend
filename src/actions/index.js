@@ -4,7 +4,8 @@ import {
   LOGOUT,
   ADD_NEW_ROUTINE,
   GET_EXERCISE_CATEGORIES,
-  GET_USER_WORKOUTS
+  GET_USER_WORKOUTS,
+  GET_EXERCISES
 } from "./types";
 import { adapter } from "../services";
 
@@ -42,7 +43,7 @@ export const addRoutine = routine => dispatch => {
 
 export const getExerciseCategories = () => dispatch => {
   dispatch({ type: ASYNC_START });
-  adapter.exerciseCategories.getExCas().then(data => {
+  adapter.exercises.getExCas().then(data => {
     dispatch({ type: GET_EXERCISE_CATEGORIES, data });
   });
 };
@@ -52,5 +53,12 @@ export const getWorkouts = () => dispatch => {
   adapter.auth.getWorkouts().then(data => {
     const workouts = data.workouts;
     dispatch({ type: GET_USER_WORKOUTS, workouts });
+  });
+};
+
+export const getExercises = () => dispatch => {
+  dispatch({ type: ASYNC_START });
+  adapter.exercises.getExercises().then(data => {
+    dispatch({ type: GET_EXERCISES, data });
   });
 };

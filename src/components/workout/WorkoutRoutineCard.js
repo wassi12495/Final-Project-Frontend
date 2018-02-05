@@ -7,10 +7,13 @@ const WorkoutRoutineCard = ({ routine, handleClick }) => {
   const exercises = routine.exercises.map((exercise, index) => {
     return (
       <div key={index}>
-        <p>{exercise.name}</p>
+        <p>
+          {exercise.name} x{exercise.sets}
+        </p>
       </div>
     );
   });
+  console.log(routine);
   return (
     <div>
       <h3>{routine.title}</h3>

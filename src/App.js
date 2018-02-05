@@ -15,6 +15,7 @@ class App extends Component {
       this.props.fetchUser();
     }
     this.props.getExerciseCategories();
+    this.props.getExercises();
   }
   render() {
     console.log("App Props", this.props);
@@ -40,7 +41,8 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
-  exerciseCategories: state.exerciseCategories
+  exerciseCategories: state.exerciseCategories,
+  exercises: state.exercises
 });
 
 export default connect(mapStateToProps, actions)(App);

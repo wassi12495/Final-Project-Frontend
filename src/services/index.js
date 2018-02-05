@@ -48,6 +48,12 @@ const getWorkouts = () => {
   }).then(res => res.json());
 };
 
+const getExercises = () => {
+  return fetch(`${API_URL}/exercises`, {
+    method: "GET"
+  }).then(res => res.json());
+};
+
 export const adapter = {
   auth: {
     login,
@@ -60,7 +66,8 @@ export const adapter = {
   routines: {
     createRoutine
   },
-  exerciseCategories: {
-    getExCas
+  exercises: {
+    getExCas,
+    getExercises
   }
 };

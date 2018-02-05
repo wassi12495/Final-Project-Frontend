@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const Profile = props => {
   const { firstName, lastName } = props.currentUser;
   const fullName = `${firstName} ${lastName}`;
-  console.log("Profile props", props.currentUser);
   return (
     <div>
       <h1>Profile page</h1>
@@ -35,7 +34,6 @@ const Profile = props => {
 };
 
 const mapStateToProps = state => {
-  console.log(state);
   return { currentUser: state.auth.currentUser };
 };
 

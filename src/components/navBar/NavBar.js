@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 const NavBar = props => {
-  console.log("Navbar", props);
   return (
     <div>
       <NavLink exact to="/">

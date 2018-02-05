@@ -11,7 +11,6 @@ class WorkoutContainer extends Component {
     this.props.getWorkouts();
   }
   render() {
-    console.log("Workout Container Props", this.props);
     const { match } = this.props;
     return (
       <div>

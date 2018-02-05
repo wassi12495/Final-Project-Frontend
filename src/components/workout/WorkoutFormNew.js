@@ -11,7 +11,7 @@ class WorkoutFormNew extends Component {
     };
   }
 
-  handleCustomWorkout = routine => {
+  handleSelectWorkout = routine => {
     console.log("Selected Routine", routine);
   };
 
@@ -27,7 +27,7 @@ class WorkoutFormNew extends Component {
         <div key={index}>
           <WorkoutRoutineCard
             routine={routine}
-            handleClick={this.handleCustomWorkout}
+            handleClick={this.handleSelectWorkout}
           />
         </div>
       );
@@ -39,7 +39,7 @@ class WorkoutFormNew extends Component {
         <div>
           <WorkoutRoutineCard
             routine={customRoutine}
-            handleClick={this.handleCustomWorkout}
+            handleClick={this.handleSelectWorkout}
           />
         </div>
         <div>{routines}</div>

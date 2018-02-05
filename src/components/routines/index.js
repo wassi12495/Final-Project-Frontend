@@ -1,13 +1,20 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import NewRoutineForm from "./NewRoutineForm";
 import RoutinesList from "./RoutinesList";
 
 const RoutinesContainer = ({ match }) => {
-  console.log("Routine Container", match);
   return (
     <div>
-      <h1>Routines Container</h1>
+      <div>
+        <div>
+          <Link to={`${match.url}`}>Your Routines</Link>
+        </div>
+        <div>
+          <Link to={`${match.url}/new`}>New Routine</Link>
+        </div>
+      </div>
+
       <Switch>
         <Route exact path={`${match.url}`} component={RoutinesList} />
         <Route path={`${match.url}/new`} component={NewRoutineForm} />

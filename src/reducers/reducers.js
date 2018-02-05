@@ -9,8 +9,6 @@ export const authReducer = (
   state = { currentUser: {}, workouts: [] },
   action
 ) => {
-  console.log("AUTH REDUCER -- State is", state);
-  console.log("AUTH REDUCER -- Action is", action);
   switch (action.type) {
     case SET_CURRENT_USER:
       const {

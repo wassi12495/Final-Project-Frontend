@@ -9,7 +9,8 @@ class NewRoutineForm extends Component {
     this.state = {
       error: false,
       errorMessage: "",
-      title: ""
+      title: "",
+      exercises: []
     };
   }
 
@@ -43,20 +44,29 @@ class NewRoutineForm extends Component {
     const { title, error, errorMessage } = this.state;
     return (
       <div>
-        <h1>New Routine</h1>
         <button onClick={this.props.history.goBack}>Go Back</button>
 
-        {error ? <h4>{errorMessage}</h4> : null}
-        <form onSubmit={this.handleSubmit}>
-          <label>Title:</label>
-          <input
-            type="text"
-            name="title"
-            value={title}
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
-        </form>
+        <h1>New Routine</h1>
+        <div>
+          <div>
+            {error ? <h4>{errorMessage}</h4> : null}
+            <label>Routine Title:</label>
+            <input
+              type="text"
+              name="title"
+              value={title}
+              onChange={this.handleChange}
+            />
+            <div>
+              <label>Exercises</label>
+              <div>Add Exercise</div>
+            </div>
+
+            <div>
+              <button onClick={this.handleSubmit}>Save</button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

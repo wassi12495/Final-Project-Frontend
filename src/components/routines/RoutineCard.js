@@ -1,10 +1,10 @@
 import React from "react";
 
-const RoutineCard = props => {
-  console.log("Routine Card", props);
+const RoutineCard = ({ routine }) => {
+  console.log("Routine Card", routine);
   return (
     <div>
-      <p>Routine Card </p>
+      <p>{routine.title} </p>
     </div>
   );
 };

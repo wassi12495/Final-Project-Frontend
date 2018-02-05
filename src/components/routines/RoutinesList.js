@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import RoutineCard from "./RoutineCard";
 
 const RoutinesList = props => {
   const { routines } = props.currentUser;
@@ -7,6 +8,7 @@ const RoutinesList = props => {
     return (
       <div key={index}>
         <p>{r.title}</p>
+        <RoutineCard routine={r} key={index} />
       </div>
     );
   });

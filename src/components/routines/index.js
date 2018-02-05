@@ -4,6 +4,7 @@ import NewRoutineForm from "./NewRoutineForm";
 import RoutinesList from "./RoutinesList";
 
 const RoutinesContainer = ({ match }) => {
+  console.log("Routine Container", match);
   return (
     <div>
       <h1>Routines Container</h1>

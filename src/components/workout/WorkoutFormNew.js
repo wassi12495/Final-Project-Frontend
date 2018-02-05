@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+
 class WorkoutFormNew extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      routine: {}
+    };
   }
+
+  handleCustomWorkout = e => {
+    console.log(e.target.value);
+  };
 
   render() {
     console.log("New Workout props", this.props);
@@ -13,9 +20,6 @@ class WorkoutFormNew extends Component {
       <div>
         <button onClick={this.props.history.goBack}>Go Back</button>
         <h1>New Workout</h1>
-        <div>
-          <div>Custom Workout</div>
-        </div>
       </div>
     );
   }

@@ -8,7 +8,6 @@ import CurrentWorkout from "./CurrentWorkout";
 
 class WorkoutContainer extends Component {
   componentDidMount() {
-    console.log("Workout Container Did Mount");
     this.props.getWorkouts();
   }
   render() {

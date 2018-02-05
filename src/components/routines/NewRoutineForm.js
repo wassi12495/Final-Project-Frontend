@@ -44,6 +44,8 @@ class NewRoutineForm extends Component {
     return (
       <div>
         <h1>New Routine</h1>
+        <button onClick={this.props.history.goBack}>Go Back</button>
+
         {error ? <h4>{errorMessage}</h4> : null}
         <form onSubmit={this.handleSubmit}>
           <label>Title:</label>

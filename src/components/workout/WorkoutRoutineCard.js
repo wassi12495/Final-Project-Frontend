@@ -6,12 +6,11 @@ const WorkoutRoutineCard = ({ routine, handleClick }) => {
   };
   const exercises = routine.exercises.map((exercise, index) => {
     return (
-      <li key={index}>
+      <div key={index}>
         <p>{exercise.name}</p>
-      </li>
+      </div>
     );
   });
-  console.log(exercises);
   return (
     <div>
       <h3>{routine.title}</h3>

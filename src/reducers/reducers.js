@@ -1,4 +1,8 @@
-import { SET_CURRENT_USER, LOGOUT } from "../actions/types";
+import {
+  SET_CURRENT_USER,
+  LOGOUT,
+  GET_EXERCISE_CATEGORIES
+} from "../actions/types";
 
 export const authReducer = (state = { currentUser: {} }, action) => {
   console.log("AUTH REDUCER -- State is", state);
@@ -27,6 +31,15 @@ export const authReducer = (state = { currentUser: {} }, action) => {
     case LOGOUT:
       return { ...state, currentUser: {} };
 
+    default:
+      return state;
+  }
+};
+
+export const exerciseCategoryReducer = (state = [], action) => {
+  switch (action.type) {
+    case GET_EXERCISE_CATEGORIES:
+      return action.data;
     default:
       return state;
   }

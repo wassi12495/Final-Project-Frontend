@@ -36,6 +36,12 @@ const createRoutine = routine => {
   }).then(res => res.json());
 };
 
+const getExCas = () => {
+  return fetch(`${API_URL}/exercise_categories`, {
+    method: "GET"
+  }).then(res => res.json());
+};
+
 export const adapter = {
   auth: {
     login,
@@ -46,5 +52,8 @@ export const adapter = {
   },
   routines: {
     createRoutine
+  },
+  exerciseCategories: {
+    getExCas
   }
 };

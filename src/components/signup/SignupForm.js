@@ -43,7 +43,9 @@ class Signup extends Component {
           error: true
         });
       } else {
-        this.props.history.push("/");
+        this.props.loginUser(user.username, user.password, this.props.history);
+
+        this.props.history.push("/login");
       }
     });
   };

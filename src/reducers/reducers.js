@@ -1,10 +1,14 @@
 import {
   SET_CURRENT_USER,
   LOGOUT,
-  GET_EXERCISE_CATEGORIES
+  GET_EXERCISE_CATEGORIES,
+  GET_USER_WORKOUTS
 } from "../actions/types";
 
-export const authReducer = (state = { currentUser: {} }, action) => {
+export const authReducer = (
+  state = { currentUser: {}, workouts: [] },
+  action
+) => {
   console.log("AUTH REDUCER -- State is", state);
   console.log("AUTH REDUCER -- Action is", action);
   switch (action.type) {
@@ -28,6 +32,8 @@ export const authReducer = (state = { currentUser: {} }, action) => {
           routines
         }
       };
+    case GET_USER_WORKOUTS:
+      return { ...state, workouts: action.workouts };
     case LOGOUT:
       return { ...state, currentUser: {} };
 

@@ -4,20 +4,17 @@ import * as actions from "../../actions";
 class WorkoutFormNew extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      currentUser: props.currentUser
-    };
+    this.state = {};
   }
+
   render() {
     console.log("New Workout props", this.props);
     return (
       <div>
         <button onClick={this.props.history.goBack}>Go Back</button>
-        <h1>New Workout Form</h1>
+        <h1>New Workout</h1>
         <div>
-          <form>
-            <input type="submit" />
-          </form>
+          <div>Custom Workout</div>
         </div>
       </div>
     );
@@ -26,7 +23,8 @@ class WorkoutFormNew extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.auth.currentUser
+    currentUser: state.auth.currentUser,
+    routines: state.auth.currentUser.routines
   };
 };
 export default connect(mapStateToProps, actions)(WorkoutFormNew);

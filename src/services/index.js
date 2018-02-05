@@ -1,4 +1,5 @@
 const API_URL = "http://localhost:3000/api/v1";
+const TOKEN = localStorage.getItem("token");
 
 const headers = {
   "Content-Type": "application/json",
@@ -21,9 +22,8 @@ const login = user => {
 };
 
 const getCurrentUser = () => {
-  const token = localStorage.getItem("token");
   return fetch(`${API_URL}/current_user`, {
-    headers: { Authorization: token }
+    headers: { Authorization: TOKEN }
   }).then(res => res.json());
 };
 
@@ -42,12 +42,19 @@ const getExCas = () => {
   }).then(res => res.json());
 };
 
+const getWorkouts = () => {
+  return fetch(`${API_URL}/current_user/workouts`, {
+    headers: { Authorization: TOKEN }
+  }).then(res => res.json());
+};
+
 export const adapter = {
   auth: {
     login,
-    getCurrentUser
+    getCurrentUser,
+    getWorkouts
   },
-  users: {
+  user: {
     signup
   },
   routines: {

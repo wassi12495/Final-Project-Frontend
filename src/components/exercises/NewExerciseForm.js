@@ -22,13 +22,29 @@ class NewExerciseForm extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleOptionChange = e => {
+    this.setState({
+      exerciseCategory: e.target.value
+    });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
-    console.log("Submit Exercise", this.state);
+    const { name, description, exerciseCategory } = this.state;
+    console.log("New Exercise Submit", name, description, exerciseCategory);
+    debugger;
   };
 
   render() {
+    const { exerciseCategories } = this.props;
     const { name, description, exerciseCategory } = this.state;
+    const categories = exerciseCategories.map(c => {
+      return (
+        <option value={c.id} key={c.id}>
+          {c.name}
+        </option>
+      );
+    });
     return (
       <div>
         <h1>New Exercise Form</h1>
@@ -49,12 +65,13 @@ class NewExerciseForm extends Component {
               name="description"
             />
             <label>Exercise Category: </label>
-            <input
-              type="text"
-              value={exerciseCategory}
-              onChange={this.handleChange}
-              name="exerciseCategory"
-            />
+            <select
+              value={exerciseCategory.name}
+              onChange={this.handleOptionChange}
+            >
+              <option value="">Pick one...</option>
+              {categories}
+            </select>
 
             <input type="submit" />
           </form>
@@ -65,7 +82,8 @@ class NewExerciseForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser
+  currentUser: state.auth.currentUser,
+  exerciseCategories: state.exerciseCategories
 });
 
 export default connect(mapStateToProps, actions)(NewExerciseForm);

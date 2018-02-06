@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import { adapter } from "../../services";
+import AddExercise from "../exercises/AddExercise";
+import NewRoutineExercise from "./NewRoutineExercise";
 
 class NewRoutineForm extends Component {
   constructor(props) {
@@ -40,8 +42,41 @@ class NewRoutineForm extends Component {
     });
   };
 
+  handleSelection = exercise => {
+    console.log("Handle Selection", exercise);
+    const e = Object.assign({}, exercise, {
+      sets: 1
+    });
+    this.setState({
+      exercises: [...this.state.exercises, e]
+    });
+  };
+
+  addSet = exercise => {
+    console.log("Add Set", exercise);
+    exercise.sets += 1;
+    const i = this.state.exercises.findIndex(e => e.id === exercise.id);
+    this.setState({
+      exercises: [
+        ...this.state.exercises.slice(0, i),
+        exercise,
+        ...this.state.exercises.slice(i + 1)
+      ]
+    });
+  };
+
   render() {
+    console.log("New Routine state", this.state.exercises);
     const { title, error, errorMessage } = this.state;
+    const exercises = this.state.exercises.map(exercise => {
+      return (
+        <NewRoutineExercise
+          exercise={exercise}
+          key={exercise.id}
+          addSet={this.addSet}
+        />
+      );
+    });
     return (
       <div>
         <button onClick={this.props.history.goBack}>Go Back</button>
@@ -59,7 +94,9 @@ class NewRoutineForm extends Component {
             />
             <div>
               <label>Exercises</label>
+              {exercises}
               <div>Add Exercise</div>
+              <AddExercise handleSelection={this.handleSelection} />
             </div>
 
             <div>

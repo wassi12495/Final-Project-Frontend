@@ -4,6 +4,7 @@ import * as actions from "../../actions";
 import { adapter } from "../../services";
 import AddExercise from "../exercises/AddExercise";
 import NewRoutineExercise from "./NewRoutineExercise";
+// import { Button, Modal } from "semantic-ui-react";
 
 class NewRoutineForm extends Component {
   constructor(props) {
@@ -96,6 +97,7 @@ class NewRoutineForm extends Component {
               <label>Exercises</label>
               {exercises}
               <div>Add Exercise</div>
+
               <AddExercise handleSelection={this.handleSelection} />
             </div>
 

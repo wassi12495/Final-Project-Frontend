@@ -7,6 +7,7 @@ import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import reduxThunk from "redux-thunk";
+import "semantic-ui-css/semantic.min.css";
 
 const store = createStore(rootReducer, applyMiddleware(reduxThunk));
 

@@ -5,28 +5,41 @@ import * as actions from "../../actions";
 
 const NavBar = props => {
   return (
-    <div>
-      <NavLink exact to="/">
-        About
-      </NavLink>
-      {props.loggedIn ? (
+    <div className="ui menu">
+      <div className="item">
         <NavLink exact to="/">
-          <div
-            onClick={() => {
-              props.logout();
-            }}
-          >
-            Logout
+          About
+        </NavLink>
+      </div>
+
+      {props.loggedIn ? (
+        <div className="right menu">
+          <div className="item">
+            <NavLink exact to="/">
+              <div
+                onClick={() => {
+                  props.logout();
+                }}
+              >
+                Logout
+              </div>
+            </NavLink>
           </div>
-        </NavLink>
+          <div className="item">
+            <NavLink exact to="/profile">
+              Profile
+            </NavLink>
+          </div>
+        </div>
       ) : (
-        <NavLink exact to="/login">
-          Login
-        </NavLink>
+        <div className="right menu">
+          <div className="item">
+            <NavLink exact to="/login">
+              Login
+            </NavLink>
+          </div>
+        </div>
       )}
-      <NavLink exact to="/profile">
-        Profile
-      </NavLink>
     </div>
   );
 };

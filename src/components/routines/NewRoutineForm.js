@@ -46,7 +46,8 @@ class NewRoutineForm extends Component {
   handleSelection = exercise => {
     console.log("Handle Selection", exercise);
     const e = Object.assign({}, exercise, {
-      sets: 1
+      sets: 1,
+      reps: []
     });
     this.setState({
       exercises: [...this.state.exercises, e]
@@ -66,6 +67,10 @@ class NewRoutineForm extends Component {
     });
   };
 
+  handleReps = e => {
+    console.log(e.target.value);
+  };
+
   render() {
     console.log("New Routine state", this.state.exercises);
     const { title, error, errorMessage } = this.state;
@@ -75,6 +80,7 @@ class NewRoutineForm extends Component {
           exercise={exercise}
           key={exercise.id}
           addSet={this.addSet}
+          handleReps={this.handleReps}
         />
       );
     });

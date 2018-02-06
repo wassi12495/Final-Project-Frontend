@@ -1,7 +1,7 @@
 import React from "react";
 import LoginForm from "./LoginForm";
 
-const LoginContainer = () => {
+const LoginContainer = ({ loading }) => {
   return <LoginForm />;
 };
 

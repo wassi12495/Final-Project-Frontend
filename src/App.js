@@ -17,6 +17,10 @@ class App extends Component {
     this.props.getExerciseCategories();
     this.props.getExercises();
   }
+  renderLoading = () => {
+    return <div>LOADING...</div>;
+  };
+
   render() {
     console.log("App Props", this.props);
     return (
@@ -42,7 +46,8 @@ class App extends Component {
 const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
   exerciseCategories: state.exerciseCategories,
-  exercises: state.exercises
+  exercises: state.exercises,
+  loading: state.loading
 });
 
 export default connect(mapStateToProps, actions)(App);

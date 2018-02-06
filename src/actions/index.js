@@ -26,6 +26,7 @@ export const createNewUser = (user, history) => dispatch => {
 export const loginUser = (username, password, history) => dispatch => {
   dispatch({ type: ASYNC_START });
   adapter.auth.login({ username, password }).then(user => {
+    console.log("Login User", user);
     localStorage.setItem("token", user.jwt);
     dispatch({ type: SET_CURRENT_USER, user });
     history.push("/profile");

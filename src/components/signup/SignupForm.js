@@ -34,9 +34,10 @@ class Signup extends Component {
       password: this.state.password,
       password_confirmation: this.state.password_confirmation,
       first_name: this.state.first_name,
-      last_name: this.state.last_name
+      last_name: this.state.last_name,
+      is_trainer: this.state.is_trainer
     };
-    adapter.users.signup(user).then(res => {
+    adapter.user.signup(user).then(res => {
       console.log("New User response", res);
       if (res.error) {
         this.setState({
@@ -44,8 +45,6 @@ class Signup extends Component {
         });
       } else {
         this.props.loginUser(user.username, user.password, this.props.history);
-
-        this.props.history.push("/login");
       }
     });
   };
@@ -62,8 +61,6 @@ class Signup extends Component {
       error
     } = this.state;
 
-    console.log("Signup state", this.state);
-    console.log("Signup props", this.props);
     return (
       <div>
         <h1>Signup component</h1>

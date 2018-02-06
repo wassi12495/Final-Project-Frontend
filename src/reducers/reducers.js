@@ -1,4 +1,5 @@
 import {
+  ASYNC_START,
   SET_CURRENT_USER,
   LOGOUT,
   GET_EXERCISE_CATEGORIES,
@@ -6,10 +7,20 @@ import {
   GET_EXERCISES
 } from "../actions/types";
 
+export const asyncReducer = (state = false, action) => {
+  switch (action.type) {
+    case ASYNC_START:
+      return true;
+    default:
+      return false;
+  }
+};
+
 export const authReducer = (
   state = { currentUser: {}, workouts: [] },
   action
 ) => {
+  console.log("Auth Reduxer", action);
   switch (action.type) {
     case SET_CURRENT_USER:
       const {

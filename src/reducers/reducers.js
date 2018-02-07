@@ -35,7 +35,8 @@ export const authReducer = (
         first_name,
         last_name,
         workouts,
-        routines
+        routines,
+        currentWorkout
       } = action.user;
       return {
         ...state,
@@ -45,7 +46,8 @@ export const authReducer = (
           firstName: first_name,
           lastName: last_name,
           workouts,
-          routines
+          routines,
+          currentWorkout
         }
       };
     case GET_USER_WORKOUTS:
@@ -117,12 +119,9 @@ export const routineReducer = (state = {}, action) => {
 export const currentWorkoutReducer = (state = null, action) => {
   switch (action.type) {
     case SET_CURRENT_WORKOUT:
-      console.log("SET_CURRENT_WORKOUT", action.workout);
-      return {
-        title: action.workout.title,
-        exercises: [action.workout.exercises],
-        status: action.status
-      };
+      console.log("SET_CURRENT_WORKOUT", action.data);
+      return action.data;
+
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import { adapter } from "../../services";
 import WorkoutRoutineCard from "./WorkoutRoutineCard";
 
 class WorkoutFormNew extends Component {
@@ -14,7 +15,19 @@ class WorkoutFormNew extends Component {
   handleSelectWorkout = routine => {
     console.log("Selected Routine", routine);
     const status = "ACTIVE";
-    this.props.setCurrentWorkout(routine, status, this.props.currentUser.id);
+    const initCurrWorkout = {
+      routine_id: routine.id
+    };
+    adapter.workouts.initializeWorkout(initCurrWorkout).then(res => {
+      if (res.error) {
+        alert(res.error);
+        this.props.history.push(`${this.props.match.url}`);
+      } else {
+        console.log("init workout response", res);
+        this.props.setCurrentWorkout(res);
+        this.props.history.push(`/profile/workouts/current_workout`);
+      }
+    });
   };
 
   render() {

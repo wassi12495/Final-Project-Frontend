@@ -57,10 +57,23 @@ const getExercises = () => {
 
 const initializeWorkout = data => {
   console.log("Initialize Workout", data);
-  return fetch(`${API_URL}/workouts`, {
+
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/current_workouts`, {
     method: "POST",
-    headers,
+    headers: {
+      "Content-Type": "application/json",
+      Accepts: "application/json",
+      Authorization: token
+    },
     body: JSON.stringify(data)
+  }).then(res => res.json());
+};
+
+const getCurrentWorkout = () => {
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/current_workouts`, {
+    headers: { Authorization: token }
   }).then(res => res.json());
 };
 
@@ -81,6 +94,7 @@ export const adapter = {
     getExercises
   },
   workouts: {
-    initializeWorkout
+    initializeWorkout,
+    getCurrentWorkout
   }
 };

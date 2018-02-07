@@ -20,7 +20,8 @@ const WorkoutRoutineCard = ({ routine, handleClick, match }) => {
       <h4>Exercises: </h4>
       <ul>{exercises}</ul>
       <button onClick={handleButton}>
-        <Link to={`/profile/workouts/current_workout`}>Select</Link>
+        Select
+        {/* <Link to={`/profile/workouts/current_workout`}>Select</Link> */}
       </button>
     </div>
   );

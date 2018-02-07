@@ -114,13 +114,14 @@ export const routineReducer = (state = {}, action) => {
   }
 };
 
-export const currentWorkoutReducer = (state = {}, action) => {
+export const currentWorkoutReducer = (state = null, action) => {
   switch (action.type) {
     case SET_CURRENT_WORKOUT:
       console.log("SET_CURRENT_WORKOUT", action.workout);
       return {
         title: action.workout.title,
-        exercises: [action.workout.exercises]
+        exercises: [action.workout.exercises],
+        status: action.status
       };
     default:
       return state;

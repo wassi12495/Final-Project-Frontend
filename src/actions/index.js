@@ -84,6 +84,20 @@ export const updateCurrentRoutineTitle = title => dispatch => {
   dispatch({ type: UPDATE_CURRENT_ROUTINE_TITLE, title });
 };
 
-export const setCurrentWorkout = workout => dispatch => {
-  dispatch({ type: SET_CURRENT_WORKOUT, workout });
+export const setCurrentWorkout = (
+  routine,
+  status,
+  currentUserId
+) => dispatch => {
+  dispatch({ type: ASYNC_START });
+  const data = {
+    workout: {
+      routine: routine,
+      routine_id: routine.id,
+      status: status,
+      user_id: currentUserId
+    }
+  };
+  adapter.workouts.initializeWorkout(data).then(res => console.log(res));
+  dispatch({ type: SET_CURRENT_WORKOUT, workout: routine, status });
 };

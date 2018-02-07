@@ -55,6 +55,15 @@ const getExercises = () => {
   }).then(res => res.json());
 };
 
+const initializeWorkout = data => {
+  console.log("Initialize Workout", data);
+  return fetch(`${API_URL}/workouts`, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+};
+
 export const adapter = {
   auth: {
     login,
@@ -70,5 +79,8 @@ export const adapter = {
   exercises: {
     getExCas,
     getExercises
+  },
+  workouts: {
+    initializeWorkout
   }
 };

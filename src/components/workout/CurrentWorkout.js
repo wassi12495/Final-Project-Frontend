@@ -11,9 +11,15 @@ class CurrentWorkout extends Component {
     };
   }
   componentDidMount() {
-    this.setState({
-      exercises: this.props.currentWorkout.exercises[0]
-    });
+    if (this.props.currentWorkout) {
+      debugger;
+      this.setState({
+        exercises: this.props.currentWorkout.exercises[0]
+      });
+    } else {
+      alert("You do not currently have an active workout!");
+      this.props.history.goBack();
+    }
   }
   render() {
     console.log("Current Workout", this.state);

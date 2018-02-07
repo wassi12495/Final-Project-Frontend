@@ -4,7 +4,8 @@ import {
   exerciseCategoryReducer,
   exercisesReducer,
   asyncReducer,
-  routineReducer
+  routineReducer,
+  currentWorkoutReducer
 } from "./reducers";
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   exerciseCategories: exerciseCategoryReducer,
   loading: asyncReducer,
   exercises: exercisesReducer,
-  currentRoutine: routineReducer
+  currentRoutine: routineReducer,
+  currentWorkout: currentWorkoutReducer
 });
 
 export default rootReducer;

@@ -13,6 +13,7 @@ class WorkoutFormNew extends Component {
 
   handleSelectWorkout = routine => {
     console.log("Selected Routine", routine);
+    this.props.setCurrentWorkout(routine);
   };
 
   render() {

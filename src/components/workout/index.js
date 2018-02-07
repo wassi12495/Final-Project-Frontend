@@ -27,7 +27,7 @@ class WorkoutContainer extends Component {
         </div>
         <Switch>
           <Route exact path={`${match.url}`} component={WorkoutList} />
-          <Route path={`${match.url}/new`} component={WorkoutFormNew} />
+          <Route exact path={`${match.url}/new`} component={WorkoutFormNew} />
           <Route
             path={`${match.url}/current_workout`}
             component={CurrentWorkout}

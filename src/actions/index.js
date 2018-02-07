@@ -9,7 +9,8 @@ import {
   UPDATE_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_ROUTINE_TITLE,
   POST_NEW_ROUTINE,
-  ADD_EXERCISE_TO_CURRENT_ROUTINE
+  ADD_EXERCISE_TO_CURRENT_ROUTINE,
+  SET_CURRENT_WORKOUT
 } from "./types";
 import { adapter } from "../services";
 
@@ -81,4 +82,8 @@ export const addExerciseToCurrentNewRoutine = data => dispatch => {
 
 export const updateCurrentRoutineTitle = title => dispatch => {
   dispatch({ type: UPDATE_CURRENT_ROUTINE_TITLE, title });
+};
+
+export const setCurrentWorkout = workout => dispatch => {
+  dispatch({ type: SET_CURRENT_WORKOUT, workout });
 };

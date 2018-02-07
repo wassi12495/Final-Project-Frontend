@@ -1,6 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 
-const CurrentWorkout = () => {
+const CurrentWorkout = props => {
+  console.log("Current Workout", props.currentWorkout);
   return (
     <div>
       <h1>Current Workout Page</h1>
@@ -8,4 +11,7 @@ const CurrentWorkout = () => {
   );
 };
 
-export default CurrentWorkout;
+const mapStateToProps = state => ({
+  currentWorkout: state.currentWorkout
+});
+export default connect(mapStateToProps, actions)(CurrentWorkout);

@@ -9,7 +9,8 @@ import {
   UPDATE_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_ROUTINE_TITLE,
   POST_NEW_ROUTINE,
-  ADD_EXERCISE_TO_CURRENT_ROUTINE
+  ADD_EXERCISE_TO_CURRENT_ROUTINE,
+  SET_CURRENT_WORKOUT
 } from "../actions/types";
 
 export const asyncReducer = (state = false, action) => {
@@ -108,6 +109,19 @@ export const routineReducer = (state = {}, action) => {
       return { ...state, title: action.title };
     case POST_NEW_ROUTINE:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const currentWorkoutReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SET_CURRENT_WORKOUT:
+      console.log("SET_CURRENT_WORKOUT", action.workout);
+      return {
+        title: action.workout.title,
+        exercises: [action.workout.exercises]
+      };
     default:
       return state;
   }

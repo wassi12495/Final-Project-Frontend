@@ -1,15 +1,33 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import CurrentWorkoutExercise from "./CurrentWorkoutExercise";
 
-const CurrentWorkout = props => {
-  console.log("Current Workout", props.currentWorkout);
-  return (
-    <div>
-      <h1>Current Workout Page</h1>
-    </div>
-  );
-};
+class CurrentWorkout extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      exercises: []
+    };
+  }
+  componentDidMount() {
+    this.setState({
+      exercises: this.props.currentWorkout.exercises[0]
+    });
+  }
+  render() {
+    console.log("Current Workout", this.state);
+    const exerciseCards = this.state.exercises.map((exercise, index) => {
+      return <CurrentWorkoutExercise exercise={exercise} key={index} />;
+    });
+    return (
+      <div>
+        <h1>Current Workout Page</h1>
+        {exerciseCards}
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   currentWorkout: state.currentWorkout

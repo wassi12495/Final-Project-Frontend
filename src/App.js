@@ -47,7 +47,8 @@ const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
   exerciseCategories: state.exerciseCategories,
   exercises: state.exercises,
-  loading: state.loading
+  loading: state.loading,
+  currentWorkout: state.currentWorkout
 });
 
 export default connect(mapStateToProps, actions)(App);

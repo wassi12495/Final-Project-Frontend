@@ -13,74 +13,80 @@ class NewRoutineForm extends Component {
       error: false,
       errorMessage: "",
       title: "",
-      exercises: []
+      exercises: [],
+      user_id: this.props.currentUser.id
     };
+  }
+
+  componentDidMount() {
+    this.props.setCurrentNewRoutine(this.state);
   }
 
   handleSubmit = e => {
     e.preventDefault();
 
-    const routine = {
-      title: this.state.title,
-      user_id: this.props.currentUser.id
+    const data = {
+      routine: this.props.currentRoutine
     };
-    adapter.routines.createRoutine(routine).then(res => {
+    adapter.routines.createRoutine(data).then(res => {
       if (res.error) {
         this.setState({
           error: true,
           errorMessage: `Routine title ${res.error.title[0]}`
         });
       } else {
-        // this.props.addRoutine(res);
+        this.props.addRoutine();
         this.props.history.push("/profile");
       }
     });
   };
 
   handleChange = e => {
+    this.props.updateCurrentRoutineTitle(e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
   handleSelection = exercise => {
-    console.log("Handle Selection", exercise);
-    const e = Object.assign({}, exercise, {
-      sets: 1,
-      reps: []
+    // console.log("Handle Selection", exercise);
+    const update = Object.assign({}, exercise, {
+      sets: [{ set: 1, reps: 10 }],
+      amt: 1
     });
+    const index = this.state.exercises.length;
+    const params = { update, index };
+    this.props.addExerciseToCurrentNewRoutine(params);
     this.setState({
-      exercises: [...this.state.exercises, e]
+      exercises: [...this.state.exercises, update]
     });
   };
 
-  addSet = exercise => {
-    console.log("Add Set", exercise);
-    exercise.sets += 1;
-    const i = this.state.exercises.findIndex(e => e.id === exercise.id);
+  updateState = state => {
+    // console.log("New Routine, update exercise state", state);
+    const exercise = this.state.exercises[state.index];
+    exercise.sets = state.sets;
+    exercise.amt = state.amt;
     this.setState({
       exercises: [
-        ...this.state.exercises.slice(0, i),
+        ...this.state.exercises.slice(0, state.index),
         exercise,
-        ...this.state.exercises.slice(i + 1)
+        ...this.state.exercises.slice(state.index + 1)
       ]
     });
   };
 
-  handleReps = e => {
-    console.log(e.target.value);
-  };
-
   render() {
     console.log("New Routine state", this.state.exercises);
+    console.log("New Routine props", this.props);
     const { title, error, errorMessage } = this.state;
-    const exercises = this.state.exercises.map(exercise => {
+    const exercises = this.state.exercises.map((exercise, index) => {
       return (
         <NewRoutineExercise
           exercise={exercise}
-          key={exercise.id}
-          addSet={this.addSet}
-          handleReps={this.handleReps}
+          index={index}
+          key={index}
+          updateState={this.updateState}
         />
       );
     });
@@ -118,7 +124,21 @@ class NewRoutineForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser
+  currentUser: state.auth.currentUser,
+  currentRoutine: state.currentRoutine
 });
 
 export default connect(mapStateToProps, actions)(NewRoutineForm);
+
+// addSet = exercise => {
+//   console.log("Add Set", exercise);
+//   exercise.sets += 1;
+//   const i = this.state.exercises.findIndex(e => e.id === exercise.id);
+//   this.setState({
+//     exercises: [
+//       ...this.state.exercises.slice(0, i),
+//       exercise,
+//       ...this.state.exercises.slice(i + 1)
+//     ]
+//   });
+// };

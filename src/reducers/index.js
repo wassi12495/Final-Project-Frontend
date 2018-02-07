@@ -3,14 +3,16 @@ import {
   authReducer,
   exerciseCategoryReducer,
   exercisesReducer,
-  asyncReducer
+  asyncReducer,
+  routineReducer
 } from "./reducers";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   exerciseCategories: exerciseCategoryReducer,
   loading: asyncReducer,
-  exercises: exercisesReducer
+  exercises: exercisesReducer,
+  currentRoutine: routineReducer
 });
 
 export default rootReducer;

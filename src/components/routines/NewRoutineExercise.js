@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 import RoutineExerciseSet from "./RoutineExerciseSet";
 
 class NewRoutineExercise extends Component {
@@ -6,7 +8,8 @@ class NewRoutineExercise extends Component {
     super(props);
     this.state = {
       sets: [{ set: 1, reps: 10 }],
-      amt: 1
+      amt: 1,
+      index: props.index
     };
   }
 
@@ -27,7 +30,7 @@ class NewRoutineExercise extends Component {
     const num = e.target.name;
     const set = {
       set: parseInt(`${num}`, 10),
-      reps: parseInt(e.target.value, 10)
+      reps: e.target.value
     };
     const sets = [
       ...this.state.sets.slice(0, num - 1),
@@ -41,7 +44,6 @@ class NewRoutineExercise extends Component {
   };
   renderSetRows() {
     let setRows = this.state.sets.map((s, index) => {
-      console.log(s);
       return (
         <RoutineExerciseSet
           index={index}
@@ -56,7 +58,11 @@ class NewRoutineExercise extends Component {
   }
   render() {
     const { key, exercise } = this.props;
-    console.log(this.state.sets);
+    // this.props.updateState(this.state);
+    const { sets, amt, index } = this.state;
+    const update = { sets, amt };
+    const params = { update, index };
+    this.props.updateCurrentNewRoutine(params);
     return (
       <div key={key}>
         <span>
@@ -72,4 +78,4 @@ class NewRoutineExercise extends Component {
   }
 }
 
-export default NewRoutineExercise;
+export default connect(null, actions)(NewRoutineExercise);

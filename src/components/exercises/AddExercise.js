@@ -6,7 +6,6 @@ const AddExercise = ({ exercises, handleSelection }) => {
     handleSelection(e);
   };
   const exercisesToAdd = exercises.map((exercise, index) => {
-    console.log("Exercise (add)", exercise);
     return (
       <tr key={index}>
         <td>{exercise.name}</td>

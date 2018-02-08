@@ -15,7 +15,7 @@ const Profile = props => {
         <h3>Previous Workouts</h3>
       </div>
       <div>
-        <Link to={`${props.match.url}/workouts`}>Add Workout</Link>
+        <Link to={`${props.match.url}/workouts`}>Go To Workouts</Link>
       </div>
       <div>
         <h3>Your Top Routines</h3>

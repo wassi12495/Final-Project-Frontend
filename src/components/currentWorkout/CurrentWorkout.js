@@ -91,17 +91,16 @@ class CurrentWorkout extends Component {
     const params = { update, index, current_workout_id };
     adapter.workouts.addExerciseToCurrentWorkout(params).then(res => {
       this.props.addExerciseToCurrentWorkout(res);
-    });
-
-    this.setState({
-      exercises: [...this.state.exercises, update]
+      this.setState({
+        exercises: [...this.state.exercises, res]
+      });
     });
   };
 
   handleEndWorkout = () => {
     console.log("End Workout", this.state);
     console.log("Current Workout", this.props.currentWorkout);
-    // this.props.finishWorkout(this.state);
+    this.props.finishWorkout(this.state);
     this.props.history.push("/profile/workouts");
   };
   render() {

@@ -10,7 +10,8 @@ import {
   UPDATE_CURRENT_ROUTINE_TITLE,
   POST_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
-  SET_CURRENT_WORKOUT
+  SET_CURRENT_WORKOUT,
+  GET_CURRENT_WORKOUT
 } from "./types";
 import { adapter } from "../services";
 
@@ -91,6 +92,6 @@ export const setCurrentWorkout = data => dispatch => {
 export const getCurrentWorkout = () => dispatch => {
   dispatch({ type: ASYNC_START });
   adapter.workouts.getCurrentWorkout().then(data => {
-    dispatch({ type: SET_CURRENT_WORKOUT, data });
+    dispatch({ type: GET_CURRENT_WORKOUT, data });
   });
 };

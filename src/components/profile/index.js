@@ -8,6 +8,9 @@ import RoutinesContainer from "../routines";
 import ExercisesContainer from "../exercises";
 
 class ProfileContainer extends Component {
+  // componentDidMount() {
+  //   this.props.getCurrentWorkout();
+  // }
   render() {
     const { match } = this.props;
     return (

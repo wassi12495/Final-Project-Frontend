@@ -14,6 +14,7 @@ class App extends Component {
     if (localStorage.getItem("token")) {
       this.props.fetchUser();
     }
+    this.props.getCurrentWorkout();
     this.props.getExerciseCategories();
     this.props.getExercises();
   }

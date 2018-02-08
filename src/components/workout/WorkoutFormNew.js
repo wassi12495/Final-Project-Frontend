@@ -14,7 +14,6 @@ class WorkoutFormNew extends Component {
 
   handleSelectWorkout = routine => {
     console.log("Selected Routine", routine);
-    const status = "ACTIVE";
     const initCurrWorkout = {
       routine_id: routine.id
     };

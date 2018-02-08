@@ -7,6 +7,7 @@ const ExercisesContainer = ({ match }) => {
   return (
     <div>
       <h1>Exercises Container</h1>
+
       <Switch>
         <Route exact path={`${match.url}`} component={ExercisesList} />
         <Route path={`${match.url}/new`} component={NewExerciseForm} />

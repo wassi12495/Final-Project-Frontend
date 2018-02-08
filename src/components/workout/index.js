@@ -9,7 +9,7 @@ import CurrentWorkout from "./CurrentWorkout";
 class WorkoutContainer extends Component {
   componentDidMount() {
     this.props.getWorkouts();
-    this.props.getCurrentWorkout();
+    // this.props.getCurrentWorkout();
   }
   render() {
     const { match } = this.props;

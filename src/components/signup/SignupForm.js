@@ -37,7 +37,6 @@ class Signup extends Component {
       is_trainer: this.state.is_trainer
     };
     adapter.user.signup(user).then(res => {
-      console.log("New User response", res);
       if (res.errors) {
         this.setState({
           error: true,

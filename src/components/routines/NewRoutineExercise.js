@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import { Table } from "semantic-ui-react";
 import RoutineExerciseSet from "./RoutineExerciseSet";
 
 class NewRoutineExercise extends Component {
@@ -54,28 +55,59 @@ class NewRoutineExercise extends Component {
         />
       );
     });
-    return <div>{setRows}</div>;
+    return setRows;
   }
   render() {
-    const { key, exercise } = this.props;
+    const { exercise } = this.props;
     // this.props.updateState(this.state);
     const { sets, amt, index } = this.state;
     const update = { sets, amt };
     const params = { update, index };
     this.props.updateCurrentNewRoutine(params);
     return (
-      <div key={key}>
-        <span>
-          <h4>
-            {exercise.name} (x{this.state.amt})
-          </h4>
-          <h4>{exercise.exercise_category.measure_of_duration}</h4>
-          <button onClick={this.addSet}>Add set</button>
-        </span>
-        {this.renderSetRows()}
-      </div>
+      <Table collapsing key={index}>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell colSpan="3">{exercise.name}</Table.HeaderCell>
+          </Table.Row>
+          <Table.Row>
+            <Table.HeaderCell>Sets (x{this.state.amt})</Table.HeaderCell>
+            <Table.HeaderCell>
+              {exercise.exercise_category.measure_of_duration}
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>{this.renderSetRows()}</Table.Body>
+        <Table.Footer fullWidth>
+          <Table.Row>
+            <Table.HeaderCell colSpan="3">
+              <button onClick={this.addSet}>Add set</button>
+            </Table.HeaderCell>
+          </Table.Row>
+        </Table.Footer>
+      </Table>
     );
   }
+  // render() {
+  //   const { key, exercise } = this.props;
+  //   // this.props.updateState(this.state);
+  //   const { sets, amt, index } = this.state;
+  //   const update = { sets, amt };
+  //   const params = { update, index };
+  //   this.props.updateCurrentNewRoutine(params);
+  //   return (
+  //     <div key={key}>
+  //       <span>
+  //         <h4>
+  //           {exercise.name} (x{this.state.amt})
+  //         </h4>
+  //         <h4>{exercise.exercise_category.measure_of_duration}</h4>
+  //         <button onClick={this.addSet}>Add set</button>
+  //       </span>
+  //       {this.renderSetRows()}
+  //     </div>
+  //   );
+  // }
 }
 
 export default connect(null, actions)(NewRoutineExercise);

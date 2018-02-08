@@ -5,6 +5,7 @@ import {
   GET_EXERCISE_CATEGORIES,
   GET_USER_WORKOUTS,
   GET_EXERCISES,
+  ADD_EXERCISE,
   SET_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_ROUTINE_TITLE,
@@ -69,6 +70,13 @@ export const getExercises = () => dispatch => {
   dispatch({ type: ASYNC_START });
   adapter.exercises.getExercises().then(data => {
     dispatch({ type: GET_EXERCISES, data });
+  });
+};
+
+export const addExercise = data => dispatch => {
+  dispatch({ type: ASYNC_START });
+  adapter.exercises.addExercise(data).then(data => {
+    dispatch({ type: ADD_EXERCISE, data });
   });
 };
 

@@ -5,6 +5,7 @@ import {
   GET_EXERCISE_CATEGORIES,
   GET_USER_WORKOUTS,
   GET_EXERCISES,
+  ADD_EXERCISE,
   SET_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_ROUTINE_TITLE,
@@ -24,7 +25,7 @@ export const asyncReducer = (state = false, action) => {
       return false;
   }
 };
-
+// Handle Authentication
 export const authReducer = (state = { currentUser: {} }, action) => {
   switch (action.type) {
     case SET_CURRENT_USER:
@@ -58,6 +59,7 @@ export const authReducer = (state = { currentUser: {} }, action) => {
   }
 };
 
+// Handle Exercise Categories
 export const exerciseCategoryReducer = (state = [], action) => {
   switch (action.type) {
     case GET_EXERCISE_CATEGORIES:
@@ -67,16 +69,20 @@ export const exerciseCategoryReducer = (state = [], action) => {
   }
 };
 
+// Handle Exercises
 export const exercisesReducer = (state = [], action) => {
   switch (action.type) {
     case GET_EXERCISES:
       return action.data;
+    case ADD_EXERCISE:
+      return [...state, action.data];
 
     default:
       return state;
   }
 };
 
+// Handle Routines
 export const routineReducer = (state = {}, action) => {
   switch (action.type) {
     case SET_CURRENT_NEW_ROUTINE:
@@ -113,6 +119,7 @@ export const routineReducer = (state = {}, action) => {
   }
 };
 
+// Handle Current Workout
 export const currentWorkoutReducer = (state = null, action) => {
   switch (action.type) {
     case SET_CURRENT_WORKOUT:
@@ -121,6 +128,8 @@ export const currentWorkoutReducer = (state = null, action) => {
       return action.data;
     case NO_CURRENT_WORKOUT:
       return null;
+    case FINISH_WORKOUT:
+      return null;
     case LOGOUT:
       return null;
     default:
@@ -128,6 +137,7 @@ export const currentWorkoutReducer = (state = null, action) => {
   }
 };
 
+// Handle Workouts
 export const workoutsReducer = (state = [], action) => {
   switch (action.type) {
     case GET_USER_WORKOUTS:

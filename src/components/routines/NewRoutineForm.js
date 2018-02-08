@@ -4,7 +4,7 @@ import * as actions from "../../actions";
 import { adapter } from "../../services";
 import AddExercise from "../exercises/AddExercise";
 import NewRoutineExercise from "./NewRoutineExercise";
-import { Container, Button, Modal, Header } from "semantic-ui-react";
+import { Container, Button, Modal, Header, Input } from "semantic-ui-react";
 
 class NewRoutineForm extends Component {
   constructor(props) {
@@ -49,7 +49,6 @@ class NewRoutineForm extends Component {
   };
 
   handleSelection = exercise => {
-    // console.log("Handle Selection", exercise);
     const update = Object.assign({}, exercise, {
       sets: [{ set: 1, reps: 10 }],
       amt: 1
@@ -63,7 +62,6 @@ class NewRoutineForm extends Component {
   };
 
   updateState = state => {
-    // console.log("New Routine, update exercise state", state);
     const exercise = this.state.exercises[state.index];
     exercise.sets = state.sets;
     exercise.amt = state.amt;
@@ -77,8 +75,6 @@ class NewRoutineForm extends Component {
   };
 
   render() {
-    console.log("New Routine state", this.state.exercises);
-    console.log("New Routine props", this.props);
     const { title, error, errorMessage } = this.state;
     const exercises = this.state.exercises.map((exercise, index) => {
       return (
@@ -97,13 +93,21 @@ class NewRoutineForm extends Component {
         <Header>
           <Header.Content>
             <h1>Build A Routine</h1>
+            <Button positive onClick={this.handleSubmit}>
+              Save Routine
+            </Button>
+            <AddExercise handleSelection={this.handleSelection} />
+            <Button negative onClick={this.props.history.goBack}>
+              {" "}
+              Go Back
+            </Button>
           </Header.Content>
         </Header>
         <div>
           <div>
             {error ? <h4>{errorMessage}</h4> : null}
-            <label>Routine Title:</label>
-            <input
+            <h3>Routine Title:</h3>
+            <Input
               type="text"
               name="title"
               value={title}
@@ -112,13 +116,6 @@ class NewRoutineForm extends Component {
             <div>
               <label>Exercises</label>
               {exercises}
-              <div>Add Exercise</div>
-
-              <AddExercise handleSelection={this.handleSelection} />
-            </div>
-
-            <div>
-              <button onClick={this.handleSubmit}>Save</button>
             </div>
           </div>
         </div>

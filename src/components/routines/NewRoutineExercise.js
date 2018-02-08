@@ -65,15 +65,18 @@ class NewRoutineExercise extends Component {
     const params = { update, index };
     this.props.updateCurrentNewRoutine(params);
     return (
-      <Table collapsing key={index}>
+      <Table collapsing celled key={index}>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell colSpan="3">{exercise.name}</Table.HeaderCell>
+            <Table.HeaderCell>{exercise.name}</Table.HeaderCell>
+            <Table.HeaderCell colSpan="2">
+              <p>{exercise.description}</p>
+            </Table.HeaderCell>
           </Table.Row>
           <Table.Row>
             <Table.HeaderCell>Sets (x{this.state.amt})</Table.HeaderCell>
             <Table.HeaderCell>
-              {exercise.exercise_category.measure_of_duration}
+              {exercise.exercise_category.measure_of_duration.toUpperCase()}
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>

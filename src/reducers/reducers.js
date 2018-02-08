@@ -11,7 +11,8 @@ import {
   POST_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
   SET_CURRENT_WORKOUT,
-  GET_CURRENT_WORKOUT
+  GET_CURRENT_WORKOUT,
+  NO_CURRENT_WORKOUT
 } from "../actions/types";
 
 export const asyncReducer = (state = false, action) => {
@@ -125,6 +126,10 @@ export const currentWorkoutReducer = (state = null, action) => {
     case GET_CURRENT_WORKOUT:
       console.log("GET_CURRENT_WORKOUT", action.data);
       return action.data;
+    case NO_CURRENT_WORKOUT:
+      return null;
+    case LOGOUT:
+      return null;
     default:
       return state;
   }

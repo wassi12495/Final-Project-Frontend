@@ -11,7 +11,7 @@ class CurrentWorkout extends Component {
     };
   }
   componentDidMount() {
-    if (this.props.currentWorkout) {
+    if (!!this.props.currentWorkout) {
       this.setState({
         exercises: this.props.currentWorkout.exercises
       });

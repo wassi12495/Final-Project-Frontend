@@ -1,11 +1,6 @@
 import React from "react";
 
-const CurrentWorkoutExercise = ({
-  exercise,
-  key,
-  handleClick,
-  handleChange
-}) => {
+const CurrentWorkoutExercise = ({ exercise, handleClick, handleChange }) => {
   const handleInput = e => {
     handleChange(e, exercise);
   };

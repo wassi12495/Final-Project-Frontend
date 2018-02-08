@@ -15,6 +15,7 @@ class CurrentWorkout extends Component {
       this.setState({
         currentWorkout_id: this.props.currentWorkout.id,
         routine_id: this.props.currentWorkout.routine.id,
+        title: this.props.currentWorkout.routine.title,
         exercises: this.props.currentWorkout.exercises
       });
     } else {
@@ -59,6 +60,7 @@ class CurrentWorkout extends Component {
     console.log("End Workout", this.state);
     console.log("Current Workout", this.props.currentWorkout);
     this.props.finishWorkout(this.state);
+    this.props.history.push("/profile/workouts");
   };
   render() {
     const exerciseCards = this.state.exercises.map((exercise, index) => {

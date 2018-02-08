@@ -16,7 +16,7 @@ const WorkoutList = props => {
 
 const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
-  workouts: state.auth.workouts
+  workouts: state.workouts
 });
 
 export default connect(mapStateToProps)(WorkoutList);

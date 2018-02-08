@@ -12,7 +12,8 @@ import {
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
   SET_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
-  NO_CURRENT_WORKOUT
+  NO_CURRENT_WORKOUT,
+  FINISH_WORKOUT
 } from "../actions/types";
 
 export const asyncReducer = (state = false, action) => {
@@ -24,10 +25,7 @@ export const asyncReducer = (state = false, action) => {
   }
 };
 
-export const authReducer = (
-  state = { currentUser: {}, workouts: [] },
-  action
-) => {
+export const authReducer = (state = { currentUser: {} }, action) => {
   switch (action.type) {
     case SET_CURRENT_USER:
       const {
@@ -51,8 +49,7 @@ export const authReducer = (
           currentWorkout
         }
       };
-    case GET_USER_WORKOUTS:
-      return { ...state, workouts: action.workouts };
+
     case LOGOUT:
       return { ...state, currentUser: {} };
 
@@ -126,6 +123,17 @@ export const currentWorkoutReducer = (state = null, action) => {
       return null;
     case LOGOUT:
       return null;
+    default:
+      return state;
+  }
+};
+
+export const workoutsReducer = (state = [], action) => {
+  switch (action.type) {
+    case GET_USER_WORKOUTS:
+      return action.workouts;
+    case FINISH_WORKOUT:
+      return [...state, action.data];
     default:
       return state;
   }

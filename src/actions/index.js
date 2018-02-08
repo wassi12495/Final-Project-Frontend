@@ -105,5 +105,7 @@ export const getCurrentWorkout = () => dispatch => {
 export const finishWorkout = data => dispatch => {
   dispatch({ type: ASYNC_START });
   console.log(data);
-  adapter.workouts.completeCurrentWorkout(data).then(res => console.log(res));
+  adapter.workouts.completeCurrentWorkout(data).then(res => {
+    dispatch({ type: FINISH_WORKOUT, data: res });
+  });
 };

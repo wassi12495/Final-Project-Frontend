@@ -13,7 +13,6 @@ const CurrentWorkoutExercise = ({
   for (let i = 0; i < exercise.sets; i++) {
     rows.push(
       <div key={i}>
-        <div />
         <p>Set {i + 1}</p>
         <p>{exercise.reps[i]}</p>
         <input name={i} type="text" onChange={handleInput} />
@@ -21,7 +20,7 @@ const CurrentWorkoutExercise = ({
     );
   }
   return (
-    <div key={key}>
+    <div>
       <h3>{exercise.name}</h3>
       <p>Sets</p>
       <p>Reps</p>

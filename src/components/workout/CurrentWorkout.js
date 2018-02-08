@@ -22,8 +22,6 @@ class CurrentWorkout extends Component {
   }
 
   handleAddSet = exercise => {
-    console.log("Add set", exercise);
-    console.log("State at Add set", this.state.exercises);
     Object.assign({}, exercise, {
       sets: exercise.sets++
     });
@@ -38,8 +36,6 @@ class CurrentWorkout extends Component {
   };
 
   handleChangeMeasure = (e, exercise) => {
-    console.log("Change measure input e", e.target.name);
-    console.log("Change measure input exercise", exercise);
     const newE = Object.assign({}, exercise, {
       measure_input: [
         ...exercise.measure_input.slice(0, e.target.name),
@@ -57,15 +53,15 @@ class CurrentWorkout extends Component {
     });
   };
   render() {
-    console.log("Current Workout", this.state);
     const exerciseCards = this.state.exercises.map((exercise, index) => {
       return (
-        <CurrentWorkoutExercise
-          exercise={exercise}
-          key={index}
-          handleClick={this.handleAddSet}
-          handleChange={this.handleChangeMeasure}
-        />
+        <div key={index}>
+          <CurrentWorkoutExercise
+            exercise={exercise}
+            handleClick={this.handleAddSet}
+            handleChange={this.handleChangeMeasure}
+          />
+        </div>
       );
     });
     return (

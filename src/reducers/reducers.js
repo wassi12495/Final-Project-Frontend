@@ -28,7 +28,6 @@ export const authReducer = (
   state = { currentUser: {}, workouts: [] },
   action
 ) => {
-  console.log("Auth Reducer", action);
   switch (action.type) {
     case SET_CURRENT_USER:
       const {
@@ -86,7 +85,6 @@ export const routineReducer = (state = {}, action) => {
     case SET_CURRENT_NEW_ROUTINE:
       return action.routine;
     case ADD_EXERCISE_TO_CURRENT_ROUTINE:
-      console.log("ADD_EXERCISE_TO_CURRENT_ROUTINE", action.data);
       return {
         ...state,
         exercises: [
@@ -121,10 +119,8 @@ export const routineReducer = (state = {}, action) => {
 export const currentWorkoutReducer = (state = null, action) => {
   switch (action.type) {
     case SET_CURRENT_WORKOUT:
-      console.log("SET_CURRENT_WORKOUT", action.data);
       return action.data;
     case GET_CURRENT_WORKOUT:
-      console.log("GET_CURRENT_WORKOUT", action.data);
       return action.data;
     case NO_CURRENT_WORKOUT:
       return null;

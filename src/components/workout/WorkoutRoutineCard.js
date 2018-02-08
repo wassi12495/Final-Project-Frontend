@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 const WorkoutRoutineCard = ({ routine, handleClick, match }) => {
   const handleButton = () => {
     handleClick(routine);
@@ -19,10 +18,7 @@ const WorkoutRoutineCard = ({ routine, handleClick, match }) => {
       <h3>{routine.title}</h3>
       <h4>Exercises: </h4>
       <ul>{exercises}</ul>
-      <button onClick={handleButton}>
-        Select
-        {/* <Link to={`/profile/workouts/current_workout`}>Select</Link> */}
-      </button>
+      <button onClick={handleButton}>Select</button>
     </div>
   );
 };

@@ -14,7 +14,6 @@ const RoutinesList = props => {
       </div>
     );
   });
-  console.log("RoutinesList - routines", routines);
   return (
     <div>
       <h2>Your Routines</h2>

@@ -22,7 +22,7 @@ class App extends Component {
   };
 
   render() {
-    console.log("App Props", this.props);
+    // console.log("App Props", this.props);
     return (
       <div className="App">
         <div className="ui container">
@@ -43,12 +43,15 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser,
-  exerciseCategories: state.exerciseCategories,
-  exercises: state.exercises,
-  loading: state.loading,
-  currentWorkout: state.currentWorkout
-});
+const mapStateToProps = state => {
+  console.log("APP State", state);
+  return {
+    currentUser: state.auth.currentUser,
+    exerciseCategories: state.exerciseCategories,
+    exercises: state.exercises,
+    loading: state.loading,
+    currentWorkout: state.currentWorkout
+  };
+};
 
 export default connect(mapStateToProps, actions)(App);

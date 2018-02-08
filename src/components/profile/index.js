@@ -6,7 +6,7 @@ import Profile from "./Profile";
 import WorkoutContainer from "../workout";
 import RoutinesContainer from "../routines";
 import ExercisesContainer from "../exercises";
-
+import CurrentWorkoutContainer from "../currentWorkout";
 class ProfileContainer extends Component {
   // componentDidMount() {
   //   this.props.getCurrentWorkout();
@@ -22,6 +22,10 @@ class ProfileContainer extends Component {
           <Route
             path={`${match.url}/exercises`}
             component={ExercisesContainer}
+          />
+          <Route
+            path={`${match.url}/current_workout`}
+            component={CurrentWorkoutContainer}
           />
         </Switch>
       </div>

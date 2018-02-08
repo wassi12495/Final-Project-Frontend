@@ -11,6 +11,13 @@ const NavBar = props => {
           About
         </NavLink>
       </div>
+      {props.currentWorkout ? (
+        <div className="item">
+          <NavLink exact to="/profile/current_workout">
+            Current Workout
+          </NavLink>
+        </div>
+      ) : null}
 
       {props.loggedIn ? (
         <div className="right menu">
@@ -46,7 +53,8 @@ const NavBar = props => {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: !!state.auth.currentUser.id
+    loggedIn: !!state.auth.currentUser.id,
+    currentWorkout: !!state.currentWorkout
   };
 };
 

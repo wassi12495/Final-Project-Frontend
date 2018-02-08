@@ -16,7 +16,8 @@ class CurrentWorkout extends Component {
         exercises: this.props.currentWorkout.exercises
       });
     } else {
-      // alert("You do not currently have an active workout!");
+      debugger;
+      alert("You do not currently have an active workout!");
       this.props.history.goBack();
     }
   }

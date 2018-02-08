@@ -4,7 +4,6 @@ import { Switch, Route, Link } from "react-router-dom";
 import * as actions from "../../actions";
 import WorkoutFormNew from "./WorkoutFormNew";
 import WorkoutList from "./WorkoutList";
-import CurrentWorkout from "./CurrentWorkout";
 
 class WorkoutContainer extends Component {
   componentDidMount() {
@@ -22,17 +21,10 @@ class WorkoutContainer extends Component {
           <div>
             <Link to={`${match.url}`}>See Previous Workouts</Link>
           </div>
-          <div>
-            <Link to={`${match.url}/current_workout`}>See Current Workout</Link>
-          </div>
         </div>
         <Switch>
           <Route exact path={`${match.url}`} component={WorkoutList} />
           <Route exact path={`${match.url}/new`} component={WorkoutFormNew} />
-          <Route
-            path={`${match.url}/current_workout`}
-            component={CurrentWorkout}
-          />
         </Switch>
       </div>
     );

@@ -9,6 +9,7 @@ class Signup extends Component {
     super(props);
     this.state = {
       error: false,
+      error_messages: [],
       username: "",
       password: "",
       password_confirmation: "",
@@ -19,8 +20,6 @@ class Signup extends Component {
   }
 
   handleChange = e => {
-    // console.log(e.target.value);
-
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -39,9 +38,10 @@ class Signup extends Component {
     };
     adapter.user.signup(user).then(res => {
       console.log("New User response", res);
-      if (res.error) {
+      if (res.errors) {
         this.setState({
-          error: true
+          error: true,
+          error_messages: res.errors
         });
       } else {
         this.props.loginUser(user.username, user.password, this.props.history);
@@ -58,13 +58,16 @@ class Signup extends Component {
       password_confirmation,
       first_name,
       last_name,
-      error
+      error,
+      error_messages
     } = this.state;
-
+    const errorMessage = error_messages.map((message, index) => (
+      <p key={index}>{message}</p>
+    ));
     return (
       <div>
         <h1>Signup component</h1>
-        {error ? <h3> Invalid Signup </h3> : null}
+        {error ? <ul> {errorMessage} </ul> : null}
         <div>
           <form onSubmit={this.handleSubmit}>
             <label>Username</label>

@@ -25,13 +25,6 @@ export const fetchUser = () => dispatch => {
   });
 };
 
-export const createNewUser = (user, history) => dispatch => {
-  dispatch({ type: ASYNC_START });
-  adapter.users.signup(user).then(res => console.log(res));
-
-  // return { type: CREATE_NEW_USER, user };
-};
-
 export const loginUser = (username, password, history) => dispatch => {
   dispatch({ type: ASYNC_START });
   adapter.auth.login({ username, password }).then(user => {

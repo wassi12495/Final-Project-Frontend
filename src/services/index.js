@@ -77,6 +77,19 @@ const getCurrentWorkout = () => {
   }).then(res => res.json());
 };
 
+const completeCurrentWorkout = data => {
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/workouts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accepts: "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+};
+
 export const adapter = {
   auth: {
     login,
@@ -95,6 +108,7 @@ export const adapter = {
   },
   workouts: {
     initializeWorkout,
-    getCurrentWorkout
+    getCurrentWorkout,
+    completeCurrentWorkout
   }
 };

@@ -5,9 +5,6 @@ import * as actions from "../../actions";
 import CurrentWorkout from "./CurrentWorkout";
 
 class CurrentWorkoutContainer extends Component {
-  // componentDidMount() {
-  //   this.props.getCurrentWorkout();
-  // }
   render() {
     const { match } = this.props;
     return (

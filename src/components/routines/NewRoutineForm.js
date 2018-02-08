@@ -4,7 +4,7 @@ import * as actions from "../../actions";
 import { adapter } from "../../services";
 import AddExercise from "../exercises/AddExercise";
 import NewRoutineExercise from "./NewRoutineExercise";
-import { Container, Button, Modal, Header, Input } from "semantic-ui-react";
+import { Container, Button, Header, Input } from "semantic-ui-react";
 
 class NewRoutineForm extends Component {
   constructor(props) {

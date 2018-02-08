@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import { Button, Container } from "semantic-ui-react";
 import CurrentWorkoutExercise from "./CurrentWorkoutExercise";
 
 class CurrentWorkout extends Component {
@@ -75,11 +76,13 @@ class CurrentWorkout extends Component {
       );
     });
     return (
-      <div>
+      <Container>
         <h1>Current Workout Page</h1>
-        <button onClick={this.handleEndWorkout}>End Workout</button>
+        <Button positive onClick={this.handleEndWorkout}>
+          End Workout
+        </Button>
         {exerciseCards}
-      </div>
+      </Container>
     );
   }
 }

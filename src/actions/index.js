@@ -14,6 +14,7 @@ import {
   SET_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
+  ADD_EXERCISE_TO_CURRENT_WORKOUT,
   FINISH_WORKOUT
 } from "./types";
 import { adapter } from "../services";
@@ -90,6 +91,10 @@ export const updateCurrentRoutineTitle = title => dispatch => {
 
 export const setCurrentWorkout = data => dispatch => {
   dispatch({ type: SET_CURRENT_WORKOUT, data });
+};
+
+export const addExerciseToCurrentWorkout = data => dispatch => {
+  dispatch({ type: ADD_EXERCISE_TO_CURRENT_WORKOUT, data });
 };
 
 export const getCurrentWorkout = () => dispatch => {

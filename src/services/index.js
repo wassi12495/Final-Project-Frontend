@@ -90,6 +90,19 @@ const getCurrentWorkout = () => {
   }).then(res => res.json());
 };
 
+const addExerciseToCurrentWorkout = data => {
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/current_workouts/add_exercise`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accepts: "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+};
+
 const completeCurrentWorkout = data => {
   const token = localStorage.getItem("token");
   return fetch(`${API_URL}/workouts`, {
@@ -123,6 +136,7 @@ export const adapter = {
   workouts: {
     initializeWorkout,
     getCurrentWorkout,
-    completeCurrentWorkout
+    completeCurrentWorkout,
+    addExerciseToCurrentWorkout
   }
 };

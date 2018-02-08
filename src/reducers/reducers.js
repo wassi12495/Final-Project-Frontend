@@ -14,6 +14,7 @@ import {
   SET_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
+  ADD_EXERCISE_TO_CURRENT_WORKOUT,
   FINISH_WORKOUT
 } from "../actions/types";
 
@@ -130,6 +131,15 @@ export const currentWorkoutReducer = (state = null, action) => {
       return null;
     case FINISH_WORKOUT:
       return null;
+    case ADD_EXERCISE_TO_CURRENT_WORKOUT:
+      return {
+        ...state,
+        exercises: [
+          ...state.exercises.slice(0, action.data.index),
+          action.data.update,
+          ...state.exercises.slice(action.data.index + 1)
+        ]
+      };
     case LOGOUT:
       return null;
     default:

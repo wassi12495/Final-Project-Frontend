@@ -1,18 +1,33 @@
 import React from "react";
 import { Table, Button, Input } from "semantic-ui-react";
 
-const CurrentWorkoutExercise = ({ exercise, handleClick, handleChange }) => {
-  const handleInput = e => {
-    handleChange(e, exercise);
+const CurrentWorkoutExercise = ({
+  exercise,
+  handleClick,
+  handleChangeMeasure,
+  handleChangeReps
+}) => {
+  const handleMeasureInput = e => {
+    handleChangeMeasure(e, exercise);
+  };
+  const handleRepsInput = e => {
+    handleChangeReps(e, exercise);
   };
   const rows = [];
   for (let i = 0; i < exercise.sets; i++) {
     rows.push(
       <Table.Row key={i}>
         <Table.Cell>Set {i + 1}</Table.Cell>
-        <Table.Cell>{exercise.reps[i]}</Table.Cell>
         <Table.Cell>
-          <Input name={i} type="text" onChange={handleInput} />
+          <Input
+            type="text"
+            name={i}
+            value={exercise.reps[i]}
+            onChange={handleRepsInput}
+          />
+        </Table.Cell>
+        <Table.Cell>
+          <Input name={i} type="text" onChange={handleMeasureInput} />
         </Table.Cell>
       </Table.Row>
     );

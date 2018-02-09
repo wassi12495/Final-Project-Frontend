@@ -120,8 +120,11 @@ class CurrentWorkout extends Component {
     return (
       <Container>
         <h1>Current Workout Page</h1>
+        <Button negative onClick={() => console.log("Delete Workout")}>
+          Delete Workout
+        </Button>
         <Button positive onClick={this.handleEndWorkout}>
-          End Workout
+          Finish Workout
         </Button>
         <AddExercise handleSelection={this.handleSelection} />
 

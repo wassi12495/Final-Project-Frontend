@@ -28,7 +28,6 @@ class App extends Component {
         <div>
           <NavBarContainer />
 
-          <p>This is the App's body!</p>
           <div>
             <Switch>
               <Route exact path="/" component={About} />

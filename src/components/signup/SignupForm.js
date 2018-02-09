@@ -3,6 +3,7 @@ import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { adapter } from "../../services";
+import { Form, Message, Container, Segment, Header } from "semantic-ui-react";
 
 class Signup extends Component {
   constructor(props) {
@@ -57,63 +58,89 @@ class Signup extends Component {
       password_confirmation,
       first_name,
       last_name,
-      error,
-      error_messages
+      error
     } = this.state;
-    const errorMessage = error_messages.map((message, index) => (
-      <p key={index}>{message}</p>
-    ));
+    console.log(this.state);
     return (
-      <div>
-        <h1>Signup component</h1>
-        {error ? <ul> {errorMessage} </ul> : null}
+      <Container text>
+        {error ? (
+          <Message
+            error
+            header="Signup Failed!"
+            list={this.state.error_messages}
+          />
+        ) : null}
         <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>Username</label>
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              value={username}
-              onChange={this.handleChange}
-            />
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-            <label>Confirm Password</label>
-            <input
-              type="password"
-              name="password_confirmation"
-              value={password_confirmation}
-              onChange={this.handleChange}
-            />
+          <Segment inverted>
+            <Header as="h1" textAlign="center">
+              Signup
+            </Header>
+            <Form inverted size="large" onSubmit={this.handleSubmit}>
+              <Form.Field>
+                <label>Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  value={username}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Form.Group widths="equal">
+                <Form.Field>
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={this.handleChange}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <label>Confirm Password</label>
+                  <input
+                    type="password"
+                    name="password_confirmation"
+                    placeholder="Password Confirmation"
+                    value={password_confirmation}
+                    onChange={this.handleChange}
+                  />
+                </Form.Field>
+              </Form.Group>
+              <Form.Group widths="equal">
+                <Form.Field>
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    name="first_name"
+                    placeholder="First Name"
+                    value={first_name}
+                    onChange={this.handleChange}
+                  />
+                </Form.Field>
+                <Form.Field>
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    name="last_name"
+                    placeholder="Last Name"
+                    value={last_name}
+                    onChange={this.handleChange}
+                  />
+                </Form.Field>
+              </Form.Group>
+              <Form.Checkbox
+                type="radio"
+                onChange={this.handleChange}
+                label="Are you a trainer/coach?"
+              />
 
-            <label>First Name</label>
-            <input
-              type="text"
-              name="first_name"
-              placeholder="first name"
-              value={first_name}
-              onChange={this.handleChange}
-            />
-            <label>Last Name</label>
-            <input
-              type="text"
-              name="last_name"
-              placeholder="last name"
-              value={last_name}
-              onChange={this.handleChange}
-            />
-            <label>Are you a trainer/coach? </label>
-            <input type="radio" onChange={this.handleChange} />
-            <input type="submit" />
-          </form>
+              <Form.Button type="submit">Submit</Form.Button>
+            </Form>
+          </Segment>
         </div>
-      </div>
+      </Container>
     );
   }
 }

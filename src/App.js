@@ -25,11 +25,11 @@ class App extends Component {
     // console.log("App Props", this.props);
     return (
       <div className="App">
-        <div className="ui container">
+        <div>
           <NavBarContainer />
 
           <p>This is the App's body!</p>
-          <div className="container">
+          <div>
             <Switch>
               <Route exact path="/" component={About} />
               <Route path="/login" component={LoginContainer} />

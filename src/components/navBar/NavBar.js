@@ -2,52 +2,55 @@ import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import { Menu, Container } from "semantic-ui-react";
 
 const NavBar = props => {
   return (
-    <div className="ui menu">
-      <div className="item">
-        <NavLink exact to="/">
-          About
-        </NavLink>
-      </div>
-      {props.currentWorkout ? (
-        <div className="item">
-          <NavLink exact to="/profile/current_workout">
-            Current Workout
+    <Container>
+      <Menu>
+        <Menu.Item>
+          <NavLink exact to="/">
+            About
           </NavLink>
-        </div>
-      ) : null}
+        </Menu.Item>
+        {props.currentWorkout ? (
+          <Menu.Item>
+            <NavLink exact to="/profile/current_workout">
+              Current Workout
+            </NavLink>
+          </Menu.Item>
+        ) : null}
 
-      {props.loggedIn ? (
-        <div className="right menu">
-          <div className="item">
-            <NavLink exact to="/">
-              <div
+        {props.loggedIn ? (
+          <div className="right menu">
+            <Menu.Item position="right">
+              <NavLink exact to="/profile">
+                Profile
+              </NavLink>
+            </Menu.Item>
+            <Menu.Item position="right">
+              <NavLink
+                exact
+                to="/"
                 onClick={() => {
                   props.logout();
                 }}
               >
                 Logout
-              </div>
-            </NavLink>
+              </NavLink>
+            </Menu.Item>
           </div>
-          <div className="item">
-            <NavLink exact to="/profile">
-              Profile
-            </NavLink>
+        ) : (
+          <div className="right menu">
+            <Menu.Item>
+              <NavLink exact to="/login">
+                Login
+              </NavLink>
+            </Menu.Item>
           </div>
-        </div>
-      ) : (
-        <div className="right menu">
-          <div className="item">
-            <NavLink exact to="/login">
-              Login
-            </NavLink>
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </Menu>
+    </Container>
   );
 };
 

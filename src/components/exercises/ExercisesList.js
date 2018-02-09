@@ -5,14 +5,20 @@ import ExerciseCard from "./ExerciseCard";
 
 const ExercisesList = ({ match, exercises }) => {
   console.log("Exercise List", exercises);
-  const exerciseCards = exercises.map((e, index) => {
+  const seedExerciseCards = exercises.seed_exercises.map((e, index) => {
     return <ExerciseCard exercise={e} key={index} />;
   });
+  const userExerciseCards = exercises.user_exercises.map((e, index) => {
+    return <ExerciseCard exercise={e} key={index} />;
+  });
+
   return (
     <div>
       <Link to={`${match.url}/new`}>Create a New Exercise</Link>
-      <h1>Exercises List</h1>
-      <div>{exerciseCards}</div>
+      <h1>Seeded Exercise List</h1>
+      <div>{seedExerciseCards}</div>
+      <h1> Custom Exercise List</h1>
+      <div>{userExerciseCards}</div>
     </div>
   );
 };

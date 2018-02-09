@@ -50,8 +50,9 @@ const getWorkouts = () => {
 };
 
 const getExercises = () => {
+  const token = localStorage.getItem("token");
   return fetch(`${API_URL}/exercises`, {
-    method: "GET"
+    headers: { Authorization: token }
   }).then(res => res.json());
 };
 

@@ -70,76 +70,75 @@ class Signup extends Component {
             list={this.state.error_messages}
           />
         ) : null}
-        <div>
-          <Segment inverted>
-            <Header as="h1" textAlign="center">
-              Signup
-            </Header>
-            <Form inverted size="large" onSubmit={this.handleSubmit}>
+
+        <Segment inverted>
+          <Header as="h1" textAlign="center">
+            Signup
+          </Header>
+          <Form inverted size="large" onSubmit={this.handleSubmit}>
+            <Form.Field>
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                placeholder="username"
+                value={username}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Group widths="equal">
               <Form.Field>
-                <label>Username</label>
+                <label>Password</label>
                 <input
-                  type="text"
-                  name="username"
-                  placeholder="username"
-                  value={username}
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={password}
                   onChange={this.handleChange}
                 />
               </Form.Field>
-              <Form.Group widths="equal">
-                <Form.Field>
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={this.handleChange}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <label>Confirm Password</label>
-                  <input
-                    type="password"
-                    name="password_confirmation"
-                    placeholder="Password Confirmation"
-                    value={password_confirmation}
-                    onChange={this.handleChange}
-                  />
-                </Form.Field>
-              </Form.Group>
-              <Form.Group widths="equal">
-                <Form.Field>
-                  <label>First Name</label>
-                  <input
-                    type="text"
-                    name="first_name"
-                    placeholder="First Name"
-                    value={first_name}
-                    onChange={this.handleChange}
-                  />
-                </Form.Field>
-                <Form.Field>
-                  <label>Last Name</label>
-                  <input
-                    type="text"
-                    name="last_name"
-                    placeholder="Last Name"
-                    value={last_name}
-                    onChange={this.handleChange}
-                  />
-                </Form.Field>
-              </Form.Group>
-              <Form.Checkbox
-                type="radio"
-                onChange={this.handleChange}
-                label="Are you a trainer/coach?"
-              />
+              <Form.Field>
+                <label>Confirm Password</label>
+                <input
+                  type="password"
+                  name="password_confirmation"
+                  placeholder="Password Confirmation"
+                  value={password_confirmation}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+            </Form.Group>
+            <Form.Group widths="equal">
+              <Form.Field>
+                <label>First Name</label>
+                <input
+                  type="text"
+                  name="first_name"
+                  placeholder="First Name"
+                  value={first_name}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Last Name</label>
+                <input
+                  type="text"
+                  name="last_name"
+                  placeholder="Last Name"
+                  value={last_name}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+            </Form.Group>
+            <Form.Checkbox
+              type="radio"
+              onChange={this.handleChange}
+              label="Are you a trainer/coach?"
+            />
 
-              <Form.Button type="submit">Submit</Form.Button>
-            </Form>
-          </Segment>
-        </div>
+            <Form.Button type="submit">Submit</Form.Button>
+          </Form>
+        </Segment>
       </Container>
     );
   }

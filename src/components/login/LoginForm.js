@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
+import { adapter } from "../../services";
+import { Form, Message, Container, Segment, Header } from "semantic-ui-react";
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       error: false,
+      error_messages: [],
       username: "",
       password: ""
     };
@@ -23,10 +26,24 @@ class LoginForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
     const { username, password } = this.state;
-
-    this.props.loginUser(username, password, this.props.history);
+    if (!!username && !!password) {
+      adapter.auth.login({ username, password }).then(res => {
+        if (res.error) {
+          this.setState({
+            error: true,
+            error_messages: res.error
+          });
+        } else {
+          this.props.loginUser(username, password, this.props.history);
+        }
+      });
+    } else {
+      this.setState({
+        error: true,
+        error_messages: ["Must provide Username and Password."]
+      });
+    }
   };
 
   // TODO: Add Radio handle change
@@ -36,31 +53,46 @@ class LoginForm extends Component {
     // console.log("Login state", this.state);
     // console.log("Login props", this.props);
     return (
-      <div>
-        <h1>Login component</h1>
-        {error ? <h3> Invalid Login </h3> : null}
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <label>Username</label>
-            <input
-              type="text"
-              name="username"
-              placeholder="username"
-              value={username}
-              onChange={this.handleChange}
-            />
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-            <input type="submit" />
-          </form>
-          <Link to="/signup">Not a user? Sign up here!</Link>
-        </div>
-      </div>
+      <Container text>
+        {error ? (
+          <Message
+            error
+            header="Login Failed!"
+            list={this.state.error_messages}
+          />
+        ) : null}
+        <Segment inverted>
+          <Header as="h1" textAlign="center">
+            Login
+          </Header>
+          <Form size="large" inverted onSubmit={this.handleSubmit}>
+            <Form.Field>
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={username}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={password}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Button type="submit">Submit</Form.Button>
+          </Form>
+          <Message>
+            Not a user? <Link to="/signup"> Sign up here!</Link>
+          </Message>
+        </Segment>
+      </Container>
     );
   }
 }

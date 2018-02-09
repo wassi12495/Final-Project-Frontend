@@ -22,7 +22,6 @@ class App extends Component {
   };
 
   render() {
-    // console.log("App Props", this.props);
     return (
       <div className="App">
         <div>

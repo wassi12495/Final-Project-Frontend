@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Switch, Route, Link } from "react-router-dom";
 import * as actions from "../../actions";
+import withAuth from "../../hocs/withAuth";
 import WorkoutFormNew from "./WorkoutFormNew";
 import WorkoutList from "./WorkoutList";
 
@@ -35,4 +36,4 @@ const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
   workouts: state.auth.workouts
 });
-export default connect(mapStateToProps, actions)(WorkoutContainer);
+export default withAuth(connect(mapStateToProps, actions)(WorkoutContainer));

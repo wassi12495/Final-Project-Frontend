@@ -26,7 +26,7 @@ const withAuth = WrappedComponent => {
         return this.props.loggedIn ? (
           <WrappedComponent {...this.props} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/about" />
         );
       } else {
         return null;

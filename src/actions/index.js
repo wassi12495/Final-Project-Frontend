@@ -32,7 +32,7 @@ export const loginUser = (username, password, history) => dispatch => {
     console.log("Login User", user);
     localStorage.setItem("token", user.jwt);
     dispatch({ type: SET_CURRENT_USER, user });
-    history.push("/profile");
+    history.push("/");
   });
 };
 

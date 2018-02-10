@@ -8,6 +8,9 @@ import LoginContainer from "./components/login";
 import SignupContainer from "./components/signup/";
 import About from "./components/about/About";
 import ProfileContainer from "./components/profile";
+import Dashboard from "./components/dashboard";
+import WorkoutContainer from "./components/workout";
+import RoutinesContainer from "./components/routines";
 
 class App extends Component {
   componentDidMount() {
@@ -29,10 +32,13 @@ class App extends Component {
 
           <div>
             <Switch>
-              <Route exact path="/" component={About} />
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/about" component={About} />
               <Route path="/login" component={LoginContainer} />
               <Route path="/signup" component={SignupContainer} />
               <Route path="/profile" component={ProfileContainer} />
+              <Route path="/workouts" component={WorkoutContainer} />
+              <Route path="/routines" component={RoutinesContainer} />
             </Switch>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route, Link } from "react-router-dom";
+import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
 import NewRoutineForm from "./NewRoutineForm";
 import RoutinesList from "./RoutinesList";
@@ -42,4 +43,4 @@ const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
   routines: state.auth.currentUser.routines
 });
-export default connect(mapStateToProps)(RoutinesContainer);
+export default withAuth(connect(mapStateToProps)(RoutinesContainer));

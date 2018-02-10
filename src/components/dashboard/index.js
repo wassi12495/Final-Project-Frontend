@@ -1,44 +1,45 @@
-import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import React from "react";
 import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
-import ProfileContainer from "../profile";
-import WorkoutContainer from "../workout";
-import RoutinesContainer from "../routines";
-import ExercisesContainer from "../exercises";
-import CurrentWorkout from "../currentWorkout/CurrentWorkout";
-import Dashboard from "./Dashboard";
+import * as actions from "../../actions";
+import { Link } from "react-router-dom";
 
-class DashboardContainer extends Component {
-  componentDidMount() {
-    // this.props.getCurrentWorkout();
-    this.props.getExercises();
-  }
-  render() {
-    const { match } = this.props;
-    return (
+const Dashboard = props => {
+  const { firstName, lastName } = props.currentUser;
+  const fullName = `${firstName} ${lastName}`;
+  return (
+    <div>
+      <h1>Dashboard page</h1>
+      <h2>{fullName}</h2>
       <div>
-        <Switch>
-          <Route exact path={`${match.url}`} component={Dashboard} />
-          <Route path={`${match.url}/workouts`} component={WorkoutContainer} />
-          <Route path={`${match.url}/routines`} component={RoutinesContainer} />
-          <Route
-            path={`${match.url}/exercises`}
-            component={ExercisesContainer}
-          />
-          <Route
-            path={`${match.url}/current_workout`}
-            component={CurrentWorkout}
-          />
-          <Route path={`${match.url}/profile`} component={ProfileContainer} />
-        </Switch>
+        <h3>Previous Workouts</h3>
       </div>
-    );
-  }
-}
+      <div>
+        <Link to={`/workouts`}>Go To Workouts</Link>
+      </div>
+      <div>
+        <h3>Your Top Routines</h3>
+      </div>
+      <div>
+        <Link to={`/routines`}>Go To Routines</Link>
+      </div>
+      <div>
+        <h3>Exercises</h3>
+      </div>
+      <div>
+        <Link to={`${props.match.url}/exercises`}>Go To Exercises</Link>
+      </div>
+
+      <div>
+        <Link to={`${props.match.url}/profile`}>Your Profile</Link>
+      </div>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
-  loading: state.loading
+  currentUser: state.auth.currentUser,
+  is_trainer: state.auth.currentUser.is_trainer
 });
 
-export default withAuth(connect(mapStateToProps)(DashboardContainer));
+export default withAuth(connect(mapStateToProps, actions)(Dashboard));

@@ -15,13 +15,13 @@ const Dashboard = props => {
         <h3>Previous Workouts</h3>
       </div>
       <div>
-        <Link to={`${props.match.url}/workouts`}>Go To Workouts</Link>
+        <Link to={`/workouts`}>Go To Workouts</Link>
       </div>
       <div>
         <h3>Your Top Routines</h3>
       </div>
       <div>
-        <Link to={`${props.match.url}/routines`}>Go To Routines</Link>
+        <Link to={`/routines`}>Go To Routines</Link>
       </div>
       <div>
         <h3>Exercises</h3>

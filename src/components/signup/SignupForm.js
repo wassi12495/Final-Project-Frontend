@@ -26,6 +26,12 @@ class Signup extends Component {
     });
   };
 
+  handleSelectIsTrainer = e => {
+    this.setState({
+      is_trainer: !this.state.is_trainer
+    });
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
@@ -132,7 +138,7 @@ class Signup extends Component {
             </Form.Group>
             <Form.Checkbox
               type="radio"
-              onChange={this.handleChange}
+              onChange={this.handleSelectIsTrainer}
               label="Are you a trainer/coach?"
             />
 

@@ -37,7 +37,8 @@ export const authReducer = (state = { currentUser: {} }, action) => {
         last_name,
         workouts,
         routines,
-        currentWorkout
+        currentWorkout,
+        is_trainer
       } = action.user;
       return {
         ...state,
@@ -48,7 +49,8 @@ export const authReducer = (state = { currentUser: {} }, action) => {
           lastName: last_name,
           workouts,
           routines,
-          currentWorkout
+          currentWorkout,
+          is_trainer
         }
       };
 

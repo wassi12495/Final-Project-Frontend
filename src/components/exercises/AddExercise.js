@@ -24,12 +24,16 @@ class AddExercise extends Component {
     this.props.handleSelection(e);
   };
   render() {
-    const { exercises } = this.props;
+    const { exercises, exerciseCategories } = this.props;
     const exercisesToAdd = exercises.map((exercise, index) => {
+      const exercise_category = exerciseCategories.find(ec => {
+        return ec.id === exercise.exercise_category_id;
+      });
+      console.log(exercise_category);
       return (
         <Table.Row key={index}>
           <Table.Cell>{exercise.name}</Table.Cell>
-          <Table.Cell>{exercise.exercise_category.name}</Table.Cell>
+          <Table.Cell>{exercise_category.name}</Table.Cell>
           <Table.Cell>{exercise.description}</Table.Cell>
           <Table.Cell>
             <Button onClick={() => this.handleAdd(exercise)}>Add</Button>
@@ -74,7 +78,11 @@ class AddExercise extends Component {
 }
 
 const mapStateToProps = state => ({
-  exercises: state.exercises
+  exercises: [
+    ...state.exercises.seed_exercises,
+    ...state.exercises.user_exercises
+  ],
+  exerciseCategories: state.exerciseCategories
 });
 
 export default connect(mapStateToProps)(AddExercise);

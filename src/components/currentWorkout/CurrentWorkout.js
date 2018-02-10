@@ -101,7 +101,7 @@ class CurrentWorkout extends Component {
     console.log("End Workout", this.state);
     console.log("Current Workout", this.props.currentWorkout);
     this.props.finishWorkout(this.state);
-    this.props.history.push("/profile/workouts");
+    this.props.history.push("/");
   };
   render() {
     console.log(this.state);

@@ -24,7 +24,7 @@ class WorkoutFormNew extends Component {
       } else {
         console.log("init workout response", res);
         this.props.setCurrentWorkout(res);
-        this.props.history.push(`/profile/current_workout`);
+        this.props.history.push(`/current_workout`);
       }
     });
   };

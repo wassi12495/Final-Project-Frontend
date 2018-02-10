@@ -11,15 +11,10 @@ import ProfileContainer from "./components/profile";
 import Dashboard from "./components/dashboard";
 import WorkoutContainer from "./components/workout";
 import RoutinesContainer from "./components/routines";
+import ExerciseContainer from "./components/exercises";
+import CurrentWorkoutContainer from "./components/currentWorkout";
 
 class App extends Component {
-  componentDidMount() {
-    if (localStorage.getItem("token")) {
-      this.props.fetchUser();
-    }
-    this.props.getExerciseCategories();
-    this.props.getExercises();
-  }
   renderLoading = () => {
     return <div>LOADING...</div>;
   };
@@ -39,6 +34,11 @@ class App extends Component {
               <Route path="/profile" component={ProfileContainer} />
               <Route path="/workouts" component={WorkoutContainer} />
               <Route path="/routines" component={RoutinesContainer} />
+              <Route path="/exercises" component={ExerciseContainer} />
+              <Route
+                path="/current_workout"
+                component={CurrentWorkoutContainer}
+              />
             </Switch>
           </div>
         </div>

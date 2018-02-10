@@ -27,11 +27,11 @@ const Dashboard = props => {
         <h3>Exercises</h3>
       </div>
       <div>
-        <Link to={`${props.match.url}/exercises`}>Go To Exercises</Link>
+        <Link to={`/exercises`}>Go To Exercises</Link>
       </div>
 
       <div>
-        <Link to={`${props.match.url}/profile`}>Your Profile</Link>
+        <Link to={`/profile`}>Your Profile</Link>
       </div>
     </div>
   );

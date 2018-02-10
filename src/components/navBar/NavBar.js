@@ -9,13 +9,13 @@ const NavBar = props => {
     <Container>
       <Menu>
         <Menu.Item>
-          <NavLink exact to="/">
+          <NavLink exact to="/about">
             About
           </NavLink>
         </Menu.Item>
         {props.currentWorkout ? (
           <Menu.Item>
-            <NavLink exact to="/profile/current_workout">
+            <NavLink exact to="/current_workout">
               Current Workout
             </NavLink>
           </Menu.Item>
@@ -24,8 +24,8 @@ const NavBar = props => {
         {props.loggedIn ? (
           <div className="right menu">
             <Menu.Item position="right">
-              <NavLink exact to="/profile">
-                Profile
+              <NavLink exact to="/">
+                Dashboard
               </NavLink>
             </Menu.Item>
             <Menu.Item position="right">

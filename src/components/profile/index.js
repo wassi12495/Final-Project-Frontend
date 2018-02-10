@@ -3,10 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
 import Profile from "./Profile";
-import WorkoutContainer from "../workout";
-import RoutinesContainer from "../routines";
-import ExercisesContainer from "../exercises";
-import CurrentWorkoutContainer from "../currentWorkout";
+
 class ProfileContainer extends Component {
   // componentDidMount() {
   //   this.props.getCurrentWorkout();
@@ -16,17 +13,7 @@ class ProfileContainer extends Component {
     return (
       <div>
         <Switch>
-          <Route exact path="/profile" component={Profile} />
-          <Route path={`${match.url}/workouts`} component={WorkoutContainer} />
-          <Route path={`${match.url}/routines`} component={RoutinesContainer} />
-          <Route
-            path={`${match.url}/exercises`}
-            component={ExercisesContainer}
-          />
-          <Route
-            path={`${match.url}/current_workout`}
-            component={CurrentWorkoutContainer}
-          />
+          <Route exact path={`${match.url}`} component={Profile} />
         </Switch>
       </div>
     );

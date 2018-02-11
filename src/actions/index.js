@@ -15,7 +15,8 @@ import {
   GET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
-  FINISH_WORKOUT
+  FINISH_WORKOUT,
+  DELETE_CURRENT_WORKOUT
 } from "./types";
 import { adapter } from "../services";
 
@@ -110,8 +111,14 @@ export const getCurrentWorkout = () => dispatch => {
 
 export const finishWorkout = data => dispatch => {
   dispatch({ type: ASYNC_START });
-  console.log(data);
   adapter.workouts.completeCurrentWorkout(data).then(res => {
     dispatch({ type: FINISH_WORKOUT, data: res });
+  });
+};
+export const deleteCurrentWorkout = (id, history) => dispatch => {
+  dispatch({ type: ASYNC_START });
+  adapter.workouts.deleteCurrentWorkout(id).then(res => {
+    dispatch({ type: DELETE_CURRENT_WORKOUT });
+    history.push("/");
   });
 };

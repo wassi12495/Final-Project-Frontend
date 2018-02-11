@@ -12,7 +12,6 @@ const WorkoutRoutineCard = ({ routine, handleClick, match }) => {
       </div>
     );
   });
-  console.log(routine);
   return (
     <div>
       <h3>{routine.title}</h3>

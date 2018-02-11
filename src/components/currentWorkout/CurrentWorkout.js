@@ -98,13 +98,15 @@ class CurrentWorkout extends Component {
   };
 
   handleEndWorkout = () => {
-    console.log("End Workout", this.state);
-    console.log("Current Workout", this.props.currentWorkout);
     this.props.finishWorkout(this.state);
     this.props.history.push("/");
   };
+
+  handleDeleteWorkout = () => {
+    const id = this.props.currentWorkout.id;
+    this.props.deleteCurrentWorkout(id, this.props.history);
+  };
   render() {
-    console.log(this.state);
     const exerciseCards = this.state.exercises.map((exercise, index) => {
       return (
         <div key={index}>
@@ -120,7 +122,7 @@ class CurrentWorkout extends Component {
     return (
       <Container>
         <h1>Current Workout Page</h1>
-        <Button negative onClick={() => console.log("Delete Workout")}>
+        <Button negative onClick={this.handleDeleteWorkout}>
           Delete Workout
         </Button>
         <Button positive onClick={this.handleEndWorkout}>

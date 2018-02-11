@@ -15,7 +15,8 @@ import {
   GET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
-  FINISH_WORKOUT
+  FINISH_WORKOUT,
+  DELETE_CURRENT_WORKOUT
 } from "../actions/types";
 
 export const asyncReducer = (state = false, action) => {
@@ -142,6 +143,8 @@ export const currentWorkoutReducer = (state = null, action) => {
           ...state.exercises.slice(action.data.index + 1)
         ]
       };
+    case DELETE_CURRENT_WORKOUT:
+      return null;
     case LOGOUT:
       return null;
     default:

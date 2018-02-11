@@ -13,7 +13,6 @@ class WorkoutFormNew extends Component {
   }
 
   handleSelectWorkout = routine => {
-    console.log("Selected Routine", routine);
     const initCurrWorkout = {
       routine_id: routine.id
     };
@@ -22,7 +21,6 @@ class WorkoutFormNew extends Component {
         alert(res.error);
         this.props.history.push(`${this.props.match.url}`);
       } else {
-        console.log("init workout response", res);
         this.props.setCurrentWorkout(res);
         this.props.history.push(`/current_workout`);
       }

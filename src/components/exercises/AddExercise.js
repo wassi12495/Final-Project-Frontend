@@ -29,7 +29,6 @@ class AddExercise extends Component {
       const exercise_category = exerciseCategories.find(ec => {
         return ec.id === exercise.exercise_category_id;
       });
-      console.log(exercise_category);
       return (
         <Table.Row key={index}>
           <Table.Cell>{exercise.name}</Table.Cell>

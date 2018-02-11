@@ -8,7 +8,6 @@ const withAuth = WrappedComponent => {
     state = { authenticated: this.props.loggedIn };
     componentDidMount() {
       if (localStorage.getItem("token")) {
-        console.log("fetch user with auth");
         this.props.fetchUser();
         this.props.getCurrentWorkout();
         this.props.getExercises();

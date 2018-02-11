@@ -1,13 +1,20 @@
-import React, { Component } from "react";
+import React from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
+import ClientCard from "./ClientCard";
 
-class ClientList extends Component {
-  render() {
-    console.log("Client List", this.props.clients);
-    return <div>Client List</div>;
-  }
-}
+const ClientList = props => {
+  console.log("Client List", props);
+  const clientCards = props.clients.map((client, index) => {
+    return <ClientCard key={index} client={client} />;
+  });
+  return (
+    <div>
+      <h1>Your Clients</h1>
+      {clientCards}
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   clients: state.clients

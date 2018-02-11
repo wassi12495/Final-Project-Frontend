@@ -59,7 +59,6 @@ class NewRoutineExercise extends Component {
   }
   render() {
     const { exercise } = this.props;
-    // this.props.updateState(this.state);
     const { sets, amt, index } = this.state;
     const update = { sets, amt };
     const params = { update, index };
@@ -91,26 +90,6 @@ class NewRoutineExercise extends Component {
       </Table>
     );
   }
-  // render() {
-  //   const { key, exercise } = this.props;
-  //   // this.props.updateState(this.state);
-  //   const { sets, amt, index } = this.state;
-  //   const update = { sets, amt };
-  //   const params = { update, index };
-  //   this.props.updateCurrentNewRoutine(params);
-  //   return (
-  //     <div key={key}>
-  //       <span>
-  //         <h4>
-  //           {exercise.name} (x{this.state.amt})
-  //         </h4>
-  //         <h4>{exercise.exercise_category.measure_of_duration}</h4>
-  //         <button onClick={this.addSet}>Add set</button>
-  //       </span>
-  //       {this.renderSetRows()}
-  //     </div>
-  //   );
-  // }
 }
 
 export default connect(null, actions)(NewRoutineExercise);

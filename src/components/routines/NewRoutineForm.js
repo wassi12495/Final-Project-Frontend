@@ -22,9 +22,7 @@ class NewRoutineForm extends Component {
     this.props.setCurrentNewRoutine(this.state);
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
-
+  handleSubmit = () => {
     const data = {
       routine: this.props.currentRoutine
     };
@@ -35,8 +33,9 @@ class NewRoutineForm extends Component {
           errorMessage: `Routine title ${res.error.title[0]}`
         });
       } else {
-        this.props.addRoutine();
-        this.props.history.push("/profile");
+        adapter.routines.getRoutines().then(data => {
+          this.props.addRoutine(this.props.history, data.routines);
+        });
       }
     });
   };
@@ -130,16 +129,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, actions)(NewRoutineForm);
-
-// addSet = exercise => {
-//   console.log("Add Set", exercise);
-//   exercise.sets += 1;
-//   const i = this.state.exercises.findIndex(e => e.id === exercise.id);
-//   this.setState({
-//     exercises: [
-//       ...this.state.exercises.slice(0, i),
-//       exercise,
-//       ...this.state.exercises.slice(i + 1)
-//     ]
-//   });
-// };

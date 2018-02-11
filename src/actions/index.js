@@ -44,8 +44,9 @@ export const logout = () => {
   return { type: LOGOUT };
 };
 
-export const addRoutine = routine => dispatch => {
-  dispatch({ type: POST_NEW_ROUTINE });
+export const addRoutine = (history, data) => dispatch => {
+  dispatch({ type: POST_NEW_ROUTINE, data });
+  history.push("/routines");
 };
 
 export const getRoutines = () => dispatch => {

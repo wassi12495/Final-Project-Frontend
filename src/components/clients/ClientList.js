@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import ClientCard from "./ClientCard";
 
 const ClientList = props => {
-  console.log("Client List", props.clients);
   if (!!props.clients) {
     const clientCards = props.clients.map((client, index) => {
       return <ClientCard key={index} client={client} />;

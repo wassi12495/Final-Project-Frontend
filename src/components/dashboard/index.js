@@ -29,17 +29,29 @@ const Dashboard = props => {
       <div>
         <Link to={`/exercises`}>Go To Exercises</Link>
       </div>
-
       <div>
-        <Link to={`/profile`}>Your Profile</Link>
+        <h3>Profile</h3>
       </div>
+      <div>
+        <Link to={`/profile`}>Go To Your Profile</Link>
+      </div>
+      {props.isTrainer ? (
+        <div>
+          <div>
+            <h3>Clients</h3>
+          </div>
+          <div>
+            <Link to={`/clients`}>Go To Your Clients</Link>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
 
 const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
-  is_trainer: state.auth.currentUser.is_trainer
+  isTrainer: state.auth.currentUser.is_trainer
 });
 
 export default withAuth(connect(mapStateToProps, actions)(Dashboard));

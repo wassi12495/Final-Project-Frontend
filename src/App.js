@@ -13,6 +13,7 @@ import WorkoutContainer from "./components/workout";
 import RoutinesContainer from "./components/routines";
 import ExerciseContainer from "./components/exercises";
 import CurrentWorkoutContainer from "./components/currentWorkout";
+import ClientsContainer from "./components/clients";
 
 class App extends Component {
   renderLoading = () => {
@@ -39,6 +40,7 @@ class App extends Component {
                 path="/current_workout"
                 component={CurrentWorkoutContainer}
               />
+              <Route path="/clients" component={ClientsContainer} />
             </Switch>
           </div>
         </div>

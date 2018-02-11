@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 class ClientList extends Component {
   render() {
+    console.log("Client List", this.props.clients);
     return <div>Client List</div>;
   }
 }

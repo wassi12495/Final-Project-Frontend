@@ -6,9 +6,12 @@ import ExerciseCard from "./ExerciseCard";
 const ExercisesList = ({ match, exercises }) => {
   console.log("Exercise List", exercises);
   const seedExerciseCards = exercises.seed_exercises.map((e, index) => {
+    console.log("making card", e);
     return <ExerciseCard exercise={e} key={index} />;
   });
   const userExerciseCards = exercises.user_exercises.map((e, index) => {
+    console.log("making card", e);
+
     return <ExerciseCard exercise={e} key={index} />;
   });
 

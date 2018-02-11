@@ -76,13 +76,20 @@ export const exerciseCategoryReducer = (state = [], action) => {
 };
 
 // Handle Exercises
-export const exercisesReducer = (state = [], action) => {
+export const exercisesReducer = (state = null, action) => {
   switch (action.type) {
     case GET_EXERCISES:
       return action.data;
     case ADD_EXERCISE:
-      return [...state, action.data];
-
+      const exercise = Object.assign({}, action.data, {
+        exercise_category_id: action.data.exercise_category.id
+      });
+      return {
+        seed_exercises: state.seed_exercises,
+        user_exercises: [...state.user_exercises, exercise]
+      };
+    case LOGOUT:
+      return null;
     default:
       return state;
   }
@@ -100,10 +107,8 @@ export const routinesReducer = (state = null, action) => {
   }
 };
 // Handle Current Routines
-export const currentRoutineReducer = (state = {}, action) => {
+export const currentRoutineReducer = (state = null, action) => {
   switch (action.type) {
-    case GET_ROUTINES:
-      return action.data;
     case SET_CURRENT_NEW_ROUTINE:
       return action.routine;
     case ADD_EXERCISE_TO_CURRENT_ROUTINE:

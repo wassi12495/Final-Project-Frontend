@@ -77,10 +77,11 @@ export const getExercises = () => dispatch => {
   });
 };
 
-export const addExercise = data => dispatch => {
+export const addExercise = (data, history) => dispatch => {
   dispatch({ type: ASYNC_START });
   adapter.exercises.addExercise(data).then(data => {
     dispatch({ type: ADD_EXERCISE, data });
+    history.push("/exercises");
   });
 };
 

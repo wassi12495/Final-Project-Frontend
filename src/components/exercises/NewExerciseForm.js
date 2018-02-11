@@ -34,8 +34,8 @@ class NewExerciseForm extends Component {
     const exercise_category_id = parseInt(exerciseCategory, 10);
     console.log("New Exercise Submit", name, description, exercise_category_id);
     const data = { name, description, exercise_category_id };
-    this.props.addExercise(data);
-    this.props.history.push("/profile/exercises");
+    this.props.addExercise(data, this.props.history);
+    // this.props.history.push("/exercises");
   };
 
   render() {

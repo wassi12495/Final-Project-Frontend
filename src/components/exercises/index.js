@@ -1,11 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import withAuth from "../../hocs/withAuth";
+import { connect } from "react-redux";
 import NewExerciseForm from "./NewExerciseForm";
 import ExercisesList from "./ExercisesList";
 
-const ExercisesContainer = ({ match }) => {
-  return (
+const ExercisesContainer = ({ match, exercises, exerciseCategories }) => {
+  return !!exercises && !!exerciseCategories ? (
     <div>
       <h1>Exercises Container</h1>
 
@@ -14,7 +15,13 @@ const ExercisesContainer = ({ match }) => {
         <Route path={`${match.url}/new`} component={NewExerciseForm} />
       </Switch>
     </div>
+  ) : (
+    <div>Loading</div>
   );
 };
 
-export default withAuth(ExercisesContainer);
+const mapStateToProps = state => ({
+  exercises: state.exercises,
+  exerciseCategories: state.exerciseCategories
+});
+export default withAuth(connect(mapStateToProps)(ExercisesContainer));

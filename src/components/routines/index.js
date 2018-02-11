@@ -7,7 +7,7 @@ import RoutinesList from "./RoutinesList";
 import RoutineShow from "./RoutineShow";
 
 const RoutinesContainer = ({ match, routines }) => {
-  return (
+  return !!routines ? (
     <div>
       <div>
         <div>
@@ -36,6 +36,8 @@ const RoutinesContainer = ({ match, routines }) => {
         />
       </Switch>
     </div>
+  ) : (
+    <div> Loading </div>
   );
 };
 

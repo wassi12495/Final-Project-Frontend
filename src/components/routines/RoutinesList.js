@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import RoutineCard from "./RoutineCard";
 
 const RoutinesList = ({ match, routines }) => {
-  debugger;
   const myRoutines = routines.map((r, index) => {
     return (
       <div key={index}>

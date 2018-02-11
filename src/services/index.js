@@ -36,6 +36,13 @@ const createRoutine = routine => {
   }).then(res => res.json());
 };
 
+const getRoutines = () => {
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/routines`, {
+    headers: { Authorization: token }
+  }).then(res => res.json());
+};
+
 const getExCas = () => {
   return fetch(`${API_URL}/exercise_categories`, {
     method: "GET"
@@ -141,7 +148,8 @@ export const adapter = {
     signup
   },
   routines: {
-    createRoutine
+    createRoutine,
+    getRoutines
   },
   exercises: {
     getExCas,

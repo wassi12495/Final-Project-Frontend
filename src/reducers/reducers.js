@@ -11,6 +11,7 @@ import {
   UPDATE_CURRENT_ROUTINE_TITLE,
   POST_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
+  GET_ROUTINES,
   SET_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
@@ -88,8 +89,21 @@ export const exercisesReducer = (state = [], action) => {
 };
 
 // Handle Routines
-export const routineReducer = (state = {}, action) => {
+export const routinesReducer = (state = null, action) => {
   switch (action.type) {
+    case GET_ROUTINES:
+      return action.data;
+    case LOGOUT:
+      return null;
+    default:
+      return state;
+  }
+};
+// Handle Current Routines
+export const currentRoutineReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_ROUTINES:
+      return action.data;
     case SET_CURRENT_NEW_ROUTINE:
       return action.routine;
     case ADD_EXERCISE_TO_CURRENT_ROUTINE:

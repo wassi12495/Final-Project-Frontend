@@ -41,6 +41,6 @@ const RoutinesContainer = ({ match, routines }) => {
 
 const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
-  routines: state.auth.currentUser.routines
+  routines: state.routines
 });
 export default withAuth(connect(mapStateToProps)(RoutinesContainer));

@@ -11,6 +11,7 @@ import {
   UPDATE_CURRENT_ROUTINE_TITLE,
   POST_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
+  GET_ROUTINES,
   SET_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
@@ -45,6 +46,13 @@ export const logout = () => {
 
 export const addRoutine = routine => dispatch => {
   dispatch({ type: POST_NEW_ROUTINE });
+};
+
+export const getRoutines = () => dispatch => {
+  dispatch({ type: ASYNC_START });
+  adapter.routines.getRoutines().then(data => {
+    dispatch({ type: GET_ROUTINES, data: data.routines });
+  });
 };
 
 export const getExerciseCategories = () => dispatch => {

@@ -10,6 +10,7 @@ const withAuth = WrappedComponent => {
       if (localStorage.getItem("token")) {
         this.props.fetchUser();
         this.props.getCurrentWorkout();
+        this.props.getRoutines();
         this.props.getExercises();
         this.props.getExerciseCategories();
         this.props.getClients();

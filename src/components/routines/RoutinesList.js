@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import RoutineCard from "./RoutineCard";
 
-const RoutinesList = props => {
-  const { routines } = props;
+const RoutinesList = ({ match, routines }) => {
+  debugger;
   const myRoutines = routines.map((r, index) => {
     return (
       <div key={index}>
-        <Link to={`${props.match.url}/${r.id}`}>
+        <Link to={`${match.url}/${r.id}`}>
           <RoutineCard routine={r} key={index} />
         </Link>
       </div>
@@ -24,6 +24,6 @@ const RoutinesList = props => {
 
 const mapStateToProps = state => ({
   currentUser: state.auth.currentUser,
-  routines: state.auth.currentUser.routines
+  routines: state.routines
 });
-export default withRouter(connect(mapStateToProps, null)(RoutinesList));
+export default connect(mapStateToProps, null)(RoutinesList);

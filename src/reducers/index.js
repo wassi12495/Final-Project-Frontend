@@ -4,10 +4,11 @@ import {
   exerciseCategoryReducer,
   exercisesReducer,
   asyncReducer,
-  routineReducer,
+  currentRoutineReducer,
   currentWorkoutReducer,
   workoutsReducer,
-  clientsReducer
+  clientsReducer,
+  routinesReducer
 } from "./reducers";
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   exerciseCategories: exerciseCategoryReducer,
   loading: asyncReducer,
   exercises: exercisesReducer,
-  currentRoutine: routineReducer,
+  currentRoutine: currentRoutineReducer,
+  routines: routinesReducer,
   currentWorkout: currentWorkoutReducer,
   workouts: workoutsReducer
 });

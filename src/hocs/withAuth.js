@@ -12,6 +12,7 @@ const withAuth = WrappedComponent => {
         this.props.getCurrentWorkout();
         this.props.getExercises();
         this.props.getExerciseCategories();
+        this.props.getClients();
       } else {
         this.setState({ authenticated: true });
       }
@@ -37,7 +38,8 @@ const withAuth = WrappedComponent => {
   }
 
   const mapStateToProps = state => ({
-    loggedIn: !!state.auth.currentUser.id
+    loggedIn: !!state.auth.currentUser.id,
+    isTrainer: state.auth.currentUser.is_trainer
   });
 
   return connect(mapStateToProps, actions)(AuthenticatedComponent);

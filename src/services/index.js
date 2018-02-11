@@ -124,6 +124,13 @@ const deleteCurrentWorkout = id => {
     headers: { Authorization: token }
   }).then(res => res.json());
 };
+
+const getClients = () => {
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/current_user/clients`, {
+    headers: { Authorization: token }
+  }).then(res => res.json());
+};
 export const adapter = {
   auth: {
     login,
@@ -147,5 +154,8 @@ export const adapter = {
     completeCurrentWorkout,
     addExerciseToCurrentWorkout,
     deleteCurrentWorkout
+  },
+  clients: {
+    getClients
   }
 };

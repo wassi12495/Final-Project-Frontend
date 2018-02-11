@@ -16,7 +16,8 @@ import {
   NO_CURRENT_WORKOUT,
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
   FINISH_WORKOUT,
-  DELETE_CURRENT_WORKOUT
+  DELETE_CURRENT_WORKOUT,
+  GET_CLIENTS
 } from "./types";
 import { adapter } from "../services";
 
@@ -120,5 +121,12 @@ export const deleteCurrentWorkout = (id, history) => dispatch => {
   adapter.workouts.deleteCurrentWorkout(id).then(res => {
     dispatch({ type: DELETE_CURRENT_WORKOUT });
     history.push("/");
+  });
+};
+
+export const getClients = () => dispatch => {
+  dispatch({ type: ASYNC_START });
+  adapter.clients.getClients().then(res => {
+    dispatch({ type: GET_CLIENTS, data: res });
   });
 };

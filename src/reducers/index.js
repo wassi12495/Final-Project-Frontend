@@ -6,11 +6,13 @@ import {
   asyncReducer,
   routineReducer,
   currentWorkoutReducer,
-  workoutsReducer
+  workoutsReducer,
+  clientsReducer
 } from "./reducers";
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  clients: clientsReducer,
   exerciseCategories: exerciseCategoryReducer,
   loading: asyncReducer,
   exercises: exercisesReducer,

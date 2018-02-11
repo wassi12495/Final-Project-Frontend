@@ -16,7 +16,8 @@ import {
   NO_CURRENT_WORKOUT,
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
   FINISH_WORKOUT,
-  DELETE_CURRENT_WORKOUT
+  DELETE_CURRENT_WORKOUT,
+  GET_CLIENTS
 } from "../actions/types";
 
 export const asyncReducer = (state = false, action) => {
@@ -164,12 +165,14 @@ export const workoutsReducer = (state = [], action) => {
   }
 };
 
-// TODO: Determine if I need to store routines in state (probs not)
-// export const routinesReducer = (state = [], action) => {
-//   switch (action.type) {
-//     case ADD_NEW_ROUTINE:
-//       return [...state, action.routine];
-//     default:
-//       return state;
-//   }
-// };
+// Handle Clients
+export const clientsReducer = (state = null, action) => {
+  switch (action.type) {
+    case GET_CLIENTS:
+      return action.data;
+    case LOGOUT:
+      return null;
+    default:
+      return state;
+  }
+};

@@ -1,20 +1,40 @@
-import { GET_EXERCISES, ADD_EXERCISE, LOGOUT } from "../actions/types";
+import {
+  GET_EXERCISES,
+  ADD_EXERCISE,
+  LOGOUT,
+  ASYNC_START_EXERCISES,
+  ASYNC_ERROR_EXERCISES
+} from "../actions/types";
 
 // Handle Exercises
-export const exercisesReducer = (state = null, action) => {
+const initialState = {
+  exercises: [],
+  loading: false,
+  error: false,
+  errorMessages: null
+};
+export const exercisesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_EXERCISES:
-      return action.data;
-    case ADD_EXERCISE:
-      const exercise = Object.assign({}, action.data, {
-        exercise_category_id: action.data.exercise_category.id
-      });
+    case ASYNC_START_EXERCISES:
+      return { ...state, loading: true };
+    case ASYNC_ERROR_EXERCISES:
       return {
-        seed_exercises: state.seed_exercises,
-        user_exercises: [...state.user_exercises, exercise]
+        ...state,
+        loading: false,
+        error: true,
+        errorMessages: action.data
+      };
+    case GET_EXERCISES:
+      return { ...state, exercises: action.data, loading: false, error: false };
+    case ADD_EXERCISE:
+      return {
+        ...state,
+        exercises: [...state.exercises, action.data],
+        loading: false,
+        error: false
       };
     case LOGOUT:
-      return null;
+      return initialState;
     default:
       return state;
   }

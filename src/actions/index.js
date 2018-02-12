@@ -5,8 +5,6 @@ import {
   LOGOUT,
   GET_EXERCISE_CATEGORIES,
   GET_USER_WORKOUTS,
-  GET_EXERCISES,
-  ADD_EXERCISE,
   SET_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_ROUTINE_TITLE,
@@ -22,6 +20,7 @@ import {
   GET_CLIENTS
 } from "./types";
 import { adapter } from "../services";
+export { getExercises, addExercise } from "./exercisesActions";
 
 export const endLoading = () => dispatch => {
   dispatch({ type: ASYNC_END });
@@ -73,21 +72,6 @@ export const getWorkouts = () => dispatch => {
   adapter.auth.getWorkouts().then(data => {
     const workouts = data.workouts;
     dispatch({ type: GET_USER_WORKOUTS, workouts });
-  });
-};
-
-export const getExercises = () => dispatch => {
-  dispatch({ type: ASYNC_START });
-  adapter.exercises.getExercises().then(data => {
-    dispatch({ type: GET_EXERCISES, data });
-  });
-};
-
-export const addExercise = (data, history) => dispatch => {
-  dispatch({ type: ASYNC_START });
-  adapter.exercises.addExercise(data).then(data => {
-    dispatch({ type: ADD_EXERCISE, data });
-    history.push("/exercises");
   });
 };
 

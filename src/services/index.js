@@ -73,10 +73,7 @@ const addExercise = data => {
       Authorization: token
     },
     body: JSON.stringify(data)
-  }).then(res => {
-    debugger;
-    res.json();
-  });
+  }).then(res => res.json());
 };
 
 const initializeWorkout = data => {

@@ -9,6 +9,8 @@ export const LOGOUT = "LOGOUT";
 export const GET_EXERCISE_CATEGORIES = "GET_EXERCISE_CATEGORIES";
 
 // Exercise types
+export const ASYNC_START_EXERCISES = "ASYNC_START_EXERCISES";
+export const ASYNC_ERROR_EXERCISES = "ASYNC_ERROR_EXERCISES";
 export const GET_EXERCISES = "GET_EXERCISES";
 export const ADD_EXERCISE = "ADD_EXERCISE";
 // Routine types

@@ -17,9 +17,9 @@ const ExercisesList = ({ match, exercises }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser,
-  exercises: state.exercises
+const mapStateToProps = ({ auth, exercises }) => ({
+  currentUser: auth.currentUser,
+  exercises: exercises.exercises
 });
 
 export default connect(mapStateToProps, null)(ExercisesList);

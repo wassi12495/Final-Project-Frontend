@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import { Message } from "semantic-ui-react";
 
 class NewExerciseForm extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class NewExerciseForm extends Component {
   };
 
   render() {
-    const { exerciseCategories } = this.props;
+    const { exerciseCategories, error, errorMessages } = this.props;
     const { name, description, exerciseCategory } = this.state;
     const categories = exerciseCategories.map(c => {
       return (
@@ -51,6 +52,13 @@ class NewExerciseForm extends Component {
     return (
       <div>
         <h1>New Exercise Form</h1>
+        {error ? (
+          <Message
+            error
+            header="Failed To Create Exercise!"
+            list={errorMessages}
+          />
+        ) : null}
         <div>
           <form onSubmit={this.handleSubmit}>
             <label>Name: </label>
@@ -84,9 +92,11 @@ class NewExerciseForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser,
-  exerciseCategories: state.exerciseCategories
+const mapStateToProps = ({ auth, exerciseCategories, exercises }) => ({
+  currentUser: auth.currentUser,
+  exerciseCategories: exerciseCategories,
+  error: exercises.error,
+  errorMessages: exercises.errorMessages
 });
 
 export default connect(mapStateToProps, actions)(NewExerciseForm);

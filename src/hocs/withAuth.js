@@ -11,8 +11,6 @@ const withAuth = WrappedComponent => {
         this.props.fetchUser();
         this.props.getCurrentWorkout();
         this.props.getWorkouts();
-        // this.props.getRoutines();
-        // this.props.getExercises();
         this.props.getExerciseCategories();
         this.props.getClients();
       } else {

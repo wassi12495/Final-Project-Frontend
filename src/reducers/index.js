@@ -1,15 +1,13 @@
 import { combineReducers } from "redux";
-import {
-  authReducer,
-  exerciseCategoryReducer,
-  exercisesReducer,
-  asyncReducer,
-  currentRoutineReducer,
-  currentWorkoutReducer,
-  workoutsReducer,
-  clientsReducer,
-  routinesReducer
-} from "./reducers";
+import { asyncReducer } from "./async";
+import { authReducer } from "./auth";
+import { exerciseCategoryReducer } from "./exerciseCategories";
+import { exercisesReducer } from "./exercises";
+import { routinesReducer } from "./routines";
+import { currentRoutineReducer } from "./currentRoutine";
+import { currentWorkoutReducer } from "./currentWorkout";
+import { workoutsReducer } from "./workouts";
+import { clientsReducer } from "./clients";
 
 const rootReducer = combineReducers({
   auth: authReducer,

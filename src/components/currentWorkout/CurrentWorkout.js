@@ -29,7 +29,8 @@ class CurrentWorkout extends Component {
   handleAddSet = exercise => {
     const newE = Object.assign({}, exercise, {
       sets: exercise.sets++,
-      reps: [...exercise.reps, 0]
+      reps: [...exercise.reps, ""],
+      measure_input: [...exercise.measure_input, 0]
     });
     const { currentWorkout } = this.props;
     const i = currentWorkout.exercises.findIndex(e => exercise.id === e.id);
@@ -96,8 +97,7 @@ class CurrentWorkout extends Component {
   };
 
   handleEndWorkout = () => {
-    this.props.finishWorkout(this.state);
-    this.props.history.push("/");
+    this.props.finishWorkout(this.state, this.props.history);
   };
 
   handleDeleteWorkout = () => {

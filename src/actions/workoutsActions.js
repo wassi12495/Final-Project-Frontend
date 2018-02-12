@@ -1,6 +1,6 @@
 import {
   ASYNC_START_WORKOUTS,
-  ASYNC_ERROR_WORKOUTS,
+  // ASYNC_ERROR_WORKOUTS,
   GET_USER_WORKOUTS
 } from "./types";
 import { adapter } from "../services";

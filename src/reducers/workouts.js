@@ -1,7 +1,7 @@
 import {
   ASYNC_START_WORKOUTS,
   GET_USER_WORKOUTS,
-  FINISH_WORKOUT
+  ADD_WORKOUT
 } from "../actions/types";
 // Handle Workouts
 const initialState = {
@@ -16,8 +16,12 @@ export const workoutsReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     case GET_USER_WORKOUTS:
       return { ...state, workouts: action.data, loading: false };
-    case FINISH_WORKOUT:
-      return [...state, action.data];
+    case ADD_WORKOUT:
+      return {
+        ...state,
+        workouts: [...state.workouts, action.data],
+        loading: false
+      };
     default:
       return state;
   }

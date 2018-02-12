@@ -1,13 +1,16 @@
 import { adapter } from "../services";
 import {
   ASYNC_START_CURRENT_WORKOUT,
+  ASYNC_START_WORKOUTS,
   ASYNC_ERROR_CURRENT_WORKOUT,
   SET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
   DELETE_CURRENT_WORKOUT,
-  UPDATE_CURRENT_WORKOUT_EXERCISE
+  UPDATE_CURRENT_WORKOUT_EXERCISE,
+  FINISH_WORKOUT,
+  ADD_WORKOUT
 } from "./types";
 
 export const postCurrentWorkout = (data, history) => dispatch => {
@@ -51,4 +54,14 @@ export const deleteCurrentWorkout = (id, history) => dispatch => {
 
 export const updateCurrentWorkoutExercise = (exercise, index) => dispatch => {
   dispatch({ type: UPDATE_CURRENT_WORKOUT_EXERCISE, data: exercise, index });
+};
+
+export const finishWorkout = (data, history) => dispatch => {
+  dispatch({ type: ASYNC_START_CURRENT_WORKOUT });
+  dispatch({ type: ASYNC_START_WORKOUTS });
+  adapter.workouts.completeCurrentWorkout(data).then(res => {
+    dispatch({ type: ADD_WORKOUT, data: res });
+    history.push("/");
+    dispatch({ type: FINISH_WORKOUT });
+  });
 };

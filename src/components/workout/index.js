@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Switch, Route, Link } from "react-router-dom";
 import * as actions from "../../actions";
+import { Loader } from "semantic-ui-react";
 import withAuth from "../../hocs/withAuth";
 import WorkoutFormNew from "./WorkoutFormNew";
 import WorkoutList from "./WorkoutList";
@@ -11,7 +12,11 @@ class WorkoutContainer extends Component {
     this.props.getWorkouts();
     // this.props.getCurrentWorkout();
   }
-  render() {
+
+  renderLoading() {
+    return <Loader />;
+  }
+  renderPage() {
     const { match } = this.props;
     return (
       <div>
@@ -30,10 +35,13 @@ class WorkoutContainer extends Component {
       </div>
     );
   }
+  render() {
+    return this.props.loading ? this.renderLoading() : this.renderPage();
+  }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser,
-  workouts: state.auth.workouts
+const mapStateToProps = ({ workouts }) => ({
+  workouts: workouts.workouts,
+  loading: workouts.loading
 });
 export default withAuth(connect(mapStateToProps, actions)(WorkoutContainer));

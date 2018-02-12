@@ -37,7 +37,7 @@ export const currentWorkoutReducer = (state = initialState, action) => {
     case NO_CURRENT_WORKOUT:
       return initialState;
     case FINISH_WORKOUT:
-      return null;
+      return initialState;
     case ADD_EXERCISE_TO_CURRENT_WORKOUT:
       return {
         ...state,

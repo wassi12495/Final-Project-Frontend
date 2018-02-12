@@ -6,8 +6,7 @@ import {
   SET_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
-  UPDATE_CURRENT_ROUTINE_TITLE,
-  LOGOUT
+  UPDATE_CURRENT_ROUTINE_TITLE
 } from "./types";
 import { adapter } from "../services";
 
@@ -19,6 +18,10 @@ export const getRoutines = () => dispatch => {
 };
 
 export const addRoutine = (history, data) => dispatch => {
+  dispatch({ type: ASYNC_START_ROUTINES });
+  adapter.routines.addRoutine(data).then(data => {
+    debugger;
+  });
   dispatch({ type: POST_NEW_ROUTINE, data });
   history.push("/routines");
 };

@@ -27,12 +27,16 @@ const getCurrentUser = () => {
   }).then(res => res.json());
 };
 
-const createRoutine = routine => {
-  console.log("Create Routine", routine);
+const addRoutine = data => {
+  const token = localStorage.getItem("token");
   return fetch(`${API_URL}/routines`, {
     method: "POST",
-    headers,
-    body: JSON.stringify(routine)
+    headers: {
+      "Content-Type": "application/json",
+      Accepts: "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(data)
   }).then(res => res.json());
 };
 
@@ -146,7 +150,7 @@ export const adapter = {
     signup
   },
   routines: {
-    createRoutine,
+    addRoutine,
     getRoutines
   },
   exercises: {

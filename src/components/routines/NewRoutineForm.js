@@ -24,18 +24,20 @@ class NewRoutineForm extends Component {
     const data = {
       routine: this.props.currentRoutine
     };
-    adapter.routines.createRoutine(data).then(res => {
-      if (res.error) {
-        this.setState({
-          error: true,
-          errorMessage: `Routine title ${res.error.title[0]}`
-        });
-      } else {
-        adapter.routines.getRoutines().then(data => {
-          this.props.addRoutine(this.props.history, data.routines);
-        });
-      }
-    });
+    this.props.addRoutine(this.props.history, data);
+
+    // adapter.routines.createRoutine(data).then(res => {
+    //   if (res.error) {
+    //     this.setState({
+    //       error: true,
+    //       errorMessage: `Routine title ${res.error.title[0]}`
+    //     });
+    //   } else {
+    //     adapter.routines.getRoutines().then(data => {
+    //       this.props.addRoutine(this.props.history, data.routines);
+    //     });
+    //   }
+    // });
   };
 
   handleChange = e => {

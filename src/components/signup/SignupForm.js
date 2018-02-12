@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { adapter } from "../../services";
 import { Form, Message, Container, Segment, Header } from "semantic-ui-react";
 
 class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: false,
-      error_messages: [],
       username: "",
       password: "",
       password_confirmation: "",
@@ -18,6 +15,13 @@ class Signup extends Component {
       last_name: "",
       is_trainer: false
     };
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.signedup) {
+      const { username, password } = this.state;
+      this.props.login(username, password, this.props.history);
+    }
   }
 
   handleChange = e => {
@@ -43,38 +47,22 @@ class Signup extends Component {
       last_name: this.state.last_name,
       is_trainer: this.state.is_trainer
     };
-    adapter.user.signup(user).then(res => {
-      if (res.errors) {
-        this.setState({
-          error: true,
-          error_messages: res.errors
-        });
-      } else {
-        this.props.loginUser(user.username, user.password, this.props.history);
-      }
-    });
+    this.props.signup(user);
   };
 
-  // TODO: Add Password confirmation after validations added
-  // TODO: Add Radio handle change
   render() {
     const {
       username,
       password,
       password_confirmation,
       first_name,
-      last_name,
-      error
+      last_name
     } = this.state;
-    console.log(this.state);
+    const { error, errorMessages } = this.props;
     return (
       <Container text>
         {error ? (
-          <Message
-            error
-            header="Signup Failed!"
-            list={this.state.error_messages}
-          />
+          <Message error header="Signup Failed!" list={errorMessages} />
         ) : null}
 
         <Segment inverted>
@@ -150,4 +138,11 @@ class Signup extends Component {
   }
 }
 
-export default withRouter(connect(null, actions)(Signup));
+const mapStateToProps = ({ user }) => ({
+  error: user.error,
+  errorMessages: user.errorMessages,
+  loading: user.loading,
+  signedup: user.signedup
+});
+
+export default withRouter(connect(mapStateToProps, actions)(Signup));

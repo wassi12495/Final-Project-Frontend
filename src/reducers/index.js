@@ -6,9 +6,11 @@ import { routinesReducer } from "./routines";
 import { currentWorkoutReducer } from "./currentWorkout";
 import { workoutsReducer } from "./workouts";
 import { clientsReducer } from "./clients";
+import { userReducer } from "./user";
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  user: userReducer,
   clients: clientsReducer,
   exerciseCategories: exerciseCategoryReducer,
   exercises: exercisesReducer,

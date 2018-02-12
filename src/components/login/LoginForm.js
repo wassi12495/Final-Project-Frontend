@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { adapter } from "../../services";
 import { Form, Message, Container, Segment, Header } from "semantic-ui-react";
 
 class LoginForm extends Component {

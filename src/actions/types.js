@@ -1,9 +1,14 @@
-// Async types
+// Auth types
 export const ASYNC_START_AUTH = "ASYNC_START_AUTH";
 export const ASYNC_ERROR_AUTH = "ASYNC_ERROR_AUTH";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const LOGOUT = "LOGOUT";
+
+// User types
+export const ASYNC_START_USER = "ASYNC_START_USER";
+export const ASYNC_ERROR_USER = "ASYNC_ERROR_USER";
+export const SIGNEDUP = "SIGNUP";
 
 // Exercise Category types
 export const ASYNC_START_EXERCISE_CATEGORIES =

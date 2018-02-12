@@ -25,6 +25,7 @@ export {
   updateCurrentWorkoutExercise,
   finishWorkout
 } from "./currentWorkoutActions";
+export { getClients } from "./clientsActions";
 
 export const fetchUser = () => dispatch => {
   dispatch({ type: ASYNC_START });
@@ -52,12 +53,5 @@ export const getExerciseCategories = () => dispatch => {
   dispatch({ type: ASYNC_START });
   adapter.exercises.getExCas().then(data => {
     dispatch({ type: GET_EXERCISE_CATEGORIES, data });
-  });
-};
-
-export const getClients = () => dispatch => {
-  dispatch({ type: ASYNC_START });
-  adapter.clients.getClients().then(res => {
-    dispatch({ type: GET_CLIENTS, data: res });
   });
 };

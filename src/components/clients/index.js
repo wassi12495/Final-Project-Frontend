@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
+import * as actions from "../../actions";
 import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { Loader } from "semantic-ui-react";
 import ClientList from "./ClientList";
 
 class ClientsContainer extends Component {
-  render() {
+  componentDidMount() {
+    this.props.getClients();
+  }
+  renderLoading() {
+    return <Loader />;
+  }
+  renderPage() {
     const { match } = this.props;
     return !this.props.isTrainer ? (
       <Redirect to="/" />
@@ -18,9 +26,15 @@ class ClientsContainer extends Component {
       </div>
     );
   }
+
+  render() {
+    console.log("Clients", this.props);
+    return this.props.loading ? this.renderLoading() : this.renderPage();
+  }
 }
 
-const mapStateToProps = state => ({
-  isTrainer: state.auth.currentUser.is_trainer
+const mapStateToProps = ({ auth, clients }) => ({
+  isTrainer: auth.currentUser.is_trainer,
+  loading: clients.loading
 });
 export default withAuth(connect(mapStateToProps)(ClientsContainer));

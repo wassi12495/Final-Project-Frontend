@@ -11,7 +11,6 @@ const withAuth = WrappedComponent => {
         this.props.fetchUser();
         this.props.getCurrentWorkout();
         this.props.getExerciseCategories();
-        this.props.getClients();
       } else {
         this.setState({ authenticated: true });
       }

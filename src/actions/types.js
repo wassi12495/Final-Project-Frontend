@@ -47,3 +47,5 @@ export const UPDATE_CURRENT_WORKOUT_EXERCISE =
 
 // Trainer/Client types
 export const GET_CLIENTS = "GET_CLIENTS";
+export const ASYNC_START_CLIENTS = "ASYNC_START_CLIENTS";
+export const ASYNC_ERROR_CLIENTS = "ASYNC_ERROR_CLIENTS";

@@ -4,7 +4,6 @@ import {
   SET_CURRENT_USER,
   LOGOUT,
   GET_EXERCISE_CATEGORIES,
-  GET_USER_WORKOUTS,
   SET_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
@@ -24,6 +23,7 @@ export {
   addExerciseToCurrentNewRoutine,
   clearRoutine
 } from "./routinesActions";
+export { getWorkouts } from "./workoutsActions";
 
 export const endLoading = () => dispatch => {
   dispatch({ type: ASYNC_END });
@@ -55,14 +55,6 @@ export const getExerciseCategories = () => dispatch => {
   dispatch({ type: ASYNC_START });
   adapter.exercises.getExCas().then(data => {
     dispatch({ type: GET_EXERCISE_CATEGORIES, data });
-  });
-};
-
-export const getWorkouts = () => dispatch => {
-  dispatch({ type: ASYNC_START });
-  adapter.auth.getWorkouts().then(data => {
-    const workouts = data.workouts;
-    dispatch({ type: GET_USER_WORKOUTS, workouts });
   });
 };
 

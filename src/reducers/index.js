@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import { asyncReducer } from "./async";
 import { authReducer } from "./auth";
 import { exerciseCategoryReducer } from "./exerciseCategories";
 import { exercisesReducer } from "./exercises";
@@ -12,7 +11,6 @@ const rootReducer = combineReducers({
   auth: authReducer,
   clients: clientsReducer,
   exerciseCategories: exerciseCategoryReducer,
-  loading: asyncReducer,
   exercises: exercisesReducer,
   routines: routinesReducer,
   currentWorkout: currentWorkoutReducer,

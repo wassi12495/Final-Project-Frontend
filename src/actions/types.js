@@ -1,10 +1,16 @@
 // Async types
-export const ASYNC_START = "ASYNC_START";
+export const ASYNC_START_AUTH = "ASYNC_START_AUTH";
+export const ASYNC_ERROR_AUTH = "ASYNC_ERROR_AUTH";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const LOGOUT = "LOGOUT";
 
 // Exercise Category types
+export const ASYNC_START_EXERCISE_CATEGORIES =
+  "ASYNC_START_EXERCISE_CATEGORIES";
+export const ASYNC_ERROR_EXERCISE_CATEGORIES =
+  "ASYNC_ERROR_EXERCISE_CATEGORIES";
+
 export const GET_EXERCISE_CATEGORIES = "GET_EXERCISE_CATEGORIES";
 
 // Exercise types

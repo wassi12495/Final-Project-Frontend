@@ -50,8 +50,6 @@ class LoginForm extends Component {
   render() {
     const { username, password, error } = this.state;
 
-    // console.log("Login state", this.state);
-    // console.log("Login props", this.props);
     return (
       <Container text>
         {error ? (

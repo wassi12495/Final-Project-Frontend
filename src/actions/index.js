@@ -1,9 +1,6 @@
 import {
-  ASYNC_START,
-  SET_CURRENT_USER,
-  LOGOUT,
-  GET_EXERCISE_CATEGORIES,
-  GET_CLIENTS
+  ASYNC_START_EXERCISE_CATEGORIES,
+  GET_EXERCISE_CATEGORIES
 } from "./types";
 import { adapter } from "../services";
 export { getExercises, addExercise } from "./exercisesActions";
@@ -26,31 +23,10 @@ export {
   finishWorkout
 } from "./currentWorkoutActions";
 export { getClients } from "./clientsActions";
-
-export const fetchUser = () => dispatch => {
-  dispatch({ type: ASYNC_START });
-  adapter.auth.getCurrentUser().then(user => {
-    dispatch({ type: SET_CURRENT_USER, user });
-  });
-};
-
-export const loginUser = (username, password, history) => dispatch => {
-  dispatch({ type: ASYNC_START });
-  adapter.auth.login({ username, password }).then(user => {
-    console.log("Login User", user);
-    localStorage.setItem("token", user.jwt);
-    dispatch({ type: SET_CURRENT_USER, user });
-    history.push("/");
-  });
-};
-
-export const logout = () => {
-  localStorage.removeItem("token");
-  return { type: LOGOUT };
-};
+export { fetchUser, loginUser, logout } from "./authActions";
 
 export const getExerciseCategories = () => dispatch => {
-  dispatch({ type: ASYNC_START });
+  dispatch({ type: ASYNC_START_EXERCISE_CATEGORIES });
   adapter.exercises.getExCas().then(data => {
     dispatch({ type: GET_EXERCISE_CATEGORIES, data });
   });

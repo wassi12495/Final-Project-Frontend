@@ -28,7 +28,6 @@ class ClientsContainer extends Component {
   }
 
   render() {
-    console.log("Clients", this.props);
     return this.props.loading ? this.renderLoading() : this.renderPage();
   }
 }
@@ -37,4 +36,4 @@ const mapStateToProps = ({ auth, clients }) => ({
   isTrainer: auth.currentUser.is_trainer,
   loading: clients.loading
 });
-export default withAuth(connect(mapStateToProps)(ClientsContainer));
+export default withAuth(connect(mapStateToProps, actions)(ClientsContainer));

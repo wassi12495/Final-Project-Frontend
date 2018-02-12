@@ -12,6 +12,10 @@ class WorkoutFormNew extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getRoutines();
+  }
+
   handleSelectWorkout = routine => {
     const initCurrWorkout = {
       routine_id: routine.id
@@ -60,10 +64,9 @@ class WorkoutFormNew extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ routines }) => {
   return {
-    currentUser: state.auth.currentUser,
-    routines: state.auth.currentUser.routines
+    routines: routines.routines
   };
 };
 export default connect(mapStateToProps, actions)(WorkoutFormNew);

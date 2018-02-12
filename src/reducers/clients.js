@@ -1,9 +1,16 @@
-import { ASYNC_START_CLIENTS, GET_CLIENTS, LOGOUT } from "../actions/types";
+import {
+  ASYNC_START_CLIENTS,
+  GET_USERS,
+  GET_CLIENTS,
+  LOGOUT
+} from "../actions/types";
 
 // Handle Clients
 const initialState = {
   clients: [],
-  loading: false
+  loading: false,
+  users: [],
+  modal: false
 };
 export const clientsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,6 +21,13 @@ export const clientsReducer = (state = initialState, action) => {
         ...state,
         clients: action.data,
         loading: false
+      };
+    case GET_USERS:
+      return {
+        ...state,
+        loading: false,
+        users: action.data,
+        modal: true
       };
     case LOGOUT:
       return initialState;

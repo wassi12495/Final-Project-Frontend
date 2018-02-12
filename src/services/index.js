@@ -140,6 +140,10 @@ const getClients = () => {
     headers: { Authorization: token }
   }).then(res => res.json());
 };
+
+const getUsers = () => {
+  return fetch(`${API_URL}/users`).then(res => res.json());
+};
 export const adapter = {
   auth: {
     login,
@@ -168,6 +172,7 @@ export const adapter = {
     addExerciseToCurrentWorkout
   },
   clients: {
-    getClients
+    getClients,
+    getUsers
   }
 };

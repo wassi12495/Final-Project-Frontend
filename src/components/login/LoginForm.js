@@ -24,23 +24,6 @@ class LoginForm extends Component {
     const { username, password } = this.state;
     const { history } = this.props;
     this.props.login(username, password, history);
-    // if (!!username && !!password) {
-    //   adapter.auth.login({ username, password }).then(res => {
-    //     if (res.error) {
-    //       this.setState({
-    //         error: true,
-    //         error_messages: res.error
-    //       });
-    //     } else {
-    //       this.props.loginUser(username, password, this.props.history);
-    //     }
-    //   });
-    // } else {
-    //   this.setState({
-    //     error: true,
-    //     error_messages: ["Must provide Username and Password."]
-    //   });
-    // }
   };
 
   // TODO: Add Radio handle change

@@ -6,10 +6,12 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Loader } from "semantic-ui-react";
 import ClientList from "./ClientList";
+import AddClient from "./AddClient";
 
 class ClientsContainer extends Component {
   componentDidMount() {
     this.props.getClients();
+    this.props.getUsers();
   }
   renderLoading() {
     return <Loader />;
@@ -20,6 +22,7 @@ class ClientsContainer extends Component {
       <Redirect to="/" />
     ) : (
       <div>
+        <AddClient />
         <Switch>
           <Route exact path={`${match.url}`} component={ClientList} />
         </Switch>

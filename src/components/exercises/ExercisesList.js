@@ -17,8 +17,7 @@ const ExercisesList = ({ match, exercises }) => {
   );
 };
 
-const mapStateToProps = ({ auth, exercises }) => ({
-  currentUser: auth.currentUser,
+const mapStateToProps = ({ exercises }) => ({
   exercises: exercises.exercises
 });
 

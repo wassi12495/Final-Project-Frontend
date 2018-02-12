@@ -1,14 +1,35 @@
-import { GET_ROUTINES, POST_NEW_ROUTINE, LOGOUT } from "../actions/types";
+import {
+  ASYNC_START_ROUTINES,
+  ASYNC_ERROR_ROUTINES,
+  GET_ROUTINES,
+  POST_NEW_ROUTINE,
+  LOGOUT
+} from "../actions/types";
 
 // Handle Routines
-export const routinesReducer = (state = null, action) => {
+const initialState = {
+  routines: [],
+  loading: false,
+  error: false,
+  errorMessages: null
+};
+export const routinesReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ASYNC_START_ROUTINES:
+      return { ...state, loading: true };
+    case ASYNC_ERROR_ROUTINES:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessages: action.data
+      };
     case GET_ROUTINES:
-      return action.data;
+      return { ...state, routines: action.data, loading: false, error: false };
     case POST_NEW_ROUTINE:
       return action.data;
     case LOGOUT:
-      return null;
+      return initialState;
     default:
       return state;
   }

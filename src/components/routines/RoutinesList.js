@@ -21,8 +21,7 @@ const RoutinesList = ({ match, routines }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser,
-  routines: state.routines
+const mapStateToProps = ({ routines }) => ({
+  routines: routines.routines
 });
 export default connect(mapStateToProps, null)(RoutinesList);

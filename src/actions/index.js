@@ -19,7 +19,7 @@ import {
 } from "./types";
 import { adapter } from "../services";
 export { getExercises, addExercise } from "./exercisesActions";
-export { getRoutines, addRoutine } from "./exercisesActions";
+export { getRoutines, addRoutine } from "./routinesActions";
 
 export const endLoading = () => dispatch => {
   dispatch({ type: ASYNC_END });

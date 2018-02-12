@@ -10,8 +10,6 @@ class NewRoutineForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: false,
-      errorMessage: "",
       title: "",
       exercises: [],
       user_id: this.props.currentUser.id
@@ -123,9 +121,11 @@ class NewRoutineForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser,
-  currentRoutine: state.currentRoutine
+const mapStateToProps = ({ auth, routines }) => ({
+  currentUser: auth.currentUser,
+  currentRoutine: routines.currentRoutine,
+  error: routines.error,
+  errorMessages: routines.errorMessages
 });
 
 export default connect(mapStateToProps, actions)(NewRoutineForm);

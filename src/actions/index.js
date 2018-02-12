@@ -5,10 +5,6 @@ import {
   LOGOUT,
   GET_EXERCISE_CATEGORIES,
   GET_USER_WORKOUTS,
-  SET_CURRENT_NEW_ROUTINE,
-  UPDATE_CURRENT_NEW_ROUTINE,
-  UPDATE_CURRENT_ROUTINE_TITLE,
-  ADD_EXERCISE_TO_CURRENT_ROUTINE,
   SET_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
@@ -19,7 +15,14 @@ import {
 } from "./types";
 import { adapter } from "../services";
 export { getExercises, addExercise } from "./exercisesActions";
-export { getRoutines, addRoutine } from "./routinesActions";
+export {
+  getRoutines,
+  addRoutine,
+  setCurrentNewRoutine,
+  updateCurrentNewRoutine,
+  updateCurrentRoutineTitle,
+  addExerciseToCurrentNewRoutine
+} from "./routinesActions";
 
 export const endLoading = () => dispatch => {
   dispatch({ type: ASYNC_END });
@@ -60,21 +63,6 @@ export const getWorkouts = () => dispatch => {
     const workouts = data.workouts;
     dispatch({ type: GET_USER_WORKOUTS, workouts });
   });
-};
-
-export const setCurrentNewRoutine = routine => dispatch => {
-  dispatch({ type: SET_CURRENT_NEW_ROUTINE, routine });
-};
-
-export const updateCurrentNewRoutine = data => dispatch => {
-  dispatch({ type: UPDATE_CURRENT_NEW_ROUTINE, data });
-};
-export const addExerciseToCurrentNewRoutine = data => dispatch => {
-  dispatch({ type: ADD_EXERCISE_TO_CURRENT_ROUTINE, data });
-};
-
-export const updateCurrentRoutineTitle = title => dispatch => {
-  dispatch({ type: UPDATE_CURRENT_ROUTINE_TITLE, title });
 };
 
 export const setCurrentWorkout = data => dispatch => {

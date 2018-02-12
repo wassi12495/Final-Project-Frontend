@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Modal, Table, Button } from "semantic-ui-react";
+import * as actions from "../../actions";
+import { Modal, Table, Button, Loader } from "semantic-ui-react";
 
 class AddExercise extends Component {
   constructor(props) {
@@ -9,6 +10,10 @@ class AddExercise extends Component {
       modal: false
     };
   }
+  componentDidMount() {
+    this.props.getExercises();
+  }
+
   onClose = () => {
     this.setState({
       modal: false
@@ -23,7 +28,12 @@ class AddExercise extends Component {
   handleAdd = e => {
     this.props.handleSelection(e);
   };
-  render() {
+
+  renderLoading() {
+    return <Loader />;
+  }
+
+  renderPage() {
     const { exercises } = this.props;
     const exercisesToAdd = exercises.map((exercise, index) => {
       return (
@@ -71,11 +81,17 @@ class AddExercise extends Component {
       </Modal>
     );
   }
+  render() {
+    return this.props.loading ? this.renderLoading() : this.renderPage();
+  }
 }
 
-const mapStateToProps = state => ({
-  exercises: state.exercises,
-  exerciseCategories: state.exerciseCategories
+const mapStateToProps = ({ exercises, exerciseCategories }) => ({
+  exercises: exercises.exercises,
+  error: exercises.error,
+  errorMessages: exercises.errorMessages,
+  loading: exercises.loading,
+  exerciseCategories: exerciseCategories
 });
 
-export default connect(mapStateToProps)(AddExercise);
+export default connect(mapStateToProps, actions)(AddExercise);

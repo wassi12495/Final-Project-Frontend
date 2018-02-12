@@ -4,7 +4,6 @@ import { authReducer } from "./auth";
 import { exerciseCategoryReducer } from "./exerciseCategories";
 import { exercisesReducer } from "./exercises";
 import { routinesReducer } from "./routines";
-import { currentRoutineReducer } from "./currentRoutine";
 import { currentWorkoutReducer } from "./currentWorkout";
 import { workoutsReducer } from "./workouts";
 import { clientsReducer } from "./clients";
@@ -15,7 +14,6 @@ const rootReducer = combineReducers({
   exerciseCategories: exerciseCategoryReducer,
   loading: asyncReducer,
   exercises: exercisesReducer,
-  currentRoutine: currentRoutineReducer,
   routines: routinesReducer,
   currentWorkout: currentWorkoutReducer,
   workouts: workoutsReducer

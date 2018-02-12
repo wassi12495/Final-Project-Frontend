@@ -73,12 +73,13 @@ const addExercise = data => {
       Authorization: token
     },
     body: JSON.stringify(data)
-  }).then(res => res.json());
+  }).then(res => {
+    debugger;
+    res.json();
+  });
 };
 
 const initializeWorkout = data => {
-  console.log("Initialize Workout", data);
-
   const token = localStorage.getItem("token");
   return fetch(`${API_URL}/current_workouts`, {
     method: "POST",

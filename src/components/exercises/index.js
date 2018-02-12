@@ -22,6 +22,7 @@ const ExercisesContainer = ({ match, exercises, exerciseCategories }) => {
 
 const mapStateToProps = state => ({
   exercises: state.exercises,
-  exerciseCategories: state.exerciseCategories
+  exerciseCategories: state.exerciseCategories,
+  loading: state.loading
 });
 export default withAuth(connect(mapStateToProps)(ExercisesContainer));

@@ -80,7 +80,7 @@ const addExercise = data => {
   }).then(res => res.json());
 };
 
-const initializeWorkout = data => {
+const postCurrentWorkout = data => {
   const token = localStorage.getItem("token");
   return fetch(`${API_URL}/current_workouts`, {
     method: "POST",
@@ -159,11 +159,13 @@ export const adapter = {
     addExercise
   },
   workouts: {
-    initializeWorkout,
     getCurrentWorkout,
     completeCurrentWorkout,
     addExerciseToCurrentWorkout,
     deleteCurrentWorkout
+  },
+  currentWorkout: {
+    postCurrentWorkout
   },
   clients: {
     getClients

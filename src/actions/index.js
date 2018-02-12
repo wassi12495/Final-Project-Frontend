@@ -24,6 +24,7 @@ export {
   clearRoutine
 } from "./routinesActions";
 export { getWorkouts } from "./workoutsActions";
+export { postCurrentWorkout } from "./currentWorkoutActions";
 
 export const endLoading = () => dispatch => {
   dispatch({ type: ASYNC_END });
@@ -56,10 +57,6 @@ export const getExerciseCategories = () => dispatch => {
   adapter.exercises.getExCas().then(data => {
     dispatch({ type: GET_EXERCISE_CATEGORIES, data });
   });
-};
-
-export const setCurrentWorkout = data => dispatch => {
-  dispatch({ type: SET_CURRENT_WORKOUT, data });
 };
 
 export const addExerciseToCurrentWorkout = data => dispatch => {

@@ -1,4 +1,6 @@
 import {
+  ASYNC_START_CURRENT_WORKOUT,
+  ASYNC_ERROR_CURRENT_WORKOUT,
   SET_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
@@ -9,10 +11,26 @@ import {
 } from "../actions/types";
 
 // Handle Current Workout
-export const currentWorkoutReducer = (state = null, action) => {
+
+const initialState = {
+  currentWorkout: null,
+  loading: false,
+  error: false,
+  errorMessages: null
+};
+export const currentWorkoutReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ASYNC_START_CURRENT_WORKOUT:
+      return { ...state, loading: true };
+    case ASYNC_ERROR_CURRENT_WORKOUT:
+      return {
+        ...state,
+        loading: false,
+        error: true,
+        errorMessages: action.data
+      };
     case SET_CURRENT_WORKOUT:
-      return action.data;
+      return { ...state, currentWorkout: action.data };
     case GET_CURRENT_WORKOUT:
       return action.data;
     case NO_CURRENT_WORKOUT:

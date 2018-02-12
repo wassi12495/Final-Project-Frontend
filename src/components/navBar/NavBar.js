@@ -57,7 +57,7 @@ const NavBar = props => {
 const mapStateToProps = state => {
   return {
     loggedIn: !!state.auth.currentUser.id,
-    currentWorkout: !!state.currentWorkout
+    currentWorkout: !!state.currentWorkout.currentWorkout
   };
 };
 

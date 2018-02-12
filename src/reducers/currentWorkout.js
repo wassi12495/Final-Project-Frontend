@@ -32,22 +32,20 @@ export const currentWorkoutReducer = (state = initialState, action) => {
     case SET_CURRENT_WORKOUT:
       return { ...state, currentWorkout: action.data };
     case GET_CURRENT_WORKOUT:
-      return action.data;
+      return { ...state, currentWorkout: action.data, loading: false };
     case NO_CURRENT_WORKOUT:
-      return null;
+      return initialState;
     case FINISH_WORKOUT:
       return null;
     case ADD_EXERCISE_TO_CURRENT_WORKOUT:
       return {
         ...state,
-        exercises: [
-          ...state.exercises.slice(0, action.data.index),
-          action.data.update,
-          ...state.exercises.slice(action.data.index + 1)
-        ]
+        currentWorkout: {
+          exercises: [...state.currentWorkout.exercises, action.data]
+        }
       };
     case DELETE_CURRENT_WORKOUT:
-      return null;
+      return initialState;
     case LOGOUT:
       return null;
     default:

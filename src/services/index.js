@@ -159,13 +159,13 @@ export const adapter = {
     addExercise
   },
   workouts: {
-    getCurrentWorkout,
-    completeCurrentWorkout,
-    addExerciseToCurrentWorkout,
-    deleteCurrentWorkout
+    completeCurrentWorkout
   },
   currentWorkout: {
-    postCurrentWorkout
+    getCurrentWorkout,
+    postCurrentWorkout,
+    deleteCurrentWorkout,
+    addExerciseToCurrentWorkout
   },
   clients: {
     getClients

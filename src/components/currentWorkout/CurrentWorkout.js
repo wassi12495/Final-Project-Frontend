@@ -15,11 +15,12 @@ class CurrentWorkout extends Component {
   }
   componentDidMount() {
     if (!!this.props.currentWorkout) {
+      const { currentWorkout, exercises } = this.props;
       this.setState({
-        currentWorkout_id: this.props.currentWorkout.id,
-        routine_id: this.props.currentWorkout.routine.id,
-        title: this.props.currentWorkout.routine.title,
-        exercises: this.props.currentWorkout.exercises
+        currentWorkout_id: currentWorkout.id,
+        routine_id: currentWorkout.routine.id,
+        title: currentWorkout.routine.title,
+        exercises: currentWorkout.exercises
       });
     } else {
       this.props.history.goBack();
@@ -89,12 +90,13 @@ class CurrentWorkout extends Component {
     const index = this.state.exercises.length;
     const current_workout_id = this.state.currentWorkout_id;
     const params = { update, index, current_workout_id };
-    adapter.workouts.addExerciseToCurrentWorkout(params).then(res => {
-      this.props.addExerciseToCurrentWorkout(res);
-      this.setState({
-        exercises: [...this.state.exercises, res]
-      });
-    });
+    this.props.addExerciseToCurrentWorkout(params);
+    // adapter.workouts.addExerciseToCurrentWorkout(params).then(res => {
+    //   this.props.addExerciseToCurrentWorkout(res);
+    //   this.setState({
+    //     exercises: [...this.state.exercises, res]
+    //   });
+    // });
   };
 
   handleEndWorkout = () => {
@@ -107,7 +109,10 @@ class CurrentWorkout extends Component {
     this.props.deleteCurrentWorkout(id, this.props.history);
   };
   render() {
-    const exerciseCards = this.state.exercises.map((exercise, index) => {
+    console.log("currentWorkout", this.state);
+    console.log("currentWorkout props", this.props.currentWorkout);
+    const { currentWorkout } = this.props;
+    const exerciseCards = currentWorkout.exercises.map((exercise, index) => {
       return (
         <div key={index}>
           <CurrentWorkoutExercise
@@ -119,16 +124,17 @@ class CurrentWorkout extends Component {
         </div>
       );
     });
+    const { title } = this.state;
     return (
       <Container>
-        <h1>Current Workout Page</h1>
+        <h1>{title}</h1>
         <Button negative onClick={this.handleDeleteWorkout}>
           Delete Workout
         </Button>
+        <AddExercise handleSelection={this.handleSelection} />
         <Button positive onClick={this.handleEndWorkout}>
           Finish Workout
         </Button>
-        <AddExercise handleSelection={this.handleSelection} />
 
         {exerciseCards}
       </Container>
@@ -136,7 +142,10 @@ class CurrentWorkout extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  currentWorkout: state.currentWorkout
+const mapStateToProps = ({ currentWorkout }) => ({
+  currentWorkout: currentWorkout.currentWorkout,
+  error: currentWorkout.error,
+  errorMessages: currentWorkout.errorMessages,
+  loading: currentWorkout.loading
 });
 export default connect(mapStateToProps, actions)(CurrentWorkout);

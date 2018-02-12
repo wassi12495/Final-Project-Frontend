@@ -4,9 +4,6 @@ import {
   SET_CURRENT_USER,
   LOGOUT,
   GET_EXERCISE_CATEGORIES,
-  SET_CURRENT_WORKOUT,
-  GET_CURRENT_WORKOUT,
-  NO_CURRENT_WORKOUT,
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
   FINISH_WORKOUT,
   DELETE_CURRENT_WORKOUT,
@@ -24,7 +21,12 @@ export {
   clearRoutine
 } from "./routinesActions";
 export { getWorkouts } from "./workoutsActions";
-export { postCurrentWorkout } from "./currentWorkoutActions";
+export {
+  postCurrentWorkout,
+  getCurrentWorkout,
+  addExerciseToCurrentWorkout,
+  deleteCurrentWorkout
+} from "./currentWorkoutActions";
 
 export const endLoading = () => dispatch => {
   dispatch({ type: ASYNC_END });
@@ -59,32 +61,10 @@ export const getExerciseCategories = () => dispatch => {
   });
 };
 
-export const addExerciseToCurrentWorkout = data => dispatch => {
-  dispatch({ type: ADD_EXERCISE_TO_CURRENT_WORKOUT, data });
-};
-
-export const getCurrentWorkout = () => dispatch => {
-  dispatch({ type: ASYNC_START });
-  adapter.workouts.getCurrentWorkout().then(data => {
-    if (data.error) {
-      dispatch({ type: NO_CURRENT_WORKOUT });
-    } else {
-      dispatch({ type: GET_CURRENT_WORKOUT, data });
-    }
-  });
-};
-
 export const finishWorkout = data => dispatch => {
   dispatch({ type: ASYNC_START });
   adapter.workouts.completeCurrentWorkout(data).then(res => {
     dispatch({ type: FINISH_WORKOUT, data: res });
-  });
-};
-export const deleteCurrentWorkout = (id, history) => dispatch => {
-  dispatch({ type: ASYNC_START });
-  adapter.workouts.deleteCurrentWorkout(id).then(res => {
-    dispatch({ type: DELETE_CURRENT_WORKOUT });
-    history.push("/");
   });
 };
 

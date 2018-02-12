@@ -8,9 +8,7 @@ import {
   SET_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_ROUTINE_TITLE,
-  POST_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
-  GET_ROUTINES,
   SET_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   NO_CURRENT_WORKOUT,
@@ -21,6 +19,7 @@ import {
 } from "./types";
 import { adapter } from "../services";
 export { getExercises, addExercise } from "./exercisesActions";
+export { getRoutines, addRoutine } from "./exercisesActions";
 
 export const endLoading = () => dispatch => {
   dispatch({ type: ASYNC_END });
@@ -46,18 +45,6 @@ export const loginUser = (username, password, history) => dispatch => {
 export const logout = () => {
   localStorage.removeItem("token");
   return { type: LOGOUT };
-};
-
-export const addRoutine = (history, data) => dispatch => {
-  dispatch({ type: POST_NEW_ROUTINE, data });
-  history.push("/routines");
-};
-
-export const getRoutines = () => dispatch => {
-  dispatch({ type: ASYNC_START });
-  adapter.routines.getRoutines().then(data => {
-    dispatch({ type: GET_ROUTINES, data: data.routines });
-  });
 };
 
 export const getExerciseCategories = () => dispatch => {

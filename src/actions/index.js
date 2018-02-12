@@ -23,7 +23,7 @@ export {
   finishWorkout
 } from "./currentWorkoutActions";
 export { getClients } from "./clientsActions";
-export { fetchUser, loginUser, logout } from "./authActions";
+export { fetchUser, login, logout } from "./authActions";
 
 export const getExerciseCategories = () => dispatch => {
   dispatch({ type: ASYNC_START_EXERCISE_CATEGORIES });

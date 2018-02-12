@@ -1,6 +1,5 @@
 // Async types
 export const ASYNC_START = "ASYNC_START";
-export const ASYNC_END = "ASYNC_END";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const LOGOUT = "LOGOUT";

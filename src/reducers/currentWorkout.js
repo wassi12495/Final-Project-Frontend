@@ -60,7 +60,7 @@ export const currentWorkoutReducer = (state = initialState, action) => {
     case DELETE_CURRENT_WORKOUT:
       return initialState;
     case LOGOUT:
-      return null;
+      return initialState;
     default:
       return state;
   }

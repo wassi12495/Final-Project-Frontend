@@ -1,6 +1,5 @@
 import {
   ASYNC_START,
-  ASYNC_END,
   SET_CURRENT_USER,
   LOGOUT,
   GET_EXERCISE_CATEGORIES,
@@ -26,10 +25,6 @@ export {
   updateCurrentWorkoutExercise,
   finishWorkout
 } from "./currentWorkoutActions";
-
-export const endLoading = () => dispatch => {
-  dispatch({ type: ASYNC_END });
-};
 
 export const fetchUser = () => dispatch => {
   dispatch({ type: ASYNC_START });

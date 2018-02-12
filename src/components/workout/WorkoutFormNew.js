@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { adapter } from "../../services";
 import { Message } from "semantic-ui-react";
 import WorkoutRoutineCard from "./WorkoutRoutineCard";
 

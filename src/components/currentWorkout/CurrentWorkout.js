@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { adapter } from "../../services";
-import { Button, Container } from "semantic-ui-react";
+import { Button, Container, Loader } from "semantic-ui-react";
 import CurrentWorkoutExercise from "./CurrentWorkoutExercise";
 import AddExercise from "../exercises/AddExercise";
 
@@ -15,7 +14,7 @@ class CurrentWorkout extends Component {
   }
   componentDidMount() {
     if (!!this.props.currentWorkout) {
-      const { currentWorkout, exercises } = this.props;
+      const { currentWorkout } = this.props;
       this.setState({
         currentWorkout_id: currentWorkout.id,
         routine_id: currentWorkout.routine.id,
@@ -28,16 +27,17 @@ class CurrentWorkout extends Component {
   }
 
   handleAddSet = exercise => {
-    Object.assign({}, exercise, {
+    const newE = Object.assign({}, exercise, {
       sets: exercise.sets++,
-      reps: exercise.reps.push(0)
+      reps: [...exercise.reps, 0]
     });
-    console.log(exercise);
-    const i = this.state.exercises.findIndex(e => exercise.id === e.id);
+    const { currentWorkout } = this.props;
+    const i = currentWorkout.exercises.findIndex(e => exercise.id === e.id);
+    this.props.updateCurrentWorkoutExercise(exercise, i);
     this.setState({
       exercises: [
         ...this.state.exercises.slice(0, i),
-        exercise,
+        newE,
         ...this.state.exercises.slice(i + 1)
       ]
     });
@@ -53,6 +53,8 @@ class CurrentWorkout extends Component {
     });
 
     const i = this.state.exercises.findIndex(ex => exercise.id === ex.id);
+    this.props.updateCurrentWorkoutExercise(newE, i);
+
     this.setState({
       exercises: [
         ...this.state.exercises.slice(0, i),
@@ -63,8 +65,6 @@ class CurrentWorkout extends Component {
   };
 
   handleChangeReps = (e, exercise) => {
-    console.log(exercise.reps);
-
     const newE = Object.assign({}, exercise, {
       reps: [
         ...exercise.reps.slice(0, e.target.name),
@@ -74,6 +74,8 @@ class CurrentWorkout extends Component {
     });
 
     const i = this.state.exercises.findIndex(ex => exercise.id === ex.id);
+    this.props.updateCurrentWorkoutExercise(newE, i);
+
     this.setState({
       exercises: [
         ...this.state.exercises.slice(0, i),
@@ -91,12 +93,6 @@ class CurrentWorkout extends Component {
     const current_workout_id = this.state.currentWorkout_id;
     const params = { update, index, current_workout_id };
     this.props.addExerciseToCurrentWorkout(params);
-    // adapter.workouts.addExerciseToCurrentWorkout(params).then(res => {
-    //   this.props.addExerciseToCurrentWorkout(res);
-    //   this.setState({
-    //     exercises: [...this.state.exercises, res]
-    //   });
-    // });
   };
 
   handleEndWorkout = () => {
@@ -108,8 +104,11 @@ class CurrentWorkout extends Component {
     const id = this.props.currentWorkout.id;
     this.props.deleteCurrentWorkout(id, this.props.history);
   };
-  render() {
-    console.log("currentWorkout", this.state);
+
+  renderLoading() {
+    return <Loader />;
+  }
+  renderPage() {
     console.log("currentWorkout props", this.props.currentWorkout);
     const { currentWorkout } = this.props;
     const exerciseCards = currentWorkout.exercises.map((exercise, index) => {
@@ -139,6 +138,9 @@ class CurrentWorkout extends Component {
         {exerciseCards}
       </Container>
     );
+  }
+  render() {
+    return this.props.loading ? this.renderLoading() : this.renderPage();
   }
 }
 

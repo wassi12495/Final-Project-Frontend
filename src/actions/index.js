@@ -4,9 +4,7 @@ import {
   SET_CURRENT_USER,
   LOGOUT,
   GET_EXERCISE_CATEGORIES,
-  ADD_EXERCISE_TO_CURRENT_WORKOUT,
   FINISH_WORKOUT,
-  DELETE_CURRENT_WORKOUT,
   GET_CLIENTS
 } from "./types";
 import { adapter } from "../services";
@@ -25,7 +23,8 @@ export {
   postCurrentWorkout,
   getCurrentWorkout,
   addExerciseToCurrentWorkout,
-  deleteCurrentWorkout
+  deleteCurrentWorkout,
+  updateCurrentWorkoutExercise
 } from "./currentWorkoutActions";
 
 export const endLoading = () => dispatch => {

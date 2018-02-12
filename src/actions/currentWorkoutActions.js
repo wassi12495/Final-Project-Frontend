@@ -6,7 +6,8 @@ import {
   NO_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
-  DELETE_CURRENT_WORKOUT
+  DELETE_CURRENT_WORKOUT,
+  UPDATE_CURRENT_WORKOUT_EXERCISE
 } from "./types";
 
 export const postCurrentWorkout = (data, history) => dispatch => {
@@ -46,4 +47,8 @@ export const deleteCurrentWorkout = (id, history) => dispatch => {
     history.push("/");
     dispatch({ type: DELETE_CURRENT_WORKOUT });
   });
+};
+
+export const updateCurrentWorkoutExercise = (exercise, index) => dispatch => {
+  dispatch({ type: UPDATE_CURRENT_WORKOUT_EXERCISE, data: exercise, index });
 };

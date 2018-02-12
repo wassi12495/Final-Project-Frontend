@@ -7,6 +7,7 @@ import {
   UPDATE_CURRENT_ROUTINE_TITLE,
   UPDATE_CURRENT_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
+  CLEAR_ROUTINE,
   LOGOUT
 } from "../actions/types";
 
@@ -78,6 +79,9 @@ export const routinesReducer = (state = initialState, action) => {
         currentRoutine: null,
         loading: false
       };
+
+    case CLEAR_ROUTINE:
+      return { ...state, currentRoutine: null };
     case LOGOUT:
       return initialState;
     default:

@@ -25,6 +25,7 @@ export const POST_NEW_ROUTINE = "POST_NEW_ROUTINE";
 export const ADD_EXERCISE_TO_CURRENT_ROUTINE =
   "ADD_EXERCISE_TO_CURRENT_ROUTINE";
 export const GET_ROUTINES = "GET_ROUTINES";
+export const CLEAR_ROUTINE = "CLEAR_ROUTINE";
 
 // Current Workout / Workout types
 export const GET_USER_WORKOUTS = "GET_USER_WORKOUTS";

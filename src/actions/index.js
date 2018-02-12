@@ -21,7 +21,8 @@ export {
   setCurrentNewRoutine,
   updateCurrentNewRoutine,
   updateCurrentRoutineTitle,
-  addExerciseToCurrentNewRoutine
+  addExerciseToCurrentNewRoutine,
+  clearRoutine
 } from "./routinesActions";
 
 export const endLoading = () => dispatch => {

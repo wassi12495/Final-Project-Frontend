@@ -6,7 +6,8 @@ import {
   SET_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
-  UPDATE_CURRENT_ROUTINE_TITLE
+  UPDATE_CURRENT_ROUTINE_TITLE,
+  CLEAR_ROUTINE
 } from "./types";
 import { adapter } from "../services";
 
@@ -20,8 +21,12 @@ export const getRoutines = () => dispatch => {
 export const addRoutine = (history, data) => dispatch => {
   dispatch({ type: ASYNC_START_ROUTINES });
   adapter.routines.addRoutine(data).then(data => {
-    dispatch({ type: POST_NEW_ROUTINE, data });
-    history.push("/routines");
+    if (data.errors) {
+      dispatch({ type: ASYNC_ERROR_ROUTINES, data: data.errors });
+    } else {
+      dispatch({ type: POST_NEW_ROUTINE, data });
+      history.push("/routines");
+    }
   });
 };
 
@@ -38,4 +43,9 @@ export const addExerciseToCurrentNewRoutine = data => dispatch => {
 
 export const updateCurrentRoutineTitle = data => dispatch => {
   dispatch({ type: UPDATE_CURRENT_ROUTINE_TITLE, data });
+};
+
+export const clearRoutine = history => dispatch => {
+  dispatch({ type: CLEAR_ROUTINE });
+  history.goBack();
 };

@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { adapter } from "../../services";
 import AddExercise from "../exercises/AddExercise";
 import NewRoutineExercise from "./NewRoutineExercise";
-import { Container, Button, Header, Input } from "semantic-ui-react";
+import { Container, Button, Header, Input, Message } from "semantic-ui-react";
 
 class NewRoutineForm extends Component {
   constructor(props) {
@@ -17,7 +16,15 @@ class NewRoutineForm extends Component {
   }
 
   componentDidMount() {
-    this.props.setCurrentNewRoutine(this.state);
+    const { error, currentRoutine } = this.props;
+    if (error) {
+      this.setState({
+        title: currentRoutine.title,
+        exercises: currentRoutine.exercises
+      });
+    } else {
+      this.props.setCurrentNewRoutine(this.state);
+    }
   }
 
   handleSubmit = () => {
@@ -25,19 +32,11 @@ class NewRoutineForm extends Component {
       routine: this.props.currentRoutine
     };
     this.props.addRoutine(this.props.history, data);
+  };
 
-    // adapter.routines.createRoutine(data).then(res => {
-    //   if (res.error) {
-    //     this.setState({
-    //       error: true,
-    //       errorMessage: `Routine title ${res.error.title[0]}`
-    //     });
-    //   } else {
-    //     adapter.routines.getRoutines().then(data => {
-    //       this.props.addRoutine(this.props.history, data.routines);
-    //     });
-    //   }
-    // });
+  handleClearRoutine = () => {
+    console.log(this.props);
+    this.props.clearRoutine(this.props.history);
   };
 
   handleChange = e => {
@@ -74,7 +73,8 @@ class NewRoutineForm extends Component {
   };
 
   render() {
-    const { title, error, errorMessage } = this.state;
+    const { title } = this.state;
+    const { error, errorMessages } = this.props;
     const exercises = this.state.exercises.map((exercise, index) => {
       return (
         <NewRoutineExercise
@@ -96,15 +96,20 @@ class NewRoutineForm extends Component {
               Save Routine
             </Button>
             <AddExercise handleSelection={this.handleSelection} />
-            <Button negative onClick={this.props.history.goBack}>
-              {" "}
-              Go Back
+            <Button negative onClick={this.handleClearRoutine}>
+              Delete Routine
             </Button>
           </Header.Content>
         </Header>
         <div>
           <div>
-            {error ? <h4>{errorMessage}</h4> : null}
+            {error ? (
+              <Message
+                error
+                header="Failed To Create Exercise!"
+                list={errorMessages}
+              />
+            ) : null}
             <h3>Routine Title:</h3>
             <Input
               type="text"

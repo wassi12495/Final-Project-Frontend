@@ -20,10 +20,9 @@ export const getRoutines = () => dispatch => {
 export const addRoutine = (history, data) => dispatch => {
   dispatch({ type: ASYNC_START_ROUTINES });
   adapter.routines.addRoutine(data).then(data => {
-    debugger;
+    dispatch({ type: POST_NEW_ROUTINE, data });
+    history.push("/routines");
   });
-  dispatch({ type: POST_NEW_ROUTINE, data });
-  history.push("/routines");
 };
 
 export const setCurrentNewRoutine = data => dispatch => {

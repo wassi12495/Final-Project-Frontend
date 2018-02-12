@@ -72,7 +72,12 @@ export const routinesReducer = (state = initialState, action) => {
         }
       };
     case POST_NEW_ROUTINE:
-      return action.data;
+      return {
+        ...state,
+        routines: [...state.routines, action.data],
+        currentRoutine: null,
+        loading: false
+      };
     case LOGOUT:
       return initialState;
     default:

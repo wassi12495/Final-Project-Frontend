@@ -8,8 +8,9 @@ class NotificationsContainer extends Component {
     this.props.getNotifications();
   }
 
-  handleAcceptRequest = () => {
-    debugger;
+  handleAcceptRequest = request => {
+    const data = request;
+    this.props.acceptRequest(data);
   };
   renderLoading() {
     return <Loader />;
@@ -19,7 +20,7 @@ class NotificationsContainer extends Component {
     const reqs = requests.map((r, i) => {
       return (
         <div key={i}>
-          <button onClick={this.handleAcceptRequest}>Accept</button>
+          <button onClick={() => this.handleAcceptRequest(r)}>Accept</button>
         </div>
       );
     });

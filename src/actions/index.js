@@ -25,7 +25,7 @@ export {
 export { getClients, getUsers } from "./clientsActions";
 export { fetchUser, login, logout } from "./authActions";
 export { signup } from "./userActions";
-export { sendClientRequest } from "./requestActions";
+export { sendClientRequest, acceptRequest } from "./requestActions";
 export { getNotifications } from "./notificationsActions";
 
 export const getExerciseCategories = () => dispatch => {

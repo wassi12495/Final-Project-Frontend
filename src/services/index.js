@@ -187,6 +187,14 @@ const sendClientRequest = data => {
   }).then(res => res.json());
 };
 
+// NOTICIATIONS SERVICES
+const getNotifications = () => {
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/current_user/get_notifications`, {
+    headers: { Authorization: token }
+  }).then(res => res.json());
+};
+
 export const adapter = {
   auth: {
     login,
@@ -221,5 +229,8 @@ export const adapter = {
   },
   requests: {
     sendClientRequest
+  },
+  notifications: {
+    getNotifications
   }
 };

@@ -26,7 +26,7 @@ export { getClients, getUsers } from "./clientsActions";
 export { fetchUser, login, logout } from "./authActions";
 export { signup } from "./userActions";
 export { sendClientRequest } from "./requestActions";
-export {} from "./notificationsActions";
+export { getNotifications } from "./notificationsActions";
 
 export const getExerciseCategories = () => dispatch => {
   dispatch({ type: ASYNC_START_EXERCISE_CATEGORIES });

@@ -3,6 +3,7 @@ import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import { Link } from "react-router-dom";
+import NotificationsContainer from "../notifications";
 
 const Dashboard = props => {
   const { firstName, lastName } = props.currentUser;
@@ -45,6 +46,7 @@ const Dashboard = props => {
           </div>
         </div>
       ) : null}
+      <NotificationsContainer />
     </div>
   );
 };

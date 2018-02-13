@@ -144,6 +144,20 @@ const getClients = () => {
 const getUsers = () => {
   return fetch(`${API_URL}/users`).then(res => res.json());
 };
+
+const addClientRequest = data => {
+  const token = localStorage.getItem("token");
+
+  return fetch(`${API_URL}/current_user/add_client`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accepts: "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+};
 export const adapter = {
   auth: {
     login,
@@ -173,6 +187,7 @@ export const adapter = {
   },
   clients: {
     getClients,
-    getUsers
+    getUsers,
+    addClientRequest
   }
 };

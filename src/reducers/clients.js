@@ -1,5 +1,6 @@
 import {
   ASYNC_START_CLIENTS,
+  SEND_REQUEST,
   GET_USERS,
   GET_CLIENTS,
   LOGOUT
@@ -29,6 +30,8 @@ export const clientsReducer = (state = initialState, action) => {
         users: action.data,
         modal: true
       };
+    case SEND_REQUEST:
+      return { ...state, loading: false };
     case LOGOUT:
       return initialState;
     default:

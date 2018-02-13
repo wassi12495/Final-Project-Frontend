@@ -6,7 +6,7 @@ import {
   Form,
   Button,
   TextArea,
-  Input,
+  Label,
   Loader
 } from "semantic-ui-react";
 import SearchUsers from "./SearchUsers";
@@ -16,11 +16,15 @@ class AddClient extends Component {
     super(props);
     this.state = {
       modal: false,
+      user: null,
       message: ""
     };
   }
 
   onClose = () => {
+    const { user, message } = this.state;
+    const data = { client: user, message };
+    this.props.addClientRequest(data);
     this.setState({
       modal: false
     });
@@ -37,14 +41,16 @@ class AddClient extends Component {
     });
   };
 
-  handleSelectUser = e => {
-    e.preventDefault();
+  handleSelectUser = user => {
+    this.setState({
+      user: user
+    });
   };
   renderLoading() {
     return <Loader />;
   }
   renderPage() {
-    const { message } = this.state;
+    const { message, user } = this.state;
 
     return (
       <Modal
@@ -56,11 +62,12 @@ class AddClient extends Component {
         onClose={this.onClose}
         open={this.state.modal}
       >
-        <Modal.Header>Add New Client</Modal.Header>
+        <Modal.Header>Request A New Client</Modal.Header>
         <Modal.Content>
-          <SearchUsers />
+          <SearchUsers handleSelect={this.handleSelectUser} />
 
           <Form>
+            {user ? <Label>{user.username}</Label> : null}
             <Form.Field
               label="Message"
               name="message"
@@ -71,6 +78,11 @@ class AddClient extends Component {
             />
           </Form>
         </Modal.Content>
+        <Modal.Actions>
+          <Button positive onClick={this.onClose}>
+            Send Request
+          </Button>
+        </Modal.Actions>
       </Modal>
     );
   }

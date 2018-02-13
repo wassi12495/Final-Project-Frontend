@@ -22,7 +22,7 @@ export {
   updateCurrentWorkoutExercise,
   finishWorkout
 } from "./currentWorkoutActions";
-export { getClients, getUsers } from "./clientsActions";
+export { getClients, getUsers, addClientRequest } from "./clientsActions";
 export { fetchUser, login, logout } from "./authActions";
 export { signup } from "./userActions";
 

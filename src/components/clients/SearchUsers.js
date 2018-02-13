@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { Modal, Button, Input, Loader } from "semantic-ui-react";
+import { Modal, Button, Loader, Search, Label } from "semantic-ui-react";
 
 class SearchUsers extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: false,
-      search: ""
+      selection: ""
     };
   }
 
@@ -23,17 +23,38 @@ class SearchUsers extends Component {
     });
   };
 
-  handleSearchInput = e => {
+  handleResultSelect = (e, { result }) => {
+    const user = this.props.users.find(u => u.username === result.title);
+    this.props.handleSelect(user);
     this.setState({
-      [e.target.name]: e.target.value
+      search: result.title,
+      selection: result.title
     });
   };
+
+  handleSearchInput = e => {
+    const { users } = this.props;
+    const search = e.target.value;
+
+    const results = users
+      .filter(u => u.username.toLowerCase().includes(search))
+      .map((user, i) => {
+        return { title: user.username, description: user.first_name };
+      });
+
+    this.setState({
+      search,
+      results: results
+    });
+  };
+
   renderLoading() {
     return <Loader />;
   }
 
   renderPage() {
-    const { search } = this.state;
+    const { search, results } = this.state;
+    console.log(this.state);
     return (
       <Modal
         trigger={
@@ -46,14 +67,19 @@ class SearchUsers extends Component {
       >
         <Modal.Header>Add New Client</Modal.Header>
         <Modal.Content>
-          <Input
-            fluid
-            name="search"
+          <Search
+            onSearchChange={this.handleSearchInput}
+            results={results}
+            onResultSelect={this.handleResultSelect}
             value={search}
-            onChange={this.handleSearchInput}
-            placeholder="Search Users..."
           />
+          {this.state.selection ? <Label>{this.state.selection}</Label> : null}
         </Modal.Content>
+        <Modal.Actions>
+          <Button positive onClick={this.onClose}>
+            Okay
+          </Button>
+        </Modal.Actions>
       </Modal>
     );
   }
@@ -67,4 +93,4 @@ const mapStateToProps = ({ clients }) => ({
   loading: clients.loading
 });
 
-export default connect(null, actions)(SearchUsers);
+export default connect(mapStateToProps, actions)(SearchUsers);

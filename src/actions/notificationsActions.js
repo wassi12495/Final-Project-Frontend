@@ -8,6 +8,6 @@ import { adapter } from "../services";
 export const getNotifications = () => dispatch => {
   dispatch({ type: ASYNC_START_NOTIFICATIONS });
   adapter.notifications.getNotifications().then(res => {
-    debugger;
+    dispatch({ type: GET_NOTIFICATIONS, data: res });
   });
 };

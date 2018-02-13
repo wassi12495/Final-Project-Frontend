@@ -22,10 +22,10 @@ export {
   updateCurrentWorkoutExercise,
   finishWorkout
 } from "./currentWorkoutActions";
-export { getClients, getUsers, addClientRequest } from "./clientsActions";
+export { getClients, getUsers } from "./clientsActions";
 export { fetchUser, login, logout } from "./authActions";
 export { signup } from "./userActions";
-export {} from "./requestActions";
+export { requestClient } from "./requestActions";
 export {} from "./notificationsActions";
 
 export const getExerciseCategories = () => dispatch => {

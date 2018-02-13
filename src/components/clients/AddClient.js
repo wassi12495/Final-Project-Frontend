@@ -22,13 +22,26 @@ class AddClient extends Component {
   }
 
   onClose = () => {
-    const { user, message } = this.state;
-    const data = { client: user, message };
-    this.props.addClientRequest(data);
     this.setState({
       modal: false
     });
   };
+
+  handleCancelRequest = () => {
+    this.setState({
+      message: "",
+      user: null,
+      modal: false
+    });
+  };
+
+  handleSubmitRequest = () => {
+    const { user, message } = this.state;
+    const data = { client: user, message };
+    this.props.requestClient(data);
+    this.onClose();
+  };
+
   onOpen = () => {
     this.setState({
       modal: true
@@ -79,7 +92,10 @@ class AddClient extends Component {
           </Form>
         </Modal.Content>
         <Modal.Actions>
-          <Button positive onClick={this.onClose}>
+          <Button negative onClick={this.onClose}>
+            Cancel
+          </Button>
+          <Button positive onClick={this.handleSubmitRequest}>
             Send Request
           </Button>
         </Modal.Actions>

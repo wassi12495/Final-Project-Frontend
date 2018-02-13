@@ -4,6 +4,9 @@ const headers = {
   "Content-Type": "application/json",
   Accepts: "application/json"
 };
+
+//  AUTH SERVICES
+
 const signup = user => {
   return fetch(`${API_URL}/users`, {
     method: "POST",
@@ -27,6 +30,8 @@ const getCurrentUser = () => {
   }).then(res => res.json());
 };
 
+//  ROUTINES SERVICES
+
 const addRoutine = data => {
   const token = localStorage.getItem("token");
   return fetch(`${API_URL}/routines`, {
@@ -47,11 +52,14 @@ const getRoutines = () => {
   }).then(res => res.json());
 };
 
+//  EXERCISE CATEGORIES SERVICES
 const getExCas = () => {
   return fetch(`${API_URL}/exercise_categories`, {
     method: "GET"
   }).then(res => res.json());
 };
+
+//  WORKOUTS SERVICES
 
 const getWorkouts = () => {
   const token = localStorage.getItem("token");
@@ -59,6 +67,8 @@ const getWorkouts = () => {
     headers: { Authorization: token }
   }).then(res => res.json());
 };
+
+//  EXERCISES SERVICES
 
 const getExercises = () => {
   const token = localStorage.getItem("token");
@@ -79,6 +89,8 @@ const addExercise = data => {
     body: JSON.stringify(data)
   }).then(res => res.json());
 };
+
+// CURRENT WORKOUT SERVICES
 
 const postCurrentWorkout = data => {
   const token = localStorage.getItem("token");
@@ -134,6 +146,8 @@ const deleteCurrentWorkout = id => {
   }).then(res => res.json());
 };
 
+//  CLIENTS SERVICES
+
 const getClients = () => {
   const token = localStorage.getItem("token");
   return fetch(`${API_URL}/current_user/clients`, {
@@ -158,6 +172,21 @@ const addClientRequest = data => {
     body: JSON.stringify(data)
   }).then(res => res.json());
 };
+
+// REQUEST SERVICES
+const requestClient = data => {
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/current_user/request_client`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accepts: "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+};
+
 export const adapter = {
   auth: {
     login,
@@ -189,5 +218,8 @@ export const adapter = {
     getClients,
     getUsers,
     addClientRequest
+  },
+  requests: {
+    requestClient
   }
 };

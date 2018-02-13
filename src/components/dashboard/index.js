@@ -3,13 +3,17 @@ import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import { Link } from "react-router-dom";
+import { Message } from "semantic-ui-react";
 import NotificationsContainer from "../notifications";
 
 const Dashboard = props => {
   const { firstName, lastName } = props.currentUser;
   const fullName = `${firstName} ${lastName}`;
+  const { requestMessage } = props;
+
   return (
     <div>
+      {!!requestMessage ? <Message header={requestMessage} /> : null}
       <h1>Dashboard page</h1>
       <h2>{fullName}</h2>
       <div>
@@ -51,9 +55,11 @@ const Dashboard = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  currentUser: state.auth.currentUser,
-  isTrainer: state.auth.currentUser.is_trainer
+const mapStateToProps = ({ auth, requests }) => ({
+  currentUser: auth.currentUser,
+  isTrainer: auth.currentUser.is_trainer,
+  requestLoading: requests.loading,
+  requestMessage: requests.message
 });
 
 export default withAuth(connect(mapStateToProps, actions)(Dashboard));

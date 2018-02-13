@@ -2,28 +2,24 @@ import React, { Component } from "react";
 import { Loader } from "semantic-ui-react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import ConfirmPassword from "./ConfirmPassword";
 
 class NotificationsContainer extends Component {
   componentDidMount() {
     this.props.getNotifications();
   }
 
-  handleAcceptRequest = request => {
-    const data = request;
-    this.props.acceptRequest(data);
-  };
   renderLoading() {
     return <Loader />;
   }
   renderNotifications() {
     const { requests } = this.props;
-    const reqs = requests.map((r, i) => {
-      return (
-        <div key={i}>
-          <button onClick={() => this.handleAcceptRequest(r)}>Accept</button>
-        </div>
-      );
-    });
+    const reqs =
+      requests.length > 0
+        ? requests.map((r, i) => {
+            return <ConfirmPassword key={i} request={r} />;
+          })
+        : null;
     return (
       <div>
         <p>Notifications Rendered</p>

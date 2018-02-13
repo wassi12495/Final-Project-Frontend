@@ -11,6 +11,6 @@ export const sendClientRequest = data => dispatch => {
 export const acceptRequest = data => dispatch => {
   dispatch({ type: ASYNC_START_REQUEST });
   adapter.requests.acceptRequest(data).then(res => {
-    debugger;
+    dispatch({ type: ACCEPT_REQUEST, data: res });
   });
 };

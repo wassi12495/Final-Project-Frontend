@@ -187,10 +187,16 @@ const sendClientRequest = data => {
   }).then(res => res.json());
 };
 
-const acceptRequest = () => {
+const acceptRequest = data => {
   const token = localStorage.getItem("token");
   return fetch(`${API_URL}/current_user/accept_request`, {
-    headers: { Authorization: token }
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accepts: "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(data)
   }).then(res => res.json());
 };
 // NOTICIATIONS SERVICES

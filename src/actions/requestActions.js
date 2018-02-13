@@ -1,14 +1,14 @@
 import {
   ASYNC_START_REQUEST,
   ASYNC_ERROR_REQUEST,
-  GET_REQUESTS
+  GET_REQUESTS,
+  REQUEST_SENT
 } from "./types";
 import { adapter } from "../services";
 
-export const requestClient = data => dispatch => {
-  debugger;
+export const sendClientRequest = data => dispatch => {
   dispatch({ type: ASYNC_START_REQUEST });
-  adapter.requests.requestClient(data).then(res => {
-    debugger;
+  adapter.requests.sendClientRequest(data).then(res => {
+    dispatch({ type: REQUEST_SENT, data: res.message });
   });
 };

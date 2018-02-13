@@ -174,9 +174,9 @@ const addClientRequest = data => {
 };
 
 // REQUEST SERVICES
-const requestClient = data => {
+const sendClientRequest = data => {
   const token = localStorage.getItem("token");
-  return fetch(`${API_URL}/current_user/request_client`, {
+  return fetch(`${API_URL}/current_user/send_client_request`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -220,6 +220,6 @@ export const adapter = {
     addClientRequest
   },
   requests: {
-    requestClient
+    sendClientRequest
   }
 };

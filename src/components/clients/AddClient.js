@@ -38,8 +38,8 @@ class AddClient extends Component {
   handleSubmitRequest = () => {
     const { user, message } = this.state;
     const data = { client: user, message };
-    this.props.requestClient(data);
-    this.onClose();
+    this.props.sendClientRequest(data);
+    // this.onClose();
   };
 
   onOpen = () => {

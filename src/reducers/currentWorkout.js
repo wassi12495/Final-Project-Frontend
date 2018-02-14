@@ -6,6 +6,7 @@ import {
   NO_CURRENT_WORKOUT,
   FINISH_WORKOUT,
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
+  REMOVE_EXERCISE_FROM_CURRENT_WORKOUT,
   DELETE_CURRENT_WORKOUT,
   UPDATE_CURRENT_WORKOUT_EXERCISE,
   LOGOUT
@@ -43,6 +44,17 @@ export const currentWorkoutReducer = (state = initialState, action) => {
         ...state,
         currentWorkout: {
           exercises: [...state.currentWorkout.exercises, action.data]
+        },
+        loading: false
+      };
+    case REMOVE_EXERCISE_FROM_CURRENT_WORKOUT:
+      return {
+        ...state,
+        currentWorkout: {
+          exercises: [
+            ...state.currentWorkout.exercises.slice(0, action.index),
+            ...state.currentWorkout.exercises.slice(action.index + 1)
+          ]
         },
         loading: false
       };

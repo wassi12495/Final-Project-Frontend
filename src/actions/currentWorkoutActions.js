@@ -7,6 +7,7 @@ import {
   NO_CURRENT_WORKOUT,
   GET_CURRENT_WORKOUT,
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
+  REMOVE_EXERCISE_FROM_CURRENT_WORKOUT,
   DELETE_CURRENT_WORKOUT,
   UPDATE_CURRENT_WORKOUT_EXERCISE,
   FINISH_WORKOUT,
@@ -38,9 +39,15 @@ export const getCurrentWorkout = () => dispatch => {
 
 export const addExerciseToCurrentWorkout = data => dispatch => {
   dispatch({ type: ASYNC_START_CURRENT_WORKOUT });
-
   adapter.currentWorkout.addExerciseToCurrentWorkout(data).then(res => {
     dispatch({ type: ADD_EXERCISE_TO_CURRENT_WORKOUT, data: res });
+  });
+};
+
+export const removeExerciseFromCurrentWorkout = (data, index) => dispatch => {
+  dispatch({ type: ASYNC_START_CURRENT_WORKOUT });
+  adapter.currentWorkout.removeExerciseFromCurrentWorkout(data).then(res => {
+    dispatch({ type: REMOVE_EXERCISE_FROM_CURRENT_WORKOUT, index });
   });
 };
 

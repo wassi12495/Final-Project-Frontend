@@ -125,6 +125,19 @@ const addExerciseToCurrentWorkout = data => {
   }).then(res => res.json());
 };
 
+const removeExerciseFromCurrentWorkout = data => {
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/current_workouts/remove_exercise`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accepts: "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+};
+
 const completeCurrentWorkout = data => {
   const token = localStorage.getItem("token");
   return fetch(`${API_URL}/workouts`, {
@@ -232,7 +245,8 @@ export const adapter = {
     getCurrentWorkout,
     postCurrentWorkout,
     deleteCurrentWorkout,
-    addExerciseToCurrentWorkout
+    addExerciseToCurrentWorkout,
+    removeExerciseFromCurrentWorkout
   },
   clients: {
     getClients,

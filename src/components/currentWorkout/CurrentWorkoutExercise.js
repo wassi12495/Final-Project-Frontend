@@ -6,7 +6,8 @@ const CurrentWorkoutExercise = ({
   handleClick,
   handleChangeMeasure,
   handleChangeReps,
-  handleDeleteSet
+  handleDeleteSet,
+  handleRemoveExercise
 }) => {
   const handleMeasureInput = e => {
     handleChangeMeasure(e, exercise);
@@ -61,6 +62,9 @@ const CurrentWorkoutExercise = ({
           <Table.HeaderCell colSpan="2">{exercise.name}</Table.HeaderCell>
           <Table.HeaderCell>
             <Button onClick={() => handleClick(exercise)}>Add Set</Button>
+            <Button negative onClick={() => handleRemoveExercise(exercise)}>
+              Remove Exercise
+            </Button>
           </Table.HeaderCell>
         </Table.Row>
         <Table.Row>

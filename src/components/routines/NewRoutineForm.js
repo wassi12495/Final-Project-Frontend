@@ -35,7 +35,6 @@ class NewRoutineForm extends Component {
   };
 
   handleClearRoutine = () => {
-    console.log(this.props);
     this.props.clearRoutine(this.props.history);
   };
 

@@ -125,6 +125,16 @@ class CurrentWorkout extends Component {
     const params = { update, index, current_workout_id };
     this.props.addExerciseToCurrentWorkout(params);
   };
+  handleRemoveExercise = exercise => {
+    const index = this.state.exercises.findIndex(e => e.id === exercise.id);
+    this.props.removeExerciseFromCurrentWorkout(exercise, index);
+    this.setState({
+      exercises: [
+        ...this.state.exercises.slice(0, index),
+        ...this.state.exercises.slice(index + 1)
+      ]
+    });
+  };
 
   handleEndWorkout = () => {
     this.props.finishWorkout(this.state, this.props.history);
@@ -150,6 +160,7 @@ class CurrentWorkout extends Component {
             handleChangeMeasure={this.handleChangeMeasure}
             handleChangeReps={this.handleChangeReps}
             handleDeleteSet={this.handleDeleteSet}
+            handleRemoveExercise={this.handleRemoveExercise}
           />
         </div>
       );

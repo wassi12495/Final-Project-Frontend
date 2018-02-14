@@ -21,7 +21,8 @@ export {
   addExerciseToCurrentWorkout,
   deleteCurrentWorkout,
   updateCurrentWorkoutExercise,
-  finishWorkout
+  finishWorkout,
+  removeExerciseFromCurrentWorkout
 } from "./currentWorkoutActions";
 export { getClients, getUsers } from "./clientsActions";
 export { fetchUser, login, logout } from "./authActions";

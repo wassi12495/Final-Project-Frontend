@@ -19,10 +19,11 @@ class ConfirmPassword extends Component {
   };
 
   handleAcceptRequest = () => {
-    const { request } = this.props;
+    const { request, index } = this.props;
     const { password } = this.state;
     const data = { request, password };
     this.props.acceptRequest(data);
+    this.props.updateNotificationsRequests(index);
     this.onClose();
   };
 

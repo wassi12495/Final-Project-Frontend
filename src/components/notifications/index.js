@@ -17,7 +17,7 @@ class NotificationsContainer extends Component {
     const reqs =
       requests.length > 0
         ? requests.map((r, i) => {
-            return <ConfirmPassword key={i} request={r} />;
+            return <ConfirmPassword key={i} index={i} request={r} />;
           })
         : null;
     return (

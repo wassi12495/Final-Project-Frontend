@@ -10,11 +10,10 @@ const Dashboard = props => {
   const { firstName, lastName } = props.currentUser;
   const fullName = `${firstName} ${lastName}`;
   const { requestMessage } = props;
-
   return (
     <div>
-      {!!requestMessage ? <Message header={requestMessage} /> : null}
       <h1>Dashboard page</h1>
+      {!!requestMessage ? <Message header={requestMessage} /> : null}
       <h2>{fullName}</h2>
       <div>
         <h3>Previous Workouts</h3>

@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { Form, Message, Container, Segment, Header } from "semantic-ui-react";
+import {
+  Grid,
+  Form,
+  Message,
+  Container,
+  Segment,
+  Header,
+  Button
+} from "semantic-ui-react";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -32,42 +40,56 @@ class LoginForm extends Component {
     const { error, errorMessages } = this.props;
     console.log("Login", this.props);
     return (
-      <Container text>
-        {error ? (
-          <Message error header="Login Failed!" list={errorMessages} />
-        ) : null}
-        <Segment inverted>
-          <Header as="h1" textAlign="center">
-            Login
-          </Header>
-          <Form size="large" inverted onSubmit={this.handleSubmit}>
-            <Form.Field>
-              <label>Username</label>
-              <input
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={username}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label>Password</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-            <Form.Button type="submit">Submit</Form.Button>
-          </Form>
+      <Grid
+        textAlign="center"
+        style={{ height: "100%" }}
+        verticalAlign="middle"
+      >
+        <Grid.Column style={{ maxWidth: 600 }}>
+          {error ? (
+            <Message error header="Login Failed!" list={errorMessages} />
+          ) : null}
+          <Segment stacked inverted>
+            <Header as="h1" textAlign="center">
+              Login
+            </Header>
+            <Form size="large" inverted onSubmit={this.handleSubmit}>
+              <Form.Field>
+                <div className="ui left icon input">
+                  <input
+                    className="ui input fluid"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    value={username}
+                    onChange={this.handleChange}
+                  />
+                  <i className="user icon" />
+                </div>
+              </Form.Field>
+              <Form.Field>
+                <div className="ui left icon input">
+                  <input
+                    className="ui input fluid"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={this.handleChange}
+                  />
+                  <i className="lock icon" />
+                </div>
+              </Form.Field>
+              <Form.Button fluid size="large" type="submit">
+                Submit
+              </Form.Button>
+            </Form>
+          </Segment>
           <Message>
             Not a user? <Link to="/signup"> Sign up here!</Link>
           </Message>
-        </Segment>
-      </Container>
+        </Grid.Column>
+      </Grid>
     );
   }
 }

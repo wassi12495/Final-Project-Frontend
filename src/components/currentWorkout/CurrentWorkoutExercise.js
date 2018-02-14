@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Button, Input } from "semantic-ui-react";
+import { Table, Button } from "semantic-ui-react";
 
 const CurrentWorkoutExercise = ({
   exercise,

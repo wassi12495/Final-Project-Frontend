@@ -14,6 +14,12 @@ class NewRoutineExercise extends Component {
     };
   }
 
+  componentDidUpdate() {
+    const { sets, amt, index } = this.state;
+    const update = { sets, amt };
+    const params = { update, index };
+    this.props.updateCurrentNewRoutine(params);
+  }
   addSet = () => {
     this.setState({
       sets: [
@@ -43,6 +49,20 @@ class NewRoutineExercise extends Component {
       sets
     });
   };
+
+  handleDeleteRow = index => {
+    console.log(this.state.sets.slice(index + 1));
+    const sets = [...this.state.sets.slice(0, index)];
+    this.state.sets.slice(index + 1).forEach(s => {
+      console.log(s);
+      sets.push({ set: s.set - 1, reps: s.reps });
+    });
+    console.log(sets);
+    this.setState({
+      sets,
+      amt: this.state.amt - 1
+    });
+  };
   renderSetRows() {
     let setRows = this.state.sets.map((s, index) => {
       return (
@@ -52,6 +72,7 @@ class NewRoutineExercise extends Component {
           set={s.set}
           reps={s.reps}
           handleReps={this.handleReps}
+          handleDelete={this.handleDeleteRow}
         />
       );
     });
@@ -59,10 +80,8 @@ class NewRoutineExercise extends Component {
   }
   render() {
     const { exercise } = this.props;
-    const { sets, amt, index } = this.state;
-    const update = { sets, amt };
-    const params = { update, index };
-    this.props.updateCurrentNewRoutine(params);
+    const { index } = this.state;
+
     return (
       <Table collapsing celled key={index}>
         <Table.Header>

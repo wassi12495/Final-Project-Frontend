@@ -11,33 +11,43 @@ const Dashboard = props => {
   const fullName = `${firstName} ${lastName}`;
   const { requestMessage } = props;
   return (
-    <div>
+    <div className="ui segment">
       <h1>Dashboard page</h1>
       {!!requestMessage ? <Message header={requestMessage} /> : null}
       <h2>{fullName}</h2>
-      <div>
-        <h3>Previous Workouts</h3>
-      </div>
-      <div>
-        <Link to={`/workouts`}>Go To Workouts</Link>
-      </div>
-      <div>
-        <h3>Your Top Routines</h3>
-      </div>
-      <div>
-        <Link to={`/routines`}>Go To Routines</Link>
-      </div>
-      <div>
-        <h3>Exercises</h3>
-      </div>
-      <div>
-        <Link to={`/exercises`}>Go To Exercises</Link>
-      </div>
-      <div>
-        <h3>Profile</h3>
-      </div>
-      <div>
-        <Link to={`/profile`}>Go To Your Profile</Link>
+      <div className="ui two cards">
+        <div className=" ui card">
+          <div>
+            <h3>Previous Workouts</h3>
+          </div>
+          <div>
+            <Link to={`/workouts`}>Go To Workouts</Link>
+          </div>
+        </div>
+        <div className="ui card">
+          <div>
+            <h3>Your Top Routines</h3>
+          </div>
+          <div>
+            <Link to={`/routines`}>Go To Routines</Link>
+          </div>
+        </div>
+        <div className="ui card">
+          <div>
+            <h3>Exercises</h3>
+          </div>
+          <div>
+            <Link to={`/exercises`}>Go To Exercises</Link>
+          </div>
+        </div>
+        <div className="ui card">
+          <div>
+            <h3>Profile</h3>
+          </div>
+          <div>
+            <Link to={`/profile`}>Go To Your Profile</Link>
+          </div>
+        </div>
       </div>
       {props.isTrainer ? (
         <div>

@@ -9,8 +9,8 @@ class NavBar extends Component {
     const { location } = this.props;
     return location.pathname === "/login" ||
       location.pathname === "/signup" ? null : (
-      <Menu fluid vertical>
-        <Menu.Item position="right">
+      <Menu inverted position="left">
+        <Menu.Item>
           <NavLink exact to="/">
             Dashboard
           </NavLink>

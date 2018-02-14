@@ -3,7 +3,7 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "./actions";
-import NavBarContainer from "./components/navBar";
+import NavBar from "./components/navBar/NavBar";
 import LoginContainer from "./components/login";
 import SignupContainer from "./components/signup/";
 import About from "./components/about/About";
@@ -22,28 +22,24 @@ class App extends Component {
 
   render() {
     return (
-      <div className="ui container">
-        <div className="ui grid">
-          <div className="four wide column">
-            <NavBarContainer />
-          </div>
-          <div className="twelve wide column">
-            <Switch>
-              <Route exact path="/" component={Dashboard} />
-              <Route path="/about" component={About} />
-              <Route path="/login" component={LoginContainer} />
-              <Route path="/signup" component={SignupContainer} />
-              <Route path="/profile" component={ProfileContainer} />
-              <Route path="/workouts" component={WorkoutContainer} />
-              <Route path="/routines" component={RoutinesContainer} />
-              <Route path="/exercises" component={ExerciseContainer} />
-              <Route
-                path="/current_workout"
-                component={CurrentWorkoutContainer}
-              />
-              <Route path="/clients" component={ClientsContainer} />
-            </Switch>
-          </div>
+      <div className="App">
+        <NavBar />
+        <div className="ui container">
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/about" component={About} />
+            <Route path="/login" component={LoginContainer} />
+            <Route path="/signup" component={SignupContainer} />
+            <Route path="/profile" component={ProfileContainer} />
+            <Route path="/workouts" component={WorkoutContainer} />
+            <Route path="/routines" component={RoutinesContainer} />
+            <Route path="/exercises" component={ExerciseContainer} />
+            <Route
+              path="/current_workout"
+              component={CurrentWorkoutContainer}
+            />
+            <Route path="/clients" component={ClientsContainer} />
+          </Switch>
         </div>
       </div>
     );

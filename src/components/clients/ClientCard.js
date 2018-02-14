@@ -1,4 +1,5 @@
 import React from "react";
+import ShareRoutineModal from "./ShareRoutineModal";
 
 const ClientCard = ({ client }) => {
   const name = `${client.first_name} ${client.last_name}`;
@@ -19,6 +20,7 @@ const ClientCard = ({ client }) => {
   return (
     <div>
       <h2> {name}</h2>
+      <ShareRoutineModal client={client} />
       <h4>Recent Workouts</h4>
       {workouts}
     </div>

@@ -14,3 +14,10 @@ export const acceptRequest = data => dispatch => {
     dispatch({ type: ACCEPT_REQUEST, data: res.message });
   });
 };
+
+export const shareRoutine = data => dispatch => {
+  dispatch({ type: ASYNC_START_REQUEST });
+  adapter.requests.shareRoutine(data).then(res => {
+    dispatch({ type: REQUEST_SENT, data: res.message });
+  });
+};

@@ -212,6 +212,20 @@ const acceptRequest = data => {
     body: JSON.stringify(data)
   }).then(res => res.json());
 };
+
+const shareRoutine = data => {
+  const token = localStorage.getItem("token");
+  return fetch(`${API_URL}/trainer/share_routine`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accepts: "application/json",
+      Authorization: token
+    },
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+};
+
 // NOTICIATIONS SERVICES
 const getNotifications = () => {
   const token = localStorage.getItem("token");
@@ -255,7 +269,8 @@ export const adapter = {
   },
   requests: {
     sendClientRequest,
-    acceptRequest
+    acceptRequest,
+    shareRoutine
   },
   notifications: {
     getNotifications

@@ -169,7 +169,7 @@ const getClients = () => {
 };
 
 const getUsers = () => {
-  return fetch(`${API_URL}/users`).then(res => res.json());
+  return fetch(`${API_URL}/users_without_trainers`).then(res => res.json());
 };
 
 const addClientRequest = data => {

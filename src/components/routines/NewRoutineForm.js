@@ -59,6 +59,16 @@ class NewRoutineForm extends Component {
     });
   };
 
+  handleRemoveExercise = (exercise, index) => {
+    this.props.removeExerciseFromCurrentRoutine(index);
+    this.setState({
+      exercises: [
+        ...this.state.exercises.slice(0, index),
+        ...this.state.exercises.slice(index + 1)
+      ]
+    });
+  };
+
   updateState = state => {
     const exercise = this.state.exercises[state.index];
     exercise.sets = state.sets;
@@ -82,6 +92,7 @@ class NewRoutineForm extends Component {
           index={index}
           key={index}
           updateState={this.updateState}
+          handleRemove={this.handleRemoveExercise}
         />
       );
     });

@@ -11,7 +11,8 @@ export {
   updateCurrentNewRoutine,
   updateCurrentRoutineTitle,
   addExerciseToCurrentNewRoutine,
-  clearRoutine
+  clearRoutine,
+  removeExerciseFromCurrentRoutine
 } from "./routinesActions";
 export { getWorkouts } from "./workoutsActions";
 export {

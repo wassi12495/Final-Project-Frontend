@@ -7,6 +7,7 @@ import {
   UPDATE_CURRENT_ROUTINE_TITLE,
   UPDATE_CURRENT_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
+  REMOVE_EXERCISE_FROM_CURRENT_ROUTINE,
   CLEAR_ROUTINE,
   LOGOUT
 } from "../actions/types";
@@ -43,7 +44,7 @@ export const routinesReducer = (state = initialState, action) => {
         }
       };
     case ADD_EXERCISE_TO_CURRENT_ROUTINE:
-      const exercises = state.currentRoutine.exercises;
+      let exercises = state.currentRoutine.exercises;
       return {
         ...state,
         currentRoutine: {
@@ -52,6 +53,18 @@ export const routinesReducer = (state = initialState, action) => {
             ...exercises.slice(0, action.data.index),
             action.data.update,
             ...exercises.slice(action.data.index + 1)
+          ]
+        }
+      };
+    case REMOVE_EXERCISE_FROM_CURRENT_ROUTINE:
+      exercises = state.currentRoutine.exercises;
+      return {
+        ...state,
+        currentRoutine: {
+          ...state.currentRoutine,
+          exercises: [
+            ...exercises.slice(0, action.index),
+            ...exercises.slice(action.index + 1)
           ]
         }
       };

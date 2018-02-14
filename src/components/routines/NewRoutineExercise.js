@@ -76,7 +76,7 @@ class NewRoutineExercise extends Component {
     return setRows;
   }
   render() {
-    const { exercise } = this.props;
+    const { exercise, handleRemove } = this.props;
     const { index } = this.state;
 
     return (
@@ -85,7 +85,20 @@ class NewRoutineExercise extends Component {
           <Table.Row>
             <Table.HeaderCell>{exercise.name}</Table.HeaderCell>
             <Table.HeaderCell colSpan="2">
-              <p>{exercise.description}</p>
+              <div>
+                {exercise.description}
+                {"       "}
+                <button className="ui button positive" onClick={this.addSet}>
+                  Add set
+                </button>
+                {"       "}
+                <button
+                  className="ui button negative"
+                  onClick={() => handleRemove(exercise, this.props.index)}
+                >
+                  <i className="remove circle icon" />
+                </button>
+              </div>
             </Table.HeaderCell>
           </Table.Row>
           <Table.Row>

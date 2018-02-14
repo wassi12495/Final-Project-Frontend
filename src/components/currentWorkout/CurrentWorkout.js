@@ -27,14 +27,44 @@ class CurrentWorkout extends Component {
   }
 
   handleAddSet = exercise => {
+    const reps = [...exercise.reps];
+    const measure_input = [...exercise.measure_input];
+    reps.push("0");
+    measure_input.push("0");
+
     const newE = Object.assign({}, exercise, {
-      sets: exercise.sets++,
-      reps: [...exercise.reps, ""],
-      measure_input: [...exercise.measure_input, 0]
+      sets: exercise.sets + 1,
+      reps,
+      measure_input
     });
     const { currentWorkout } = this.props;
     const i = currentWorkout.exercises.findIndex(e => exercise.id === e.id);
-    this.props.updateCurrentWorkoutExercise(exercise, i);
+    this.props.updateCurrentWorkoutExercise(newE, i);
+    this.setState({
+      exercises: [
+        ...this.state.exercises.slice(0, i),
+        newE,
+        ...this.state.exercises.slice(i + 1)
+      ]
+    });
+  };
+
+  handleDeleteSet = (e, exercise) => {
+    const reps = [...exercise.reps.slice(0, e), ...exercise.reps.slice(e + 1)];
+    const measure_input = [
+      ...exercise.measure_input.slice(0, e),
+      ...exercise.measure_input.slice(e + 1)
+    ];
+    const sets = exercise.sets - 1;
+    const newE = Object.assign({}, exercise, {
+      sets,
+      reps,
+      measure_input
+    });
+    const { currentWorkout } = this.props;
+    const i = currentWorkout.exercises.findIndex(e => exercise.id === e.id);
+    this.props.updateCurrentWorkoutExercise(newE, i);
+
     this.setState({
       exercises: [
         ...this.state.exercises.slice(0, i),
@@ -119,6 +149,7 @@ class CurrentWorkout extends Component {
             handleClick={this.handleAddSet}
             handleChangeMeasure={this.handleChangeMeasure}
             handleChangeReps={this.handleChangeReps}
+            handleDeleteSet={this.handleDeleteSet}
           />
         </div>
       );

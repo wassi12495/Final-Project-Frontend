@@ -51,13 +51,10 @@ class NewRoutineExercise extends Component {
   };
 
   handleDeleteRow = index => {
-    console.log(this.state.sets.slice(index + 1));
     const sets = [...this.state.sets.slice(0, index)];
     this.state.sets.slice(index + 1).forEach(s => {
-      console.log(s);
       sets.push({ set: s.set - 1, reps: s.reps });
     });
-    console.log(sets);
     this.setState({
       sets,
       amt: this.state.amt - 1

@@ -43,7 +43,8 @@ export const currentWorkoutReducer = (state = initialState, action) => {
         ...state,
         currentWorkout: {
           exercises: [...state.currentWorkout.exercises, action.data]
-        }
+        },
+        loading: false
       };
 
     case UPDATE_CURRENT_WORKOUT_EXERCISE:

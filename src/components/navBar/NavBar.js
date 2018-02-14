@@ -1,45 +1,39 @@
-import React from "react";
+import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { Menu, Container } from "semantic-ui-react";
+import { Sidebar, Menu, Container, Segment } from "semantic-ui-react";
 
-const NavBar = props => {
-  return (
-    <Container>
-      <Menu>
-        <Menu.Item>
-          <NavLink exact to="/about">
-            About
+class NavBar extends Component {
+  render() {
+    const { location } = this.props;
+    return location.pathname === "/login" ||
+      location.pathname === "/signup" ? null : (
+      <Menu fluid vertical>
+        <Menu.Item position="right">
+          <NavLink exact to="/">
+            Dashboard
           </NavLink>
         </Menu.Item>
-        {props.currentWorkout ? (
+        {this.props.currentWorkout ? (
           <Menu.Item>
             <NavLink exact to="/current_workout">
               Current Workout
             </NavLink>
           </Menu.Item>
         ) : null}
-
-        {props.loggedIn ? (
-          <div className="right menu">
-            <Menu.Item position="right">
-              <NavLink exact to="/">
-                Dashboard
-              </NavLink>
-            </Menu.Item>
-            <Menu.Item position="right">
-              <NavLink
-                exact
-                to="/"
-                onClick={() => {
-                  props.logout();
-                }}
-              >
-                Logout
-              </NavLink>
-            </Menu.Item>
-          </div>
+        {this.props.loggedIn ? (
+          <Menu.Item position="right">
+            <NavLink
+              exact
+              to="/"
+              onClick={() => {
+                this.props.logout();
+              }}
+            >
+              Logout
+            </NavLink>
+          </Menu.Item>
         ) : (
           <div className="right menu">
             <Menu.Item>
@@ -50,9 +44,9 @@ const NavBar = props => {
           </div>
         )}
       </Menu>
-    </Container>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {

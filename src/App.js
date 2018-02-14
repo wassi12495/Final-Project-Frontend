@@ -23,18 +23,28 @@ class App extends Component {
   render() {
     return (
       <div className="ui container">
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route path="/about" component={About} />
-          <Route path="/login" component={LoginContainer} />
-          <Route path="/signup" component={SignupContainer} />
-          <Route path="/profile" component={ProfileContainer} />
-          <Route path="/workouts" component={WorkoutContainer} />
-          <Route path="/routines" component={RoutinesContainer} />
-          <Route path="/exercises" component={ExerciseContainer} />
-          <Route path="/current_workout" component={CurrentWorkoutContainer} />
-          <Route path="/clients" component={ClientsContainer} />
-        </Switch>
+        <div className="ui grid">
+          <div className="four wide column">
+            <NavBarContainer />
+          </div>
+          <div className="twelve wide column">
+            <Switch>
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/about" component={About} />
+              <Route path="/login" component={LoginContainer} />
+              <Route path="/signup" component={SignupContainer} />
+              <Route path="/profile" component={ProfileContainer} />
+              <Route path="/workouts" component={WorkoutContainer} />
+              <Route path="/routines" component={RoutinesContainer} />
+              <Route path="/exercises" component={ExerciseContainer} />
+              <Route
+                path="/current_workout"
+                component={CurrentWorkoutContainer}
+              />
+              <Route path="/clients" component={ClientsContainer} />
+            </Switch>
+          </div>
+        </div>
       </div>
     );
   }

@@ -3,8 +3,9 @@ import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import { Link } from "react-router-dom";
-import { Message } from "semantic-ui-react";
+import { Message, Card } from "semantic-ui-react";
 import NotificationsContainer from "../notifications";
+import WorkoutCard from "../workout/WorkoutCard";
 
 const Dashboard = props => {
   const { firstName, lastName, routines, workouts } = props.currentUser;
@@ -14,20 +15,28 @@ const Dashboard = props => {
   const prevWorkout = workouts[workouts.length - 1];
   console.log(prevWorkout);
   const { requestMessage } = props;
+  const handleClickPrevWorkout = workout => {
+    props.history.push("/workouts");
+  };
   return (
     <div className="ui segment">
-      <h1>Dashboard page</h1>
+      <h1>Welcome!</h1>
       {!!requestMessage ? <Message header={requestMessage} /> : null}
       <h2>{fullName}</h2>
       <div className="ui two cards">
-        <div className=" ui card">
-          <div>
-            <h3>Previous Workouts</h3>
-          </div>
-          <div>
-            <Link to={`/workouts`}>Go To Workouts</Link>
-          </div>
-        </div>
+        <Card>
+          <Card.Content>
+            <Card.Header>
+              <h3>Previous Workouts</h3>
+            </Card.Header>
+            <Card centered>
+              <WorkoutCard
+                workout={prevWorkout}
+                handleClick={() => handleClickPrevWorkout()}
+              />
+            </Card>
+          </Card.Content>
+        </Card>
         <div className="ui card">
           <div>
             <h3>Your Top Routines</h3>

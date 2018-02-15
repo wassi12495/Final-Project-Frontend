@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Button } from "semantic-ui-react";
+import { Table, Button, Card } from "semantic-ui-react";
 
 const CurrentWorkoutExercise = ({
   exercise,
@@ -56,25 +56,35 @@ const CurrentWorkoutExercise = ({
   }
 
   return (
-    <Table collapsing>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell colSpan="2">{exercise.name}</Table.HeaderCell>
-          <Table.HeaderCell>
-            <Button onClick={() => handleClick(exercise)}>Add Set</Button>
-            <Button negative onClick={() => handleRemoveExercise(exercise)}>
-              Remove Exercise
-            </Button>
-          </Table.HeaderCell>
-        </Table.Row>
-        <Table.Row>
-          <Table.HeaderCell>Sets</Table.HeaderCell>
-          <Table.HeaderCell>Reps</Table.HeaderCell>
-          <Table.HeaderCell>{exercise.measure}</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>{rows}</Table.Body>
-    </Table>
+    <Card fluid>
+      <Card.Content>
+        <Card.Header>{exercise.name}</Card.Header>
+        <Card.Description>
+          <Table collapsing>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell colSpan="2">{exercise.name}</Table.HeaderCell>
+                <Table.HeaderCell>
+                  <Button onClick={() => handleClick(exercise)}>Add Set</Button>
+                  <Button
+                    negative
+                    onClick={() => handleRemoveExercise(exercise)}
+                  >
+                    Remove Exercise
+                  </Button>
+                </Table.HeaderCell>
+              </Table.Row>
+              <Table.Row>
+                <Table.HeaderCell>Sets</Table.HeaderCell>
+                <Table.HeaderCell>Reps</Table.HeaderCell>
+                <Table.HeaderCell>{exercise.measure}</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>{rows}</Table.Body>
+          </Table>
+        </Card.Description>
+      </Card.Content>
+    </Card>
   );
 };
 

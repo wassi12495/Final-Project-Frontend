@@ -50,7 +50,11 @@ class AddExercise extends Component {
 
     return (
       <Modal
-        trigger={<Button onClick={this.onOpen}>Add Exercises</Button>}
+        trigger={
+          <Button secondary onClick={this.onOpen}>
+            Add Exercises
+          </Button>
+        }
         onClose={this.onClose}
         open={this.state.modal}
       >

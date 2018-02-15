@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { Button, Container, Loader } from "semantic-ui-react";
+import {
+  Button,
+  Container,
+  Loader,
+  Segment,
+  Header,
+  Input
+} from "semantic-ui-react";
 import CurrentWorkoutExercise from "./CurrentWorkoutExercise";
 import AddExercise from "../exercises/AddExercise";
 
@@ -26,6 +33,11 @@ class CurrentWorkout extends Component {
     }
   }
 
+  handleChangeTitle = e => {
+    this.setState({
+      title: e.target.value
+    });
+  };
   handleAddSet = exercise => {
     const reps = [...exercise.reps];
     const measure_input = [...exercise.measure_input];
@@ -168,16 +180,20 @@ class CurrentWorkout extends Component {
     const { title } = this.state;
     return (
       <Container>
-        <h1>{title}</h1>
-        <Button negative onClick={this.handleDeleteWorkout}>
-          Delete Workout
-        </Button>
-        <AddExercise handleSelection={this.handleSelection} />
-        <Button positive onClick={this.handleEndWorkout}>
-          Finish Workout
-        </Button>
-
-        {exerciseCards}
+        <Segment textAlign="center">
+          <Header>
+            <Button floated="left" negative onClick={this.handleDeleteWorkout}>
+              Delete Workout
+            </Button>
+            <Button floated="right" primary onClick={this.handleEndWorkout}>
+              Finish Workout
+            </Button>
+            <Input value={title} onChange={this.handleChangeTitle} />
+            <h1>{title}</h1>
+            <AddExercise handleSelection={this.handleSelection} />
+          </Header>
+          <div className="ui  cards">{exerciseCards}</div>
+        </Segment>
       </Container>
     );
   }

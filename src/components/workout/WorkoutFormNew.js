@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { Message, Loader, Modal, Button, Card } from "semantic-ui-react";
+import {
+  Message,
+  Loader,
+  Modal,
+  Dropdown,
+  Item,
+  Button,
+  Card
+} from "semantic-ui-react";
 import WorkoutRoutineCard from "./WorkoutRoutineCard";
 
 class WorkoutFormNew extends Component {
@@ -15,6 +23,11 @@ class WorkoutFormNew extends Component {
 
   componentDidMount() {
     this.props.getRoutines();
+    if (this.props.open) {
+      this.setState({
+        modal: true
+      });
+    }
   }
 
   onClose = () => {
@@ -56,7 +69,9 @@ class WorkoutFormNew extends Component {
     const { error, errorMessages } = this.props;
     return (
       <Modal
-        trigger={<Button onClick={this.onOpen}>New Workout</Button>}
+        trigger={
+          <Dropdown.Item onClick={this.onOpen}>New Workout</Dropdown.Item>
+        }
         onClose={this.onClose}
         open={this.state.modal}
       >

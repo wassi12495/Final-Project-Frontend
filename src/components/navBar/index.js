@@ -3,10 +3,12 @@ import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import { Menu, Icon, Dropdown } from "semantic-ui-react";
+import WorkoutFormNew from "../workout/WorkoutFormNew";
 
 class NavBar extends Component {
   render() {
-    const { location, history, isTrainer } = this.props;
+    const { location, history, isTrainer, currentWorkout } = this.props;
+
     return location.pathname === "/login" ||
       location.pathname === "/signup" ? null : (
       <Menu inverted position="left">
@@ -31,10 +33,14 @@ class NavBar extends Component {
               onClick={() => history.push("/workouts")}
               text="Your Workouts"
             />
-            <Dropdown.Item
-              onClick={() => history.push("/workouts/new")}
-              text="Start a Workout"
-            />
+            {currentWorkout ? (
+              <Dropdown.Item
+                onClick={() => history.push("/current_workout")}
+                text="Continue Workout"
+              />
+            ) : (
+              <WorkoutFormNew history={history} />
+            )}
           </Dropdown.Menu>
         </Dropdown>
         <Dropdown item text="Exercises">
@@ -57,7 +63,7 @@ class NavBar extends Component {
           </Menu.Item>
         ) : null}
 
-        {this.props.currentWorkout ? (
+        {currentWorkout ? (
           <Menu.Item
             color="red"
             active={true}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { Grid, Form, Message, Segment, Header } from "semantic-ui-react";
 
 class Signup extends Component {
@@ -139,9 +139,14 @@ class Signup extends Component {
                 label="Are you a trainer/coach?"
               />
 
-              <Form.Button type="submit">Create Account</Form.Button>
+              <Form.Button positive type="submit">
+                Create Account
+              </Form.Button>
             </Form>
           </Segment>
+          <Message>
+            Already a user? <Link to="/login"> Log in here!</Link>
+          </Message>
         </Grid.Column>
       </Grid>
     );

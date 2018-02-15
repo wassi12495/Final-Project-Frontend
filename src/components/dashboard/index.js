@@ -7,8 +7,12 @@ import { Message } from "semantic-ui-react";
 import NotificationsContainer from "../notifications";
 
 const Dashboard = props => {
-  const { firstName, lastName } = props.currentUser;
+  const { firstName, lastName, routines, workouts } = props.currentUser;
   const fullName = `${firstName} ${lastName}`;
+
+  console.log("Dash", routines, workouts);
+  const prevWorkout = workouts[workouts.length - 1];
+  console.log(prevWorkout);
   const { requestMessage } = props;
   return (
     <div className="ui segment">
@@ -66,6 +70,8 @@ const Dashboard = props => {
 
 const mapStateToProps = ({ auth, requests }) => ({
   currentUser: auth.currentUser,
+  routines: auth.currentUser.routines,
+  workouts: auth.currentUser.workouts,
   isTrainer: auth.currentUser.is_trainer,
   requestLoading: requests.loading,
   requestMessage: requests.message

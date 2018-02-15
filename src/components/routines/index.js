@@ -17,19 +17,7 @@ class RoutinesContainer extends Component {
   renderLoading() {
     return <Loader />;
   }
-  renderMenu() {
-    const { match } = this.props;
-    return (
-      <Menu inverted position="center">
-        <Menu.Item>
-          <Link to={`${match.url}`}>Your Routines</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link to={`${match.url}/new`}>New Routine</Link>
-        </Menu.Item>
-      </Menu>
-    );
-  }
+
   renderPage() {
     const { match, routines } = this.props;
     return (
@@ -60,7 +48,6 @@ class RoutinesContainer extends Component {
   render() {
     return (
       <div className="ui container">
-        {this.renderMenu()}
         {this.props.loading ? this.renderLoading() : this.renderPage()}
       </div>
     );

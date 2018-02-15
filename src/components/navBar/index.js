@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { Sidebar, Menu, Container, Segment } from "semantic-ui-react";
+import { Sidebar, Menu, Container, Segment, Dropdown } from "semantic-ui-react";
 
 class NavBar extends Component {
   render() {
-    const { location } = this.props;
+    const { location, history } = this.props;
     return location.pathname === "/login" ||
       location.pathname === "/signup" ? null : (
       <Menu inverted position="left">
@@ -15,11 +15,18 @@ class NavBar extends Component {
             Dashboard
           </NavLink>
         </Menu.Item>
-        <Menu.Item>
-          <NavLink exact to="/routines">
-            Routines
-          </NavLink>
-        </Menu.Item>
+        <Dropdown item text="Routines">
+          <Dropdown.Menu>
+            <Dropdown.Item
+              onClick={() => history.push("/routines")}
+              text="Your Routines"
+            />
+            <Dropdown.Item
+              onClick={() => history.push("/routines/new")}
+              text="Create a Routine"
+            />
+          </Dropdown.Menu>
+        </Dropdown>
         <Menu.Item>
           <NavLink exact to="/workouts">
             Workouts

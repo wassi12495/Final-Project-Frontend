@@ -39,6 +39,18 @@ class NavBar extends Component {
             />
           </Dropdown.Menu>
         </Dropdown>
+        <Dropdown item text="Exercises">
+          <Dropdown.Menu>
+            <Dropdown.Item
+              onClick={() => history.push("/exercises")}
+              text="Your Exercises"
+            />
+            <Dropdown.Item
+              onClick={() => history.push("/exercises/new")}
+              text="Create an Exercise"
+            />
+          </Dropdown.Menu>
+        </Dropdown>
 
         {this.props.currentWorkout ? (
           <Menu.Item>

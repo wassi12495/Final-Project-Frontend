@@ -3,7 +3,7 @@ import { Switch, Route, Link } from "react-router-dom";
 import * as actions from "../../actions";
 import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
-import { Loader, Container } from "semantic-ui-react";
+import { Loader, Menu } from "semantic-ui-react";
 import NewRoutineForm from "./NewRoutineForm";
 import RoutinesList from "./RoutinesList";
 import RoutineShow from "./RoutineShow";
@@ -17,20 +17,24 @@ class RoutinesContainer extends Component {
   renderLoading() {
     return <Loader />;
   }
-
+  renderMenu() {
+    const { match } = this.props;
+    return (
+      <Menu inverted position="center">
+        <Menu.Item>
+          <Link to={`${match.url}`}>Your Routines</Link>
+        </Menu.Item>
+        <Menu.Item>
+          <Link to={`${match.url}/new`}>New Routine</Link>
+        </Menu.Item>
+      </Menu>
+    );
+  }
   renderPage() {
     const { match, routines } = this.props;
     return (
-      <div className="ui grid">
-        <div className="ui four wide column segment">
-          <div>
-            <Link to={`${match.url}`}>Your Routines</Link>
-          </div>
-          <div>
-            <Link to={`${match.url}/new`}>New Routine</Link>
-          </div>
-        </div>
-        <div className="ui twelve wide column">
+      <div className="ui container">
+        <div className="ui grid">
           <Switch>
             <Route exact path={`${match.url}`} component={RoutinesList} />
             <Route path={`${match.url}/new`} component={NewRoutineForm} />
@@ -55,9 +59,10 @@ class RoutinesContainer extends Component {
 
   render() {
     return (
-      <Container text>
+      <div className="ui container">
+        {this.renderMenu()}
         {this.props.loading ? this.renderLoading() : this.renderPage()}
-      </Container>
+      </div>
     );
   }
 }

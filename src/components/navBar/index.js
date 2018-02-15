@@ -15,6 +15,16 @@ class NavBar extends Component {
             Dashboard
           </NavLink>
         </Menu.Item>
+        <Menu.Item>
+          <NavLink exact to="/routines">
+            Routines
+          </NavLink>
+        </Menu.Item>
+        <Menu.Item>
+          <NavLink exact to="/workouts">
+            Workouts
+          </NavLink>
+        </Menu.Item>
         {this.props.currentWorkout ? (
           <Menu.Item>
             <NavLink exact to="/current_workout">

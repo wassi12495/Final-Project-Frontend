@@ -65,7 +65,6 @@ class ShareRoutineModal extends Component {
     return <Loader />;
   }
   renderPage() {
-    const { message, routine } = this.state;
     const { routines } = this.props;
 
     const routineList = routines.map((r, i) => {

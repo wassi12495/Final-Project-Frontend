@@ -2,14 +2,7 @@ import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import {
-  Grid,
-  Form,
-  Message,
-  Container,
-  Segment,
-  Header
-} from "semantic-ui-react";
+import { Grid, Form, Message, Segment, Header } from "semantic-ui-react";
 
 class Signup extends Component {
   constructor(props) {

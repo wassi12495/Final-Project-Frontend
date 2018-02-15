@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import * as actions from "../../actions";
 import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
-import { Loader, Menu } from "semantic-ui-react";
+import { Loader } from "semantic-ui-react";
 import NewRoutineForm from "./NewRoutineForm";
 import RoutinesList from "./RoutinesList";
 import RoutineShow from "./RoutineShow";

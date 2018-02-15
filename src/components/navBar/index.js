@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { Sidebar, Menu, Container, Segment, Dropdown } from "semantic-ui-react";
+import { Menu, Icon, Dropdown } from "semantic-ui-react";
 
 class NavBar extends Component {
   render() {
@@ -12,7 +12,7 @@ class NavBar extends Component {
       <Menu inverted position="left">
         <Menu.Item>
           <NavLink exact to="/">
-            Dashboard
+            <Icon name="home" />
           </NavLink>
         </Menu.Item>
         <Dropdown item text="Routines">
@@ -51,27 +51,29 @@ class NavBar extends Component {
             />
           </Dropdown.Menu>
         </Dropdown>
+        <Menu.Item>
+          <NavLink exact to="/clients">
+            Clients
+          </NavLink>
+        </Menu.Item>
 
         {this.props.currentWorkout ? (
-          <Menu.Item>
-            <NavLink exact to="/current_workout">
-              Current Workout
-            </NavLink>
+          <Menu.Item
+            color="red"
+            active={true}
+            onClick={() => history.push("/current_workout")}
+          >
+            Workout In Progress
           </Menu.Item>
         ) : null}
-        {this.props.loggedIn ? (
-          <Menu.Item position="right">
-            <NavLink
-              exact
-              to="/"
-              onClick={() => {
-                this.props.logout();
-              }}
-            >
-              Logout
-            </NavLink>
-          </Menu.Item>
-        ) : null}
+        <Menu.Item
+          position="right"
+          onClick={() => {
+            this.props.logout();
+          }}
+        >
+          Logout
+        </Menu.Item>
       </Menu>
     );
   }

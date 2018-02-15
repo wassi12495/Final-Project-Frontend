@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import * as actions from "../../actions";
 import { Loader } from "semantic-ui-react";
 import withAuth from "../../hocs/withAuth";
@@ -17,17 +17,10 @@ class WorkoutContainer extends Component {
     return <Loader />;
   }
   renderPage() {
-    const { match } = this.props;
+    const { match, workouts } = this.props;
+    console.log(workouts);
     return (
       <div>
-        <div>
-          <div>
-            <Link to={`${match.url}/new`}>New Workout</Link>
-          </div>
-          <div>
-            <Link to={`${match.url}`}>See Previous Workouts</Link>
-          </div>
-        </div>
         <Switch>
           <Route exact path={`${match.url}`} component={WorkoutList} />
           <Route exact path={`${match.url}/new`} component={WorkoutFormNew} />

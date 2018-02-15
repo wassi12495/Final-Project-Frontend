@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Segment, Grid, Header } from "semantic-ui-react";
 import WorkoutCard from "./WorkoutCard";
 
 const WorkoutList = props => {
@@ -7,9 +8,15 @@ const WorkoutList = props => {
     return <WorkoutCard workout={workout} key={index} />;
   });
   return (
-    <div>
-      <h1>Previous Workouts</h1>
-      <div>{workouts}</div>
+    <div className="ui container">
+      <Grid>
+        <Grid.Column width={4}>
+          <Segment vertical>
+            <Header as="h1">Your Workouts</Header>
+            <div className="ui cards">{workouts}</div>
+          </Segment>
+        </Grid.Column>
+      </Grid>
     </div>
   );
 };

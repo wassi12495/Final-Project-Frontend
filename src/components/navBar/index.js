@@ -6,14 +6,12 @@ import { Menu, Icon, Dropdown } from "semantic-ui-react";
 
 class NavBar extends Component {
   render() {
-    const { location, history } = this.props;
+    const { location, history, isTrainer } = this.props;
     return location.pathname === "/login" ||
       location.pathname === "/signup" ? null : (
       <Menu inverted position="left">
-        <Menu.Item>
-          <NavLink exact to="/">
-            <Icon name="home" />
-          </NavLink>
+        <Menu.Item onClick={() => history.push("/")}>
+          <Icon name="home" />
         </Menu.Item>
         <Dropdown item text="Routines">
           <Dropdown.Menu>
@@ -51,7 +49,7 @@ class NavBar extends Component {
             />
           </Dropdown.Menu>
         </Dropdown>
-        {this.props.is_trainer ? (
+        {isTrainer ? (
           <Menu.Item>
             <NavLink exact to="/clients">
               Clients

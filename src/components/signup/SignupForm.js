@@ -2,7 +2,14 @@ import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Form, Message, Container, Segment, Header } from "semantic-ui-react";
+import {
+  Grid,
+  Form,
+  Message,
+  Container,
+  Segment,
+  Header
+} from "semantic-ui-react";
 
 class Signup extends Component {
   constructor(props) {
@@ -60,48 +67,16 @@ class Signup extends Component {
     } = this.state;
     const { error, errorMessages } = this.props;
     return (
-      <Container text>
+      <Grid.Column textAlign="left" style={{ maxWidth: 700 }}>
         {error ? (
           <Message error header="Signup Failed!" list={errorMessages} />
         ) : null}
 
-        <Segment inverted>
+        <Segment stacked inverted>
           <Header as="h1" textAlign="center">
-            Signup
+            Create An Account
           </Header>
           <Form inverted size="large" onSubmit={this.handleSubmit}>
-            <Form.Field>
-              <label>Username</label>
-              <input
-                type="text"
-                name="username"
-                placeholder="username"
-                value={username}
-                onChange={this.handleChange}
-              />
-            </Form.Field>
-            <Form.Group widths="equal">
-              <Form.Field>
-                <label>Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-              <Form.Field>
-                <label>Confirm Password</label>
-                <input
-                  type="password"
-                  name="password_confirmation"
-                  placeholder="Password Confirmation"
-                  value={password_confirmation}
-                  onChange={this.handleChange}
-                />
-              </Form.Field>
-            </Form.Group>
             <Form.Group widths="equal">
               <Form.Field>
                 <label>First Name</label>
@@ -124,16 +99,49 @@ class Signup extends Component {
                 />
               </Form.Field>
             </Form.Group>
+            <Form.Field>
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                value={username}
+                onChange={this.handleChange}
+              />
+            </Form.Field>
+            <Form.Group widths="equal">
+              <Form.Field>
+                <label>Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Password Confirmation</label>
+                <input
+                  type="password"
+                  name="password_confirmation"
+                  placeholder="Password Confirmation"
+                  value={password_confirmation}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+            </Form.Group>
+
             <Form.Checkbox
               type="radio"
               onChange={this.handleSelectIsTrainer}
               label="Are you a trainer/coach?"
             />
 
-            <Form.Button type="submit">Submit</Form.Button>
+            <Form.Button type="submit">Create Account</Form.Button>
           </Form>
         </Segment>
-      </Container>
+      </Grid.Column>
     );
   }
 }

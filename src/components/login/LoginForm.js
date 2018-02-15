@@ -2,15 +2,7 @@ import React, { Component } from "react";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import {
-  Grid,
-  Form,
-  Message,
-  Container,
-  Segment,
-  Header,
-  Button
-} from "semantic-ui-react";
+import { Grid, Form, Message, Segment, Header } from "semantic-ui-react";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -80,7 +72,7 @@ class LoginForm extends Component {
                 </div>
               </Form.Field>
               <Form.Button fluid size="large" type="submit">
-                Submit
+                Log In
               </Form.Button>
             </Form>
           </Segment>

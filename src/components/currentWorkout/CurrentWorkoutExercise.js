@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Button, Card } from "semantic-ui-react";
+import { Table, Button, Card, Icon } from "semantic-ui-react";
 
 const CurrentWorkoutExercise = ({
   exercise,
@@ -65,7 +65,6 @@ const CurrentWorkoutExercise = ({
               <Table.Row>
                 <Table.HeaderCell colSpan="2">{exercise.name}</Table.HeaderCell>
                 <Table.HeaderCell>
-                  <Button onClick={() => handleClick(exercise)}>Add Set</Button>
                   <Button
                     negative
                     onClick={() => handleRemoveExercise(exercise)}
@@ -78,6 +77,15 @@ const CurrentWorkoutExercise = ({
                 <Table.HeaderCell>Sets</Table.HeaderCell>
                 <Table.HeaderCell>Reps</Table.HeaderCell>
                 <Table.HeaderCell>{exercise.measure}</Table.HeaderCell>
+                <Table.HeaderCell>
+                  <Icon
+                    circular
+                    inverted
+                    name="plus"
+                    color="green"
+                    onClick={() => handleClick(exercise)}
+                  />
+                </Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>{rows}</Table.Body>

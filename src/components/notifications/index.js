@@ -18,7 +18,7 @@ class NotificationsContainer extends Component {
       requests.length > 0
         ? requests.map((r, i) => {
             return (
-              <div>
+              <div key={i}>
                 <h2>Trainer: {r.trainer.username}</h2>
                 <p>Message: {r.message}</p>
                 <ConfirmPassword key={i} index={i} request={r} />

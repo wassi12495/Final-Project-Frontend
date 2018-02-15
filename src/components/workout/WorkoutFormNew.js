@@ -71,7 +71,7 @@ class WorkoutFormNew extends Component {
           {error ? (
             <Message
               error
-              header="Failed To Create Exercise!"
+              header="Failed To Create Workout!"
               list={errorMessages}
             />
           ) : null}

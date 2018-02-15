@@ -19,7 +19,7 @@ const ExerciseShow = ({ exercise }) => {
       </Segment.Group>
     </Segment.Group>
   ) : (
-    <Header as="h1">Pick a Workout</Header>
+    <Header as="h1">Pick an Exercise</Header>
   );
 };
 

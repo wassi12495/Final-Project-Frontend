@@ -9,7 +9,6 @@ const ExerciseCard = ({ exercise, exerciseCategories, handleClick }) => {
   return (
     <Card onClick={() => handleClick(exercise)}>
       <h4>{exercise.name}</h4>
-      <p> Description: {exercise.description}</p>
       <p> Category: {exercise.exercise_category.name}</p>
     </Card>
   );

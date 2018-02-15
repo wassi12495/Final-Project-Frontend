@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Header, Table, Card, Segment } from "semantic-ui-react";
-import RoutineTableEntry from "./RoutineTableEntry";
+// import RoutineTableEntry from "./RoutineTableEntry";
 
 class RoutineShow extends Component {
   renderRows = exercise => {

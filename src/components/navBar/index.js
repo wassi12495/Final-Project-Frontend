@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import { Menu, Icon, Dropdown } from "semantic-ui-react";
 import WorkoutFormNew from "../workout/WorkoutFormNew";
+import NewExerciseForm from "../exercises/NewExerciseForm";
 
 class NavBar extends Component {
   render() {
@@ -49,10 +50,7 @@ class NavBar extends Component {
               onClick={() => history.push("/exercises")}
               text="Your Exercises"
             />
-            <Dropdown.Item
-              onClick={() => history.push("/exercises/new")}
-              text="Create an Exercise"
-            />
+            <NewExerciseForm history={history} />
           </Dropdown.Menu>
         </Dropdown>
         {isTrainer ? (

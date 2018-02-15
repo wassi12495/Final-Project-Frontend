@@ -9,7 +9,6 @@ import {
   Header,
   Input,
   Message,
-  Segment,
   Card
 } from "semantic-ui-react";
 

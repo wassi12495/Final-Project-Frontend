@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import { Loader } from "semantic-ui-react";
 import NewRoutineForm from "./NewRoutineForm";
 import RoutinesList from "./RoutinesList";
-import RoutineShow from "./RoutineShow";
 
 class RoutinesContainer extends Component {
   componentDidMount() {
@@ -19,7 +18,7 @@ class RoutinesContainer extends Component {
   }
 
   renderPage() {
-    const { match, routines } = this.props;
+    const { match } = this.props;
     return (
       <div className="ui container">
         <Switch>

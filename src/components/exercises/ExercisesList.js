@@ -39,9 +39,9 @@ class ExercisesList extends Component {
             </Segment>
           </Grid.Column>
           <Grid.Column width={12}>
-            <Segment.Group raised size="huge">
+            <Segment textAlign="center" raised size="huge">
               <ExerciseShow exercise={exercise} />
-            </Segment.Group>
+            </Segment>
           </Grid.Column>
         </Grid>
       </div>

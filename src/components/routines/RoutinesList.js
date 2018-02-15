@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { Segment, Grid, Header } from "semantic-ui-react";
 import RoutineCard from "./RoutineCard";
 import RoutineShow from "./RoutineShow";
@@ -20,7 +19,7 @@ class RoutinesList extends Component {
   };
 
   render() {
-    const { match, routines } = this.props;
+    const { routines } = this.props;
     const { routine } = this.state;
     const myRoutines = routines.map((r, index) => {
       return (

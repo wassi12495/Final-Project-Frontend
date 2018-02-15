@@ -16,16 +16,18 @@ class CurrentWorkout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      exercises: []
+      exercises: [],
+      title: ""
     };
   }
   componentDidMount() {
     if (!!this.props.currentWorkout) {
       const { currentWorkout } = this.props;
+      const title = currentWorkout.routine.title;
       this.setState({
         currentWorkout_id: currentWorkout.id,
         routine_id: currentWorkout.routine.id,
-        title: currentWorkout.routine.title,
+        title,
         exercises: currentWorkout.exercises
       });
     } else {
@@ -139,6 +141,7 @@ class CurrentWorkout extends Component {
   };
   handleRemoveExercise = exercise => {
     const index = this.state.exercises.findIndex(e => e.id === exercise.id);
+
     this.props.removeExerciseFromCurrentWorkout(exercise, index);
     this.setState({
       exercises: [
@@ -188,7 +191,7 @@ class CurrentWorkout extends Component {
             <Button floated="right" primary onClick={this.handleEndWorkout}>
               Finish Workout
             </Button>
-            <Input value={title} onChange={this.handleChangeTitle} />
+            <Input value={this.state.title} onChange={this.handleChangeTitle} />
             <h1>{title}</h1>
             <AddExercise handleSelection={this.handleSelection} />
           </Header>

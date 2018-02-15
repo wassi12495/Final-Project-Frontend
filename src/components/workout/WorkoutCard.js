@@ -1,10 +1,10 @@
 import React from "react";
 import { Card } from "semantic-ui-react";
 
-const WorkoutCard = ({ workout }) => {
+const WorkoutCard = ({ workout, handleClick }) => {
   console.log(workout);
   return (
-    <Card>
+    <Card onClick={() => handleClick(workout)}>
       <h3>{workout.title}</h3>
       <p>
         {workout.time_of_workout

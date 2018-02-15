@@ -20,11 +20,13 @@ class WorkoutContainer extends Component {
     const { match, workouts } = this.props;
     console.log(workouts);
     return (
-      <div>
-        <Switch>
-          <Route exact path={`${match.url}`} component={WorkoutList} />
-          <Route exact path={`${match.url}/new`} component={WorkoutFormNew} />
-        </Switch>
+      <div className="ui container">
+        <div className="ui segment">
+          <Switch>
+            <Route exact path={`${match.url}`} component={WorkoutList} />
+            <Route exact path={`${match.url}/new`} component={WorkoutFormNew} />
+          </Switch>
+        </div>
       </div>
     );
   }

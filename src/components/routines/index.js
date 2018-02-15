@@ -21,10 +21,12 @@ class RoutinesContainer extends Component {
     const { match } = this.props;
     return (
       <div className="ui container">
-        <Switch>
-          <Route exact path={`${match.url}`} component={RoutinesList} />
-          <Route path={`${match.url}/new`} component={NewRoutineForm} />
-        </Switch>
+        <div className="ui segment">
+          <Switch>
+            <Route exact path={`${match.url}`} component={RoutinesList} />
+            <Route path={`${match.url}/new`} component={NewRoutineForm} />
+          </Switch>
+        </div>
       </div>
     );
   }

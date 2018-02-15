@@ -19,20 +19,18 @@ class ExercisesContainer extends Component {
     const { match } = this.props;
     return (
       <div className="ui container">
-        <Switch>
-          <Route exact path={`${match.url}`} component={ExercisesList} />
-          <Route path={`${match.url}/new`} component={NewExerciseForm} />
-        </Switch>
+        <div className="ui segment">
+          <Switch>
+            <Route exact path={`${match.url}`} component={ExercisesList} />
+            <Route path={`${match.url}/new`} component={NewExerciseForm} />
+          </Switch>
+        </div>
       </div>
     );
   }
 
   render() {
-    return (
-      <Container text>
-        {this.props.loading ? this.renderLoading() : this.renderPage()}
-      </Container>
-    );
+    return this.props.loading ? this.renderLoading() : this.renderPage();
   }
 }
 

@@ -21,7 +21,7 @@ class ClientsContainer extends Component {
     return !this.props.isTrainer ? (
       <Redirect to="/" />
     ) : (
-      <div>
+      <div className="ui segment">
         <AddClient />
         <Switch>
           <Route exact path={`${match.url}`} component={ClientList} />

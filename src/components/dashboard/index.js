@@ -30,10 +30,12 @@ const Dashboard = props => {
               <h3>Previous Workout</h3>
             </Card.Header>
             <Card centered>
-              <WorkoutCard
-                workout={prevWorkout}
-                handleClick={() => handleClickPrevWorkout()}
-              />
+              {!!prevWorkout ? (
+                <WorkoutCard
+                  workout={prevWorkout}
+                  handleClick={() => handleClickPrevWorkout()}
+                />
+              ) : null}
             </Card>
           </Card.Content>
         </Card>

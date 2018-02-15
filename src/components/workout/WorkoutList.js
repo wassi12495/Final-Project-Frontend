@@ -32,7 +32,7 @@ class WorkoutList extends Component {
       <div className="ui container">
         <Grid>
           <Grid.Column width={4}>
-            <Segment vertical>
+            <Segment id="opaque" vertical>
               <Header as="h1">Your Workouts</Header>
               <div className="ui cards">{workouts}</div>
             </Segment>

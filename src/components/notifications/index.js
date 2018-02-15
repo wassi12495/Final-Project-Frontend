@@ -17,15 +17,16 @@ class NotificationsContainer extends Component {
     const reqs =
       requests.length > 0
         ? requests.map((r, i) => {
-            return <ConfirmPassword key={i} index={i} request={r} />;
+            return (
+              <div>
+                <h2>Trainer: {r.trainer.username}</h2>
+                <p>Message: {r.message}</p>
+                <ConfirmPassword key={i} index={i} request={r} />
+              </div>
+            );
           })
         : null;
-    return (
-      <div>
-        <p>Notifications Rendered</p>
-        {reqs}
-      </div>
-    );
+    return <div>{reqs}</div>;
   }
   render() {
     const { loading } = this.props;

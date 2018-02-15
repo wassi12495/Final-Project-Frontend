@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { Message } from "semantic-ui-react";
+import { Message, Loader, Modal, Button, Card } from "semantic-ui-react";
 import WorkoutRoutineCard from "./WorkoutRoutineCard";
 
 class WorkoutFormNew extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      routine: {}
+      routine: {},
+      modal: false
     };
   }
 
@@ -16,23 +17,27 @@ class WorkoutFormNew extends Component {
     this.props.getRoutines();
   }
 
+  onClose = () => {
+    this.setState({
+      modal: false
+    });
+  };
+  onOpen = () => {
+    this.setState({
+      modal: true
+    });
+  };
   handleSelectWorkout = routine => {
     const initCurrWorkout = {
       routine_id: routine.id
     };
     this.props.postCurrentWorkout(initCurrWorkout, this.props.history);
-    // adapter.workouts.initializeWorkout(initCurrWorkout).then(res => {
-    //   if (res.error) {
-    //     alert(res.error);
-    //     this.props.history.push(`${this.props.match.url}`);
-    //   } else {
-    //     this.props.setCurrentWorkout(res, this.props.history);
-    //     this.props.history.push(`/current_workout`);
-    //   }
-    // });
   };
 
-  render() {
+  renderLoading() {
+    return <Loader />;
+  }
+  renderPage() {
     const customRoutine = {
       title: "Custom Routine",
       workouts: [],
@@ -41,35 +46,44 @@ class WorkoutFormNew extends Component {
 
     const routines = this.props.routines.map((routine, index) => {
       return (
-        <div key={index}>
-          <WorkoutRoutineCard
-            routine={routine}
-            handleClick={this.handleSelectWorkout}
-          />
-        </div>
+        <WorkoutRoutineCard
+          routine={routine}
+          handleClick={this.handleSelectWorkout}
+          key={index}
+        />
       );
     });
     const { error, errorMessages } = this.props;
     return (
-      <div>
-        <button onClick={this.props.history.goBack}>Go Back</button>
-        <h1>New Workout</h1>
-        {error ? (
-          <Message
-            error
-            header="Failed To Create Exercise!"
-            list={errorMessages}
-          />
-        ) : null}
-        <div>
-          <WorkoutRoutineCard
-            routine={customRoutine}
-            handleClick={this.handleSelectWorkout}
-          />
-        </div>
-        <div>{routines}</div>
-      </div>
+      <Modal
+        trigger={<Button onClick={this.onOpen}>New Workout</Button>}
+        onClose={this.onClose}
+        open={this.state.modal}
+      >
+        <Modal.Header>New Workout</Modal.Header>
+        <Modal.Content>
+          {error ? (
+            <Message
+              error
+              header="Failed To Create Exercise!"
+              list={errorMessages}
+            />
+          ) : null}
+          <Card.Group>
+            <WorkoutRoutineCard
+              routine={customRoutine}
+              handleClick={this.handleSelectWorkout}
+            />
+
+            {routines}
+          </Card.Group>
+        </Modal.Content>
+      </Modal>
     );
+  }
+
+  render() {
+    return this.props.loading ? this.renderLoading() : this.renderPage();
   }
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import SignupForm from "./SignupForm";
-import { Grid } from "semantic-ui-react";
 const SignupContainer = () => {
   return (
     <div className="signup-form">
@@ -12,13 +11,8 @@ const SignupContainer = () => {
        height: 100%;
      }
    `}</style>
-      <Grid
-        textAlign="center"
-        style={{ height: "100%" }}
-        verticalAlign="middle"
-      >
-        <SignupForm />
-      </Grid>
+
+      <SignupForm />
     </div>
   );
 };

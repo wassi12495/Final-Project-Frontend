@@ -51,11 +51,13 @@ class NavBar extends Component {
             />
           </Dropdown.Menu>
         </Dropdown>
-        <Menu.Item>
-          <NavLink exact to="/clients">
-            Clients
-          </NavLink>
-        </Menu.Item>
+        {this.props.is_trainer ? (
+          <Menu.Item>
+            <NavLink exact to="/clients">
+              Clients
+            </NavLink>
+          </Menu.Item>
+        ) : null}
 
         {this.props.currentWorkout ? (
           <Menu.Item
@@ -79,10 +81,11 @@ class NavBar extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ auth, currentWorkout }) => {
   return {
-    loggedIn: !!state.auth.currentUser.id,
-    currentWorkout: !!state.currentWorkout.currentWorkout
+    loggedIn: !!auth.currentUser.id,
+    isTrainer: auth.currentUser.is_trainer,
+    currentWorkout: !!currentWorkout.currentWorkout
   };
 };
 

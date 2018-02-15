@@ -3,13 +3,12 @@ import { Switch, Route } from "react-router-dom";
 import * as actions from "../../actions";
 import withAuth from "../../hocs/withAuth";
 import { connect } from "react-redux";
-import { Loader, Container } from "semantic-ui-react";
+import { Loader } from "semantic-ui-react";
 import NewExerciseForm from "./NewExerciseForm";
 import ExercisesList from "./ExercisesList";
 
 class ExercisesContainer extends Component {
   componentDidMount() {
-    console.log("ExercisesContainer", this.props);
     this.props.getExercises();
   }
   renderLoading() {

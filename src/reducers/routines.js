@@ -34,7 +34,7 @@ export const routinesReducer = (state = initialState, action) => {
     case GET_ROUTINES:
       return { ...state, routines: action.data, loading: false, error: false };
     case SET_CURRENT_NEW_ROUTINE:
-      return { ...state, currentRoutine: action.data };
+      return { ...state, currentRoutine: action.data, error: false };
     case UPDATE_CURRENT_ROUTINE_TITLE:
       return {
         ...state,
@@ -90,6 +90,7 @@ export const routinesReducer = (state = initialState, action) => {
         ...state,
         routines: [...state.routines, action.data],
         currentRoutine: null,
+        error: false,
         loading: false
       };
 

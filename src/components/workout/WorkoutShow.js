@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Grid, Header, Table } from "semantic-ui-react";
+import { Segment, Grid, Header, Table, Label } from "semantic-ui-react";
 
 class WorkoutShow extends Component {
   renderRows = exercise => {
@@ -9,19 +9,13 @@ class WorkoutShow extends Component {
         <Table.Row key={i}>
           <Table.Cell>Set {i + 1}</Table.Cell>
           <Table.Cell>
-            <div className="ui input">
-              {exercise.reps.length === 0 ? (
-                <label>N/A</label>
-              ) : (
-                <input type="text" name={i} value={exercise.reps[i]} />
-              )}
-            </div>
+            {exercise.reps.length === 0 ? <label>N/A</label> : exercise.reps[i]}
           </Table.Cell>
           <Table.Cell />
         </Table.Row>
       );
     }
-    return { rows };
+    return rows;
   };
   renderExercises = () => {
     const { workout } = this.props;
@@ -40,7 +34,7 @@ class WorkoutShow extends Component {
               <Table.HeaderCell>{e.measure}</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          <Table.Body>rows</Table.Body>
+          <Table.Body>{this.renderRows(e)}</Table.Body>
         </Table>
       );
     });

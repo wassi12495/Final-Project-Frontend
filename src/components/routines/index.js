@@ -21,8 +21,8 @@ class RoutinesContainer extends Component {
   renderPage() {
     const { match, routines } = this.props;
     return (
-      <div>
-        <div>
+      <div className="ui grid">
+        <div className="ui four wide column segment">
           <div>
             <Link to={`${match.url}`}>Your Routines</Link>
           </div>
@@ -30,24 +30,25 @@ class RoutinesContainer extends Component {
             <Link to={`${match.url}/new`}>New Routine</Link>
           </div>
         </div>
-
-        <Switch>
-          <Route exact path={`${match.url}`} component={RoutinesList} />
-          <Route path={`${match.url}/new`} component={NewRoutineForm} />
-          <Route
-            path={`${match.url}/:id`}
-            render={({ match }) => {
-              const routine = routines.find(
-                r => r.id === parseInt(match.params.id, 10)
-              );
-              return routine ? (
-                <RoutineShow routine={routine} />
-              ) : (
-                <div>Loading...</div>
-              );
-            }}
-          />
-        </Switch>
+        <div className="ui twelve wide column">
+          <Switch>
+            <Route exact path={`${match.url}`} component={RoutinesList} />
+            <Route path={`${match.url}/new`} component={NewRoutineForm} />
+            <Route
+              path={`${match.url}/:id`}
+              render={({ match }) => {
+                const routine = routines.find(
+                  r => r.id === parseInt(match.params.id, 10)
+                );
+                return routine ? (
+                  <RoutineShow routine={routine} />
+                ) : (
+                  <div>Loading...</div>
+                );
+              }}
+            />
+          </Switch>
+        </div>
       </div>
     );
   }

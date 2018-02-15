@@ -34,15 +34,7 @@ class NavBar extends Component {
               Logout
             </NavLink>
           </Menu.Item>
-        ) : (
-          <div className="right menu">
-            <Menu.Item>
-              <NavLink exact to="/login">
-                Login
-              </NavLink>
-            </Menu.Item>
-          </div>
-        )}
+        ) : null}
       </Menu>
     );
   }

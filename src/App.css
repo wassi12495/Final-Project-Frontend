@@ -1,6 +1,12 @@
 .App {
   text-align: center;
   font-family: "Roboto", sans-serif;
+  background-image: url(./img/sport-treadmill-tor-route-163444.jpg);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-color: none;
+  height: 80em;
 }
 
 .App-logo {

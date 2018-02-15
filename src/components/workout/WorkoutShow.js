@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Segment, Grid, Header, Table, Label } from "semantic-ui-react";
+import { Header, Table } from "semantic-ui-react";
 
 class WorkoutShow extends Component {
   renderRows = exercise => {

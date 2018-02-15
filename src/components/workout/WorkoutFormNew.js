@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import {
-  Message,
-  Loader,
-  Modal,
-  Dropdown,
-  Item,
-  Button,
-  Card
-} from "semantic-ui-react";
+import { Message, Loader, Modal, Dropdown, Card } from "semantic-ui-react";
 import WorkoutRoutineCard from "./WorkoutRoutineCard";
 
 class WorkoutFormNew extends Component {

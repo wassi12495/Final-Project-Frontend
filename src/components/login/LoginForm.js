@@ -38,7 +38,6 @@ class LoginForm extends Component {
   render() {
     const { username, password } = this.state;
     const { error, errorMessages } = this.props;
-    console.log("Login", this.props);
     return (
       <Grid
         textAlign="center"

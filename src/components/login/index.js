@@ -1,14 +1,5 @@
 import React from "react";
 import LoginForm from "./LoginForm";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Image,
-  Message,
-  Segment
-} from "semantic-ui-react";
 
 const LoginContainer = ({ loading }) => {
   return (
@@ -16,7 +7,8 @@ const LoginContainer = ({ loading }) => {
       <style>{`
      body > div,
      body > div > div,
-     body > div > div > div.login-form {
+     body > div > div > div,
+     body > div > div > div > div.login-form {
        height: 100%;
      }
    `}</style>

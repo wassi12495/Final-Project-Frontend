@@ -27,11 +27,19 @@ class NavBar extends Component {
             />
           </Dropdown.Menu>
         </Dropdown>
-        <Menu.Item>
-          <NavLink exact to="/workouts">
-            Workouts
-          </NavLink>
-        </Menu.Item>
+        <Dropdown item text="Workouts">
+          <Dropdown.Menu>
+            <Dropdown.Item
+              onClick={() => history.push("/workouts")}
+              text="Your Workouts"
+            />
+            <Dropdown.Item
+              onClick={() => history.push("/workouts/new")}
+              text="Start a Workout"
+            />
+          </Dropdown.Menu>
+        </Dropdown>
+
         {this.props.currentWorkout ? (
           <Menu.Item>
             <NavLink exact to="/current_workout">

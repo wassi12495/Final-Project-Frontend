@@ -27,7 +27,7 @@ const Dashboard = props => {
         <Card>
           <Card.Content>
             <Card.Header>
-              <h3>Previous Workouts</h3>
+              <h3>Previous Workout</h3>
             </Card.Header>
             <Card centered>
               <WorkoutCard

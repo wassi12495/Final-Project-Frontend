@@ -22,25 +22,10 @@ class RoutinesContainer extends Component {
     const { match, routines } = this.props;
     return (
       <div className="ui container">
-        <div className="ui grid">
-          <Switch>
-            <Route exact path={`${match.url}`} component={RoutinesList} />
-            <Route path={`${match.url}/new`} component={NewRoutineForm} />
-            <Route
-              path={`${match.url}/:id`}
-              render={({ match }) => {
-                const routine = routines.find(
-                  r => r.id === parseInt(match.params.id, 10)
-                );
-                return routine ? (
-                  <RoutineShow routine={routine} />
-                ) : (
-                  <div>Loading...</div>
-                );
-              }}
-            />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path={`${match.url}`} component={RoutinesList} />
+          <Route path={`${match.url}/new`} component={NewRoutineForm} />
+        </Switch>
       </div>
     );
   }

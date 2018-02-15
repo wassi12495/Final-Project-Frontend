@@ -39,16 +39,15 @@ class WorkoutFormNew extends Component {
     this.props.postCurrentWorkout(initCurrWorkout, this.props.history);
   };
 
-  renderLoading() {
+  renderLoading = () => {
     return <Loader />;
-  }
-  renderPage() {
+  };
+  renderPage = () => {
     const customRoutine = {
       title: "Custom Routine",
       workouts: [],
       exercises: []
     };
-
     const routines = this.props.routines.map((routine, index) => {
       return (
         <WorkoutRoutineCard
@@ -87,16 +86,18 @@ class WorkoutFormNew extends Component {
         </Modal.Content>
       </Modal>
     );
-  }
+  };
 
   render() {
-    return this.props.loading ? this.renderLoading() : this.renderPage();
+    return !!this.props.routines ? this.renderPage() : this.renderLoading();
   }
 }
 
-const mapStateToProps = ({ routines, currentWorkout }) => {
+const mapStateToProps = ({ routines, currentWorkout, auth }) => {
   return {
-    routines: routines.routines,
+    currentUser: auth.currentUser,
+    routines: auth.currentUser.routines,
+    loading: routines.loading,
     currentWorkout: currentWorkout,
     error: currentWorkout.error,
     errorMessages: currentWorkout.errorMessages

@@ -3,7 +3,15 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 import AddExercise from "../exercises/AddExercise";
 import NewRoutineExercise from "./NewRoutineExercise";
-import { Container, Button, Header, Input, Message } from "semantic-ui-react";
+import {
+  Container,
+  Button,
+  Header,
+  Input,
+  Message,
+  Segment,
+  Card
+} from "semantic-ui-react";
 
 class NewRoutineForm extends Component {
   constructor(props) {
@@ -97,8 +105,6 @@ class NewRoutineForm extends Component {
     });
     return (
       <Container>
-        <button onClick={this.props.history.goBack}>Go Back</button>
-
         <Header>
           <Header.Content>
             <h1>Build A Routine</h1>
@@ -127,10 +133,8 @@ class NewRoutineForm extends Component {
               value={title}
               onChange={this.handleChange}
             />
-            <div>
-              <label>Exercises</label>
-              {exercises}
-            </div>
+
+            <Card.Group>{exercises}</Card.Group>
           </div>
         </div>
       </Container>

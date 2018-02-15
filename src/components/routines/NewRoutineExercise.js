@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { Table } from "semantic-ui-react";
+import { Table, Card } from "semantic-ui-react";
 import RoutineExerciseSet from "./RoutineExerciseSet";
 
 class NewRoutineExercise extends Component {
@@ -80,43 +80,38 @@ class NewRoutineExercise extends Component {
     const { index } = this.state;
 
     return (
-      <Table collapsing celled key={index}>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>{exercise.name}</Table.HeaderCell>
-            <Table.HeaderCell colSpan="2">
-              <div>
-                {exercise.description}
-                {"       "}
-                <button className="ui button positive" onClick={this.addSet}>
-                  Add set
-                </button>
-                {"       "}
-                <button
-                  className="ui button negative"
-                  onClick={() => handleRemove(exercise, this.props.index)}
-                >
-                  <i className="remove circle icon" />
-                </button>
-              </div>
-            </Table.HeaderCell>
-          </Table.Row>
-          <Table.Row>
-            <Table.HeaderCell>Sets (x{this.state.amt})</Table.HeaderCell>
-            <Table.HeaderCell>
-              {exercise.exercise_category.measure_of_duration.toUpperCase()}
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>{this.renderSetRows()}</Table.Body>
-        <Table.Footer fullWidth>
-          <Table.Row>
-            <Table.HeaderCell colSpan="3">
-              <button onClick={this.addSet}>Add set</button>
-            </Table.HeaderCell>
-          </Table.Row>
-        </Table.Footer>
-      </Table>
+      <Card>
+        <Table collapsing celled key={index}>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>{exercise.name}</Table.HeaderCell>
+              <Table.HeaderCell colSpan="2">
+                <div>
+                  {exercise.description}
+                  {"       "}
+                  <button className="ui button positive" onClick={this.addSet}>
+                    Add set
+                  </button>
+                  {"       "}
+                  <button
+                    className="ui button negative"
+                    onClick={() => handleRemove(exercise, this.props.index)}
+                  >
+                    <i className="remove circle icon" />
+                  </button>
+                </div>
+              </Table.HeaderCell>
+            </Table.Row>
+            <Table.Row>
+              <Table.HeaderCell>Sets (x{this.state.amt})</Table.HeaderCell>
+              <Table.HeaderCell>
+                {exercise.exercise_category.measure_of_duration.toUpperCase()}
+              </Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>{this.renderSetRows()}</Table.Body>
+        </Table>
+      </Card>
     );
   }
 }

@@ -43,11 +43,14 @@ class WorkoutFormNew extends Component {
     return <Loader />;
   };
   renderPage = () => {
-    const customRoutine = {
-      title: "Custom Routine",
-      workouts: [],
-      exercises: []
-    };
+    // const customRoutine = {
+    //   routine: {
+    //     title: "Custom Routine",
+    //     exercises: []
+    //   },
+    //   workouts: [],
+    //   exercises: []
+    // };
     const routines = this.props.routines.map((routine, index) => {
       return (
         <WorkoutRoutineCard
@@ -76,10 +79,10 @@ class WorkoutFormNew extends Component {
             />
           ) : null}
           <Card.Group>
-            <WorkoutRoutineCard
+            {/* <WorkoutRoutineCard
               routine={customRoutine}
               handleClick={this.handleSelectWorkout}
-            />
+            /> */}
 
             {routines}
           </Card.Group>
@@ -89,14 +92,14 @@ class WorkoutFormNew extends Component {
   };
 
   render() {
-    return !!this.props.routines ? this.renderPage() : this.renderLoading();
+    return !!this.props.routines ? this.renderPage() : null;
   }
 }
 
 const mapStateToProps = ({ routines, currentWorkout, auth }) => {
   return {
     currentUser: auth.currentUser,
-    routines: auth.currentUser.routines,
+    routines: routines.routines,
     loading: routines.loading,
     currentWorkout: currentWorkout,
     error: currentWorkout.error,

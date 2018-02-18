@@ -8,12 +8,10 @@ import NotificationsContainer from "../notifications";
 import WorkoutCard from "../workout/WorkoutCard";
 
 const Dashboard = props => {
-  const { firstName, lastName, routines, workouts } = props.currentUser;
+  const { firstName, lastName, workouts } = props.currentUser;
   const fullName = `${firstName} ${lastName}`;
 
-  console.log("Dash", routines, workouts);
   const prevWorkout = workouts[workouts.length - 1];
-  console.log(prevWorkout);
   const { requestMessage } = props;
   const handleClickPrevWorkout = workout => {
     props.history.push("/workouts");

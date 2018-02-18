@@ -2,7 +2,6 @@ import React from "react";
 import { Card } from "semantic-ui-react";
 
 const WorkoutCard = ({ workout, handleClick }) => {
-  console.log(workout);
   return (
     <Card onClick={() => handleClick(workout)}>
       <h3>{workout.title}</h3>

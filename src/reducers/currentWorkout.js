@@ -15,7 +15,10 @@ import {
 // Handle Current Workout
 
 const initialState = {
-  currentWorkout: null,
+  exercises: null,
+  id: null,
+  inProgress: false,
+  routine: null,
   loading: false,
   error: false,
   errorMessages: null

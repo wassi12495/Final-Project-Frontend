@@ -19,9 +19,7 @@ class Signup extends Component {
 
   componentWillUpdate(nextProps) {
     if (nextProps.loggingIn) {
-      debugger;
       const { username, password } = this.state;
-      console.log("Signed Up, loggingIn");
       this.props.login(username, password, this.props.history);
     }
   }

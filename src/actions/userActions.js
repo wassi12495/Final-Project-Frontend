@@ -19,7 +19,6 @@ export const login = (username, password, history) => dispatch => {
       dispatch({ type: ASYNC_ERROR_USER, data: res.errors });
     } else {
       localStorage.setItem("token", res.jwt);
-      debugger;
       dispatch({ type: LOGIN, data: res });
       history.push("/");
     }

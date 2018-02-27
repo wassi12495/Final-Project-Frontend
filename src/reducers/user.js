@@ -2,7 +2,8 @@ import {
   ASYNC_START_USER,
   ASYNC_ERROR_USER,
   SIGNEDUP,
-  LOGIN
+  LOGIN,
+  LOGOUT
 } from "../actions/types";
 
 const initialState = {
@@ -31,6 +32,8 @@ export const userReducer = (state = initialState, action) => {
         errorMessages: null,
         loggingIn: false
       };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }

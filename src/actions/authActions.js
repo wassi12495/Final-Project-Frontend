@@ -1,8 +1,7 @@
 import { adapter } from "../services";
 import {
   ASYNC_START_AUTH,
-  ASYNC_ERROR_AUTH,
-  LOGOUT,
+  // ASYNC_ERROR_AUTH,
   SET_CURRENT_USER
 } from "./types";
 
@@ -11,9 +10,4 @@ export const fetchUser = () => dispatch => {
   adapter.auth.getCurrentUser().then(user => {
     dispatch({ type: SET_CURRENT_USER, data: user });
   });
-};
-
-export const logout = () => {
-  localStorage.removeItem("token");
-  return { type: LOGOUT };
 };

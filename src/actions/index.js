@@ -25,8 +25,8 @@ export {
   removeExerciseFromCurrentWorkout
 } from "./currentWorkoutActions";
 export { getClients, getUsers } from "./clientsActions";
-export { fetchUser, logout } from "./authActions";
-export { signup, login } from "./userActions";
+export { fetchUser } from "./authActions";
+export { signup, login, logout } from "./userActions";
 export {
   sendClientRequest,
   acceptRequest,

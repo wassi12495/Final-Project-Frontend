@@ -1,5 +1,11 @@
 import { adapter } from "../services";
-import { ASYNC_START_USER, ASYNC_ERROR_USER, SIGNEDUP, LOGIN } from "./types";
+import {
+  ASYNC_START_USER,
+  ASYNC_ERROR_USER,
+  SIGNEDUP,
+  LOGIN,
+  LOGOUT
+} from "./types";
 
 export const signup = user => dispatch => {
   dispatch({ type: ASYNC_START_USER });
@@ -23,4 +29,9 @@ export const login = (username, password, history) => dispatch => {
       history.push("/");
     }
   });
+};
+
+export const logout = () => {
+  localStorage.removeItem("token");
+  return { type: LOGOUT };
 };

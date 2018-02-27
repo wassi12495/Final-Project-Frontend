@@ -42,6 +42,7 @@ class WorkoutFormNew extends Component {
   renderLoading = () => {
     return <Loader />;
   };
+
   renderPage = () => {
     // const customRoutine = {
     //   routine: {
@@ -92,7 +93,9 @@ class WorkoutFormNew extends Component {
   };
 
   render() {
-    return !!this.props.routines ? this.renderPage() : null;
+    console.log(this.props.routines, this.props.loading);
+    // return !!this.props.routines ? this.renderPage() : null;
+    return this.props.loading ? this.renderLoading() : this.renderPage();
   }
 }
 

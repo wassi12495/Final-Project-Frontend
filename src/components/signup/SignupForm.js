@@ -18,8 +18,10 @@ class Signup extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    if (nextProps.signedup) {
+    if (nextProps.loggingIn) {
+      debugger;
       const { username, password } = this.state;
+      console.log("Signed Up, loggingIn");
       this.props.login(username, password, this.props.history);
     }
   }
@@ -157,7 +159,7 @@ const mapStateToProps = ({ user }) => ({
   error: user.error,
   errorMessages: user.errorMessages,
   loading: user.loading,
-  signedup: user.signedup
+  loggingIn: user.loggingIn
 });
 
 export default withRouter(connect(mapStateToProps, actions)(Signup));

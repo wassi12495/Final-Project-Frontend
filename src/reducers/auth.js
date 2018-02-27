@@ -13,6 +13,7 @@ const initialState = {
   errorMessages: null
 };
 export const authReducer = (state = initialState, action) => {
+  console.log("ACTION", action);
   switch (action.type) {
     case ASYNC_START_AUTH:
       return { ...state, loading: true };

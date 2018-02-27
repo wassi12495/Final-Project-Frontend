@@ -9,7 +9,6 @@ import NewExerciseForm from "../exercises/NewExerciseForm";
 class NavBar extends Component {
   render() {
     const { location, history, isTrainer, currentWorkout } = this.props;
-
     return location.pathname === "/login" ||
       location.pathname === "/signup" ? null : (
       <Menu inverted position="left">

@@ -8,7 +8,8 @@ export const LOGOUT = "LOGOUT";
 // User types
 export const ASYNC_START_USER = "ASYNC_START_USER";
 export const ASYNC_ERROR_USER = "ASYNC_ERROR_USER";
-export const SIGNEDUP = "SIGNUP";
+export const SIGNEDUP = "SIGNEDUP";
+export const LOGIN = "LOGIN";
 
 // Exercise Category types
 export const ASYNC_START_EXERCISE_CATEGORIES =

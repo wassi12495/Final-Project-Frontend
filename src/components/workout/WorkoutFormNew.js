@@ -13,7 +13,15 @@ class WorkoutFormNew extends Component {
     };
   }
 
-  componentDidMount() {
+  // componentDidMount() {
+  //   this.props.getRoutines();
+  //   if (this.props.open) {
+  //     this.setState({
+  //       modal: true
+  //     });
+  //   }
+  // }
+  componentWillMount() {
     this.props.getRoutines();
     if (this.props.open) {
       this.setState({
@@ -43,6 +51,7 @@ class WorkoutFormNew extends Component {
     return <Loader />;
   };
   renderPage = () => {
+    console.log("Render WorkoutFormNew");
     // const customRoutine = {
     //   routine: {
     //     title: "Custom Routine",

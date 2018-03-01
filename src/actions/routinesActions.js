@@ -3,7 +3,6 @@ import {
   ASYNC_ERROR_ROUTINES,
   GET_ROUTINES,
   POST_NEW_ROUTINE,
-  SET_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
   REMOVE_EXERCISE_FROM_CURRENT_ROUTINE,
@@ -33,10 +32,6 @@ export const addRoutine = (history, data) => dispatch => {
       history.push("/routines");
     }
   });
-};
-
-export const setCurrentNewRoutine = data => dispatch => {
-  dispatch({ type: SET_CURRENT_NEW_ROUTINE, data });
 };
 
 export const updateCurrentNewRoutine = data => dispatch => {

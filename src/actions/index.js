@@ -7,7 +7,6 @@ export { getExercises, addExercise } from "./exercisesActions";
 export {
   getRoutines,
   addRoutine,
-  setCurrentNewRoutine,
   updateCurrentNewRoutine,
   updateCurrentRoutineTitle,
   addExerciseToCurrentNewRoutine,

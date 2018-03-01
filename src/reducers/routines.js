@@ -3,7 +3,6 @@ import {
   ASYNC_ERROR_ROUTINES,
   GET_ROUTINES,
   POST_NEW_ROUTINE,
-  SET_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_ROUTINE_TITLE,
   UPDATE_CURRENT_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
@@ -33,8 +32,7 @@ export const routinesReducer = (state = initialState, action) => {
       };
     case GET_ROUTINES:
       return { ...state, routines: action.data, loading: false, error: false };
-    case SET_CURRENT_NEW_ROUTINE:
-      return { ...state, currentRoutine: action.data, error: false };
+
     case UPDATE_CURRENT_ROUTINE_TITLE:
       return {
         ...state,

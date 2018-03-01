@@ -4,7 +4,8 @@ import {
   UPDATE_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_ROUTINE_TITLE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
-  SET_CURRENT_NEW_ROUTINE
+  SET_CURRENT_NEW_ROUTINE,
+  BEGIN_NEW_ROUTINE
 } from "../actions/types";
 
 const initialState = {
@@ -27,7 +28,8 @@ export const newRoutineReducer = (state = initialState, action) => {
         error: true,
         errorMessages: action.data
       };
-    case SET_CURRENT_NEW_ROUTINE:
+    case BEGIN_NEW_ROUTINE:
+      debugger;
       return {
         ...state,
         exercises: action.data.exercises,

@@ -30,7 +30,7 @@ class NewRoutineForm extends Component {
         exercises: currentRoutine.exercises
       });
     } else {
-      this.props.setCurrentNewRoutine(this.state);
+      this.props.beginNewRoutine(this.state);
     }
   }
 
@@ -141,11 +141,13 @@ class NewRoutineForm extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, routines }) => ({
+const mapStateToProps = ({ auth, newRoutine }) => ({
   currentUser: auth.currentUser,
-  currentRoutine: routines.currentRoutine,
-  error: routines.error,
-  errorMessages: routines.errorMessages
+  exercises: newRoutine.exercises,
+  title: newRoutine.title,
+  loading: newRoutine.loading,
+  error: newRoutine.error,
+  errorMessages: newRoutine.errorMessages
 });
 
 export default connect(mapStateToProps, actions)(NewRoutineForm);

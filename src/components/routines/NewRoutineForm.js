@@ -37,8 +37,8 @@ class NewRoutineForm extends Component {
     this.props.deleteNewRoutine(this.props.history);
   };
 
-  handleChange = e => {
-    this.props.updateCurrentRoutineTitle(e.target.value);
+  handleTitleInput = e => {
+    this.props.updateNewRoutineTitle(e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -122,7 +122,7 @@ class NewRoutineForm extends Component {
               type="text"
               name="title"
               value={title}
-              onChange={this.handleChange}
+              onChange={this.handleTitleInput}
             />
 
             <Card.Group>{exercises}</Card.Group>

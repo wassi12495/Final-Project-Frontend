@@ -4,17 +4,14 @@ import {
 } from "./types";
 import { adapter } from "../services";
 export { getExercises, addExercise } from "./exercisesActions";
-export {
-  getRoutines,
-  addRoutine,
-  removeExerciseFromCurrentRoutine
-} from "./routinesActions";
+export { getRoutines, addRoutine } from "./routinesActions";
 export {
   beginNewRoutine,
   deleteNewRoutine,
   updateNewRoutineTitle,
   updateNewRoutineExercises,
-  addExerciseToNewRoutine
+  addExerciseToNewRoutine,
+  deleteNewRoutineExercise
 } from "./newRoutineActions";
 export { getWorkouts } from "./workoutsActions";
 export {

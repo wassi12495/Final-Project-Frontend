@@ -5,7 +5,8 @@ import {
   DELETE_NEW_ROUTINE,
   UPDATE_NEW_ROUTINE_TITLE,
   UPDATE_NEW_ROUTINE_EXERCISES,
-  ADD_EXERCISE_TO_NEW_ROUTINE
+  ADD_EXERCISE_TO_NEW_ROUTINE,
+  DELETE_NEW_ROUTINE_EXERCISE
 } from "./types";
 import { adapter } from "../services";
 
@@ -29,4 +30,8 @@ export const updateNewRoutineExercises = data => dispatch => {
 
 export const addExerciseToNewRoutine = data => dispatch => {
   dispatch({ type: ADD_EXERCISE_TO_NEW_ROUTINE, data });
+};
+
+export const deleteNewRoutineExercise = index => dispatch => {
+  dispatch({ type: DELETE_NEW_ROUTINE_EXERCISE, index });
 };

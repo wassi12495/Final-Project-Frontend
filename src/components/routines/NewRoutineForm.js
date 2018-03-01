@@ -58,7 +58,7 @@ class NewRoutineForm extends Component {
   };
 
   handleRemoveExercise = (exercise, index) => {
-    this.props.removeExerciseFromCurrentRoutine(index);
+    this.props.deleteNewRoutineExercise(index);
     this.setState({
       exercises: [
         ...this.state.exercises.slice(0, index),

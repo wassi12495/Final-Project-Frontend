@@ -3,7 +3,6 @@ import {
   ASYNC_ERROR_ROUTINES,
   GET_ROUTINES,
   POST_NEW_ROUTINE,
-  REMOVE_EXERCISE_FROM_CURRENT_ROUTINE,
   LOGOUT
 } from "../actions/types";
 
@@ -28,19 +27,6 @@ export const routinesReducer = (state = initialState, action) => {
       };
     case GET_ROUTINES:
       return { ...state, routines: action.data, loading: false, error: false };
-
-    case REMOVE_EXERCISE_FROM_CURRENT_ROUTINE:
-      const exercises = state.currentRoutine.exercises;
-      return {
-        ...state,
-        currentRoutine: {
-          ...state.currentRoutine,
-          exercises: [
-            ...exercises.slice(0, action.index),
-            ...exercises.slice(action.index + 1)
-          ]
-        }
-      };
 
     case POST_NEW_ROUTINE:
       return {

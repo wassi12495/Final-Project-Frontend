@@ -2,8 +2,7 @@ import {
   ASYNC_START_ROUTINES,
   ASYNC_ERROR_ROUTINES,
   GET_ROUTINES,
-  POST_NEW_ROUTINE,
-  REMOVE_EXERCISE_FROM_CURRENT_ROUTINE
+  POST_NEW_ROUTINE
 } from "./types";
 import { adapter } from "../services";
 
@@ -28,8 +27,4 @@ export const addRoutine = (history, data) => dispatch => {
       history.push("/routines");
     }
   });
-};
-
-export const removeExerciseFromCurrentRoutine = index => dispatch => {
-  dispatch({ type: REMOVE_EXERCISE_FROM_CURRENT_ROUTINE, index });
 };

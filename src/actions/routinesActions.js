@@ -15,8 +15,11 @@ import { adapter } from "../services";
 export const getRoutines = () => dispatch => {
   dispatch({ type: ASYNC_START_ROUTINES });
   adapter.routines.getRoutines().then(data => {
-    console.log("Get Routines", data);
-    dispatch({ type: GET_ROUTINES, data });
+    if (data.errors) {
+      dispatch({ type: ASYNC_ERROR_ROUTINES, data: data.errors });
+    } else {
+      dispatch({ type: GET_ROUTINES, data });
+    }
   });
 };
 

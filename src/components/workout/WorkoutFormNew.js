@@ -93,7 +93,6 @@ class WorkoutFormNew extends Component {
   };
 
   render() {
-    console.log(this.props.routines, this.props.loading);
     // return !!this.props.routines ? this.renderPage() : null;
     return this.props.loading ? this.renderLoading() : this.renderPage();
   }

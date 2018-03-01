@@ -20,7 +20,7 @@ class CurrentWorkout extends Component {
       title: ""
     };
   }
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.inProgress) {
       const { exercises, routine } = this.props;
       const title = routine.title;

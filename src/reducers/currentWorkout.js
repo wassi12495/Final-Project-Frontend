@@ -35,8 +35,14 @@ export const currentWorkoutReducer = (state = initialState, action) => {
         errorMessages: action.data
       };
     case SET_CURRENT_WORKOUT:
-      debugger;
-      return { ...state, currentWorkout: action.data };
+      return {
+        ...state,
+        id: action.data.id,
+        exercises: action.data.exercises,
+        routine: action.data.routine,
+        inProgress: true,
+        loading: false
+      };
     case GET_CURRENT_WORKOUT:
       return {
         ...state,

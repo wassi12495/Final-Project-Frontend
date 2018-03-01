@@ -66,7 +66,6 @@ export const updateCurrentWorkoutExercise = (exercise, index) => dispatch => {
 export const finishWorkout = (data, history) => dispatch => {
   dispatch({ type: ASYNC_START_CURRENT_WORKOUT });
   dispatch({ type: ASYNC_START_WORKOUTS });
-  debugger;
   adapter.workouts.completeCurrentWorkout(data).then(res => {
     dispatch({ type: ADD_WORKOUT, data: res });
     history.push("/");

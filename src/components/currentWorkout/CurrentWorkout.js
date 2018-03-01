@@ -21,14 +21,13 @@ class CurrentWorkout extends Component {
     };
   }
   componentDidMount() {
-    if (!!this.props.currentWorkout) {
-      const { currentWorkout } = this.props;
-      const title = currentWorkout.routine.title;
+    debugger;
+    if (this.props.inProgress) {
+      const { exercises, routine } = this.props;
+      const title = routine.title;
       this.setState({
-        currentWorkout_id: currentWorkout.id,
-        routine_id: currentWorkout.routine.id,
         title,
-        exercises: currentWorkout.exercises
+        exercises: exercises
       });
     } else {
       this.props.history.goBack();
@@ -165,8 +164,8 @@ class CurrentWorkout extends Component {
   }
   renderPage() {
     console.log("currentWorkout props", this.props.currentWorkout);
-    const { currentWorkout } = this.props;
-    const exerciseCards = currentWorkout.exercises.map((exercise, index) => {
+    const { exercises } = this.props;
+    const exerciseCards = exercises.map((exercise, index) => {
       return (
         <div key={index}>
           <CurrentWorkoutExercise
@@ -206,9 +205,12 @@ class CurrentWorkout extends Component {
 }
 
 const mapStateToProps = ({ currentWorkout }) => ({
-  currentWorkout: currentWorkout.currentWorkout,
   error: currentWorkout.error,
   errorMessages: currentWorkout.errorMessages,
-  loading: currentWorkout.loading
+  loading: currentWorkout.loading,
+  id: currentWorkout.id,
+  exercises: currentWorkout.exercises,
+  routine: currentWorkout.routine,
+  inProgress: currentWorkout.inProgress
 });
 export default connect(mapStateToProps, actions)(CurrentWorkout);

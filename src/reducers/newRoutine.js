@@ -5,7 +5,7 @@ import {
   DELETE_NEW_ROUTINE,
   UPDATE_NEW_ROUTINE_TITLE,
   UPDATE_NEW_ROUTINE_EXERCISES,
-  ADD_EXERCISE_TO_CURRENT_ROUTINE
+  ADD_EXERCISE_TO_NEW_ROUTINE
 } from "../actions/types";
 
 const initialState = {
@@ -56,6 +56,15 @@ export const newRoutineReducer = (state = initialState, action) => {
           ...state.currentRoutine.exercises.slice(0, action.data.index),
           e,
           ...state.currentRoutine.exercises.slice(action.data.index + 1)
+        ]
+      };
+    case ADD_EXERCISE_TO_NEW_ROUTINE:
+      return {
+        ...state,
+        exercises: [
+          ...state.exercises.slice(0, action.data.index),
+          action.data.update,
+          ...state.exercises.slice(action.data.index + 1)
         ]
       };
     default:

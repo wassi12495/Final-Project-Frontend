@@ -7,14 +7,14 @@ export { getExercises, addExercise } from "./exercisesActions";
 export {
   getRoutines,
   addRoutine,
-  addExerciseToCurrentNewRoutine,
   removeExerciseFromCurrentRoutine
 } from "./routinesActions";
 export {
   beginNewRoutine,
   deleteNewRoutine,
   updateNewRoutineTitle,
-  updateNewRoutineExercises
+  updateNewRoutineExercises,
+  addExerciseToNewRoutine
 } from "./newRoutineActions";
 export { getWorkouts } from "./workoutsActions";
 export {

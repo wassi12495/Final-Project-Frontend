@@ -27,6 +27,7 @@ class AddExercise extends Component {
 
   handleAdd = e => {
     this.props.handleSelection(e);
+    this.onClose();
   };
 
   renderLoading() {

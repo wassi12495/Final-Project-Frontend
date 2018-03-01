@@ -51,7 +51,7 @@ class NewRoutineForm extends Component {
     });
     const index = this.state.exercises.length;
     const params = { update, index };
-    this.props.addExerciseToCurrentNewRoutine(params);
+    this.props.addExerciseToNewRoutine(params);
     this.setState({
       exercises: [...this.state.exercises, update]
     });

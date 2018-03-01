@@ -4,7 +4,7 @@ import {
   BEGIN_NEW_ROUTINE,
   DELETE_NEW_ROUTINE,
   UPDATE_NEW_ROUTINE_TITLE,
-  UPDATE_CURRENT_NEW_ROUTINE,
+  UPDATE_NEW_ROUTINE_EXERCISES,
   ADD_EXERCISE_TO_CURRENT_ROUTINE
 } from "./types";
 import { adapter } from "../services";
@@ -20,4 +20,9 @@ export const deleteNewRoutine = history => dispatch => {
 
 export const updateNewRoutineTitle = data => dispatch => {
   dispatch({ type: UPDATE_NEW_ROUTINE_TITLE, data });
+};
+
+export const updateNewRoutineExercises = data => dispatch => {
+  debugger;
+  dispatch({ type: UPDATE_NEW_ROUTINE_EXERCISES, data });
 };

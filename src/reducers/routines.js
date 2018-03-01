@@ -3,7 +3,6 @@ import {
   ASYNC_ERROR_ROUTINES,
   GET_ROUTINES,
   POST_NEW_ROUTINE,
-  UPDATE_CURRENT_NEW_ROUTINE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
   REMOVE_EXERCISE_FROM_CURRENT_ROUTINE,
   LOGOUT
@@ -56,23 +55,7 @@ export const routinesReducer = (state = initialState, action) => {
           ]
         }
       };
-    case UPDATE_CURRENT_NEW_ROUTINE:
-      const exercise = state.currentRoutine.exercises[action.data.index];
-      const e = Object.assign({}, exercise, {
-        amt: action.data.update.amt,
-        sets: action.data.update.sets
-      });
-      return {
-        ...state,
-        currentRoutine: {
-          ...state.currentRoutine,
-          exercises: [
-            ...state.currentRoutine.exercises.slice(0, action.data.index),
-            e,
-            ...state.currentRoutine.exercises.slice(action.data.index + 1)
-          ]
-        }
-      };
+
     case POST_NEW_ROUTINE:
       return {
         ...state,

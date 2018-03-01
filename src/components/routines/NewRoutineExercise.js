@@ -18,7 +18,8 @@ class NewRoutineExercise extends Component {
     const { sets, amt, index } = this.state;
     const update = { sets, amt };
     const params = { update, index };
-    this.props.updateCurrentNewRoutine(params);
+    this.props.updateNewRoutineExercises(params);
+    // this.props.updateCurrentNewRoutine(params);
   }
   addSet = () => {
     this.setState({

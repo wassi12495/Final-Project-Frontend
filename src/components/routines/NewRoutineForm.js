@@ -66,6 +66,9 @@ class NewRoutineForm extends Component {
       ]
     });
   };
+  update = () => {
+    console.log("this.Update");
+  };
 
   updateState = state => {
     const exercise = this.state.exercises[state.index];

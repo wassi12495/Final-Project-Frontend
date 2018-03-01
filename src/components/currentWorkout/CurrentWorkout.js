@@ -33,6 +33,12 @@ class CurrentWorkout extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      exercises: nextProps.exercises
+    });
+  }
+
   handleChangeTitle = e => {
     this.setState({
       title: e.target.value
@@ -127,6 +133,7 @@ class CurrentWorkout extends Component {
       ]
     });
   };
+
   handleSelection = exercise => {
     const update = Object.assign({}, exercise, {
       sets: [{ set: 1, reps: 10 }],
@@ -138,6 +145,7 @@ class CurrentWorkout extends Component {
     const params = { update, index, id };
     this.props.addExerciseToCurrentWorkout(params);
   };
+
   handleRemoveExercise = exercise => {
     const index = this.state.exercises.findIndex(e => e.id === exercise.id);
 
@@ -151,11 +159,14 @@ class CurrentWorkout extends Component {
   };
 
   handleEndWorkout = () => {
-    this.props.finishWorkout(this.state, this.props.history);
+    const { id, exercises, routine } = this.props;
+    const { title } = this.state;
+    const params = { id, exercises, routine_id: routine.id, title };
+    this.props.finishWorkout(params, this.props.history);
   };
 
   handleDeleteWorkout = () => {
-    const id = this.props.currentWorkout.id;
+    const { id } = this.props;
     this.props.deleteCurrentWorkout(id, this.props.history);
   };
 

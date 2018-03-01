@@ -8,6 +8,8 @@ export const LOGOUT = "LOGOUT";
 // User types
 export const ASYNC_START_USER = "ASYNC_START_USER";
 export const ASYNC_ERROR_USER = "ASYNC_ERROR_USER";
+export const ASYNC_ERROR_USER_LOGIN = "ASYNC_ERROR_USER_LOGIN";
+export const ASYNC_ERROR_USER_SIGNUP = "ASYNC_ERROR_USER_SIGNUP";
 export const SIGNEDUP = "SIGNEDUP";
 export const LOGIN = "LOGIN";
 

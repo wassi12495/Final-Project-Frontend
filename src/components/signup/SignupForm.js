@@ -154,8 +154,8 @@ class Signup extends Component {
 }
 
 const mapStateToProps = ({ user }) => ({
-  error: user.error,
-  errorMessages: user.errorMessages,
+  error: user.signupError,
+  errorMessages: user.signupErrorMessages,
   loading: user.loading,
   loggingIn: user.loggingIn
 });

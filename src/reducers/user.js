@@ -1,6 +1,7 @@
 import {
   ASYNC_START_USER,
-  ASYNC_ERROR_USER,
+  ASYNC_ERROR_USER_LOGIN,
+  ASYNC_ERROR_USER_SIGNUP,
   SIGNEDUP,
   LOGIN,
   LOGOUT
@@ -8,28 +9,44 @@ import {
 
 const initialState = {
   loading: false,
-  error: false,
-  errorMessages: null,
+  loginError: false,
+  signupError: false,
+  signupErrorMessages: null,
+  loginErrorMessages: null,
   loggingIn: false
 };
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case ASYNC_START_USER:
       return { loading: true, loggingIn: false };
-    case ASYNC_ERROR_USER:
-      return { loading: false, error: true, errorMessages: action.data };
+    case ASYNC_ERROR_USER_LOGIN:
+      return {
+        loading: false,
+        loginError: true,
+        loginErrorMessages: action.data
+      };
+    case ASYNC_ERROR_USER_SIGNUP:
+      return {
+        loading: false,
+        signupError: true,
+        signupErrorMessages: action.data
+      };
     case SIGNEDUP:
       return {
         loading: false,
-        error: false,
-        errorMessages: null,
+        signupError: false,
+        loginError: false,
+        signupErrorMessages: null,
+        loginErrorMessages: null,
         loggingIn: true
       };
     case LOGIN:
       return {
         loading: false,
-        error: false,
-        errorMessages: null,
+        signupError: false,
+        loginError: false,
+        signupErrorMessages: null,
+        loginErrorMessages: null,
         loggingIn: false
       };
     case LOGOUT:

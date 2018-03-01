@@ -85,8 +85,8 @@ class LoginForm extends Component {
 }
 
 const mapStateToProps = ({ user }) => ({
-  error: user.error,
-  errorMessages: user.errorMessages
+  error: user.loginError,
+  errorMessages: user.loginErrorMessages
 });
 
 export default withRouter(connect(mapStateToProps, actions)(LoginForm));

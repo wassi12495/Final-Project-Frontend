@@ -21,7 +21,6 @@ class CurrentWorkout extends Component {
     };
   }
   componentDidMount() {
-    debugger;
     if (this.props.inProgress) {
       const { exercises, routine } = this.props;
       const title = routine.title;
@@ -163,7 +162,6 @@ class CurrentWorkout extends Component {
     return <Loader />;
   }
   renderPage() {
-    console.log("currentWorkout props", this.props.currentWorkout);
     const { exercises } = this.props;
     const exerciseCards = exercises.map((exercise, index) => {
       return (

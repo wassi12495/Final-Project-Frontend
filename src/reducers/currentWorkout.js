@@ -53,9 +53,7 @@ export const currentWorkoutReducer = (state = initialState, action) => {
     case ADD_EXERCISE_TO_CURRENT_WORKOUT:
       return {
         ...state,
-        currentWorkout: {
-          exercises: [...state.currentWorkout.exercises, action.data]
-        },
+        exercises: [...state.exercises, action.data],
         loading: false
       };
     case REMOVE_EXERCISE_FROM_CURRENT_WORKOUT:
@@ -73,7 +71,6 @@ export const currentWorkoutReducer = (state = initialState, action) => {
     case UPDATE_CURRENT_WORKOUT_EXERCISE:
       return {
         ...state,
-
         exercises: [
           ...state.currentWorkout.exercises.slice(0, action.index),
           action.data,

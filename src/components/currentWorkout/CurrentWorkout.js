@@ -133,8 +133,9 @@ class CurrentWorkout extends Component {
       amt: 1
     });
     const index = this.state.exercises.length;
-    const current_workout_id = this.state.currentWorkout_id;
-    const params = { update, index, current_workout_id };
+    const { id } = this.props;
+
+    const params = { update, index, id };
     this.props.addExerciseToCurrentWorkout(params);
   };
   handleRemoveExercise = exercise => {

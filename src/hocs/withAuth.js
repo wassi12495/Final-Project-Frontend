@@ -19,6 +19,8 @@ const withAuth = WrappedComponent => {
     componentWillReceiveProps(nextProps) {
       if (nextProps.loggedIn) {
         this.setState({ authenticated: true });
+      } else if (nextProps.error) {
+        this.props.history.push("/login");
       }
     }
 
@@ -35,9 +37,11 @@ const withAuth = WrappedComponent => {
     }
   }
 
-  const mapStateToProps = state => ({
-    loggedIn: !!state.auth.currentUser.id,
-    isTrainer: state.auth.currentUser.is_trainer
+  const mapStateToProps = ({ auth }) => ({
+    loggedIn: !!auth.currentUser.id,
+    isTrainer: auth.currentUser.is_trainer,
+    error: auth.error,
+    errorMessages: auth.errorMessages
   });
 
   return connect(mapStateToProps, actions)(AuthenticatedComponent);

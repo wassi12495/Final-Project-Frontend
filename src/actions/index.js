@@ -10,10 +10,9 @@ export {
   updateCurrentNewRoutine,
   updateCurrentRoutineTitle,
   addExerciseToCurrentNewRoutine,
-  clearRoutine,
   removeExerciseFromCurrentRoutine
 } from "./routinesActions";
-export { beginNewRoutine } from "./newRoutineActions";
+export { beginNewRoutine, deleteNewRoutine } from "./newRoutineActions";
 export { getWorkouts } from "./workoutsActions";
 export {
   postCurrentWorkout,

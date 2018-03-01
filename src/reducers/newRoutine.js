@@ -1,11 +1,12 @@
 import {
   ASYNC_START_NEW_ROUTINE,
   ASYNC_ERROR_NEW_ROUTINE,
+  BEGIN_NEW_ROUTINE,
+  DELETE_NEW_ROUTINE,
   UPDATE_CURRENT_NEW_ROUTINE,
   UPDATE_CURRENT_ROUTINE_TITLE,
   ADD_EXERCISE_TO_CURRENT_ROUTINE,
-  SET_CURRENT_NEW_ROUTINE,
-  BEGIN_NEW_ROUTINE
+  SET_CURRENT_NEW_ROUTINE
 } from "../actions/types";
 
 const initialState = {
@@ -29,13 +30,14 @@ export const newRoutineReducer = (state = initialState, action) => {
         errorMessages: action.data
       };
     case BEGIN_NEW_ROUTINE:
-      debugger;
       return {
         ...state,
         exercises: action.data.exercises,
         title: action.data.title,
         userId: action.data.user_id
       };
+    case DELETE_NEW_ROUTINE:
+      return initialState;
 
     default:
       return state;

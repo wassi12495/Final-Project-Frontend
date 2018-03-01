@@ -47,8 +47,3 @@ export const removeExerciseFromCurrentRoutine = index => dispatch => {
 export const updateCurrentRoutineTitle = data => dispatch => {
   dispatch({ type: UPDATE_CURRENT_ROUTINE_TITLE, data });
 };
-
-export const clearRoutine = history => dispatch => {
-  dispatch({ type: CLEAR_ROUTINE });
-  history.goBack();
-};

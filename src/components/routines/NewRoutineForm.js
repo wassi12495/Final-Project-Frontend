@@ -23,15 +23,7 @@ class NewRoutineForm extends Component {
   }
 
   componentDidMount() {
-    const { error, currentRoutine } = this.props;
-    if (error) {
-      this.setState({
-        title: currentRoutine.title,
-        exercises: currentRoutine.exercises
-      });
-    } else {
-      this.props.beginNewRoutine(this.state);
-    }
+    this.props.beginNewRoutine(this.state);
   }
 
   handleSubmit = () => {
@@ -42,7 +34,7 @@ class NewRoutineForm extends Component {
   };
 
   handleClearRoutine = () => {
-    this.props.clearRoutine(this.props.history);
+    this.props.deleteNewRoutine(this.props.history);
   };
 
   handleChange = e => {

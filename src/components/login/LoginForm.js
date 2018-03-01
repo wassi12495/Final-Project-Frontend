@@ -7,7 +7,6 @@ import { Grid, Form, Message, Segment, Header } from "semantic-ui-react";
 class LoginForm extends Component {
   constructor(props) {
     super(props);
-    console.log("Redirected to Login");
     this.state = {
       username: "",
       password: ""
@@ -27,7 +26,6 @@ class LoginForm extends Component {
     this.props.login(username, password, history);
   };
 
-  // TODO: Add Radio handle change
   render() {
     const { username, password } = this.state;
     const { error, errorMessages } = this.props;

@@ -70,9 +70,9 @@ export const currentWorkoutReducer = (state = initialState, action) => {
       return {
         ...state,
         exercises: [
-          ...state.currentWorkout.exercises.slice(0, action.index),
+          ...state.exercises.slice(0, action.index),
           action.data,
-          ...state.currentWorkout.exercises.slice(action.index + 1)
+          ...state.exercises.slice(action.index + 1)
         ]
       };
     case DELETE_CURRENT_WORKOUT:

@@ -49,8 +49,8 @@ class CurrentWorkout extends Component {
       reps,
       measure_input
     });
-    const { currentWorkout } = this.props;
-    const i = currentWorkout.exercises.findIndex(e => exercise.id === e.id);
+    const { exercises } = this.props;
+    const i = exercises.findIndex(e => exercise.id === e.id);
     this.props.updateCurrentWorkoutExercise(newE, i);
     this.setState({
       exercises: [
@@ -73,8 +73,8 @@ class CurrentWorkout extends Component {
       reps,
       measure_input
     });
-    const { currentWorkout } = this.props;
-    const i = currentWorkout.exercises.findIndex(e => exercise.id === e.id);
+    const { exercises } = this.props;
+    const i = exercises.findIndex(e => exercise.id === e.id);
     this.props.updateCurrentWorkoutExercise(newE, i);
 
     this.setState({

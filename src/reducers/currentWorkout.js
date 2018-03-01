@@ -59,12 +59,10 @@ export const currentWorkoutReducer = (state = initialState, action) => {
     case REMOVE_EXERCISE_FROM_CURRENT_WORKOUT:
       return {
         ...state,
-        currentWorkout: {
-          exercises: [
-            ...state.currentWorkout.exercises.slice(0, action.index),
-            ...state.currentWorkout.exercises.slice(action.index + 1)
-          ]
-        },
+        exercises: [
+          ...state.exercises.slice(0, action.index),
+          ...state.exercises.slice(action.index + 1)
+        ],
         loading: false
       };
 

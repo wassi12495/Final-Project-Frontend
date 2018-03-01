@@ -14,6 +14,7 @@ export {
   clearRoutine,
   removeExerciseFromCurrentRoutine
 } from "./routinesActions";
+export { beginNewRoutine } from "./newRoutineActions";
 export { getWorkouts } from "./workoutsActions";
 export {
   postCurrentWorkout,

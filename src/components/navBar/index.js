@@ -86,7 +86,7 @@ const mapStateToProps = ({ auth, currentWorkout }) => {
   return {
     loggedIn: !!auth.currentUser.id,
     isTrainer: auth.currentUser.is_trainer,
-    currentWorkout: !!currentWorkout.currentWorkout
+    currentWorkout: currentWorkout.inProgress
   };
 };
 

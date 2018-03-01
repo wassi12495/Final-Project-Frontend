@@ -40,7 +40,6 @@ export const currentWorkoutReducer = (state = initialState, action) => {
     case GET_CURRENT_WORKOUT:
       return {
         ...state,
-        currentWorkout: action.data,
         id: action.data.id,
         exercises: action.data.exercises,
         routine: action.data.routine,

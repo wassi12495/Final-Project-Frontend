@@ -3,6 +3,7 @@ import { authReducer } from "./auth";
 import { exerciseCategoryReducer } from "./exerciseCategories";
 import { exercisesReducer } from "./exercises";
 import { routinesReducer } from "./routines";
+import { newRoutineReducer } from "./newRoutine";
 import { currentWorkoutReducer } from "./currentWorkout";
 import { workoutsReducer } from "./workouts";
 import { clientsReducer } from "./clients";
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   exerciseCategories: exerciseCategoryReducer,
   exercises: exercisesReducer,
   routines: routinesReducer,
+  newRoutine: newRoutineReducer,
   currentWorkout: currentWorkoutReducer,
   workouts: workoutsReducer,
   requests: requestsReducer,

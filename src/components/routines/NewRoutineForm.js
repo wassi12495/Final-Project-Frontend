@@ -83,20 +83,6 @@ class NewRoutineForm extends Component {
 
     this.props.updateNewRoutineExercises(newExercises);
   };
-  //
-  // updateState = state => {
-  //   console.log("this.updateState");
-  //   const exercise = this.state.exercises[state.index];
-  //   exercise.sets = state.sets;
-  //   exercise.amt = state.amt;
-  //   this.setState({
-  //     exercises: [
-  //       ...this.state.exercises.slice(0, state.index),
-  //       exercise,
-  //       ...this.state.exercises.slice(state.index + 1)
-  //     ]
-  //   });
-  // };
 
   render() {
     const { title } = this.state;

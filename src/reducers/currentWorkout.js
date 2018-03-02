@@ -9,6 +9,7 @@ import {
   REMOVE_EXERCISE_FROM_CURRENT_WORKOUT,
   DELETE_CURRENT_WORKOUT,
   UPDATE_CURRENT_WORKOUT_EXERCISE,
+  UPDATE_CURRENT_WORKOUT_TITLE,
   LOGOUT
 } from "../actions/types";
 
@@ -19,6 +20,7 @@ const initialState = {
   id: null,
   inProgress: false,
   routine: null,
+  title: null,
   loading: false,
   error: false,
   errorMessages: null
@@ -39,7 +41,7 @@ export const currentWorkoutReducer = (state = initialState, action) => {
         ...state,
         id: action.data.id,
         exercises: action.data.exercises,
-        routine: action.data.routine,
+        title: action.data.routine.title,
         inProgress: true,
         loading: false
       };
@@ -48,7 +50,7 @@ export const currentWorkoutReducer = (state = initialState, action) => {
         ...state,
         id: action.data.id,
         exercises: action.data.exercises,
-        routine: action.data.routine,
+        title: action.data.routine.title,
         inProgress: true,
         loading: false
       };
@@ -81,6 +83,13 @@ export const currentWorkoutReducer = (state = initialState, action) => {
           ...state.exercises.slice(action.index + 1)
         ]
       };
+
+    case UPDATE_CURRENT_WORKOUT_TITLE:
+      return {
+        ...state,
+        title: action.data
+      };
+
     case DELETE_CURRENT_WORKOUT:
       return initialState;
     case LOGOUT:

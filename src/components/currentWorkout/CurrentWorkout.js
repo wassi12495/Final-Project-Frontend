@@ -22,11 +22,10 @@ class CurrentWorkout extends Component {
   }
   componentWillMount() {
     if (this.props.inProgress) {
-      const { exercises, routine } = this.props;
-      const title = routine.title;
+      const { exercises, title } = this.props;
       this.setState({
         title,
-        exercises: exercises
+        exercises
       });
     } else {
       this.props.history.goBack();
@@ -34,16 +33,39 @@ class CurrentWorkout extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const { title, exercises } = this.props;
     this.setState({
-      exercises: nextProps.exercises
+      exercises,
+      title
     });
   }
 
-  handleChangeTitle = e => {
-    this.setState({
-      title: e.target.value
-    });
+  handleFinishWorkout = () => {
+    const { currentWorkout } = this.props;
+    this.props.finishWorkout(this.props.history, currentWorkout);
   };
+
+  handleDeleteWorkout = () => {
+    const { id } = this.props;
+    this.props.deleteCurrentWorkout(id, this.props.history);
+  };
+
+  handleTitleInput = e => {
+    this.props.updateCurrentWorkoutTitle(e.target.value);
+  };
+
+  handleAddExercise = e => {
+    const exercise = Object.assign({}, e, {
+      sets: 1,
+      measure: [10]
+    });
+    const index = this.state.exercises.length;
+    const { id } = this.props;
+
+    // const params = { update, index, id };
+    this.props.addExerciseToCurrentWorkout(exercise);
+  };
+
   handleAddSet = exercise => {
     const reps = [...exercise.reps];
     const measure_input = [...exercise.measure_input];
@@ -134,18 +156,6 @@ class CurrentWorkout extends Component {
     });
   };
 
-  handleSelection = exercise => {
-    const update = Object.assign({}, exercise, {
-      sets: [{ set: 1, reps: 10 }],
-      amt: 1
-    });
-    const index = this.state.exercises.length;
-    const { id } = this.props;
-
-    const params = { update, index, id };
-    this.props.addExerciseToCurrentWorkout(params);
-  };
-
   handleRemoveExercise = exercise => {
     const index = this.state.exercises.findIndex(e => e.id === exercise.id);
 
@@ -158,38 +168,26 @@ class CurrentWorkout extends Component {
     });
   };
 
-  handleEndWorkout = () => {
-    const { id, exercises, routine } = this.props;
-    const { title } = this.state;
-    const params = { id, exercises, routine_id: routine.id, title };
-    this.props.finishWorkout(params, this.props.history);
-  };
-
-  handleDeleteWorkout = () => {
-    const { id } = this.props;
-    this.props.deleteCurrentWorkout(id, this.props.history);
-  };
-
   renderLoading() {
     return <Loader />;
   }
   renderPage() {
+    const { title } = this.state;
     const { exercises } = this.props;
     const exerciseCards = exercises.map((exercise, index) => {
       return (
-        <div key={index}>
-          <CurrentWorkoutExercise
-            exercise={exercise}
-            handleClick={this.handleAddSet}
-            handleChangeMeasure={this.handleChangeMeasure}
-            handleChangeReps={this.handleChangeReps}
-            handleDeleteSet={this.handleDeleteSet}
-            handleRemoveExercise={this.handleRemoveExercise}
-          />
-        </div>
+        <CurrentWorkoutExercise
+          exercise={exercise}
+          index={index}
+          key={index}
+          handleClick={this.handleAddSet}
+          handleChangeMeasure={this.handleChangeMeasure}
+          handleChangeReps={this.handleChangeReps}
+          handleDeleteSet={this.handleDeleteSet}
+          handleRemoveExercise={this.handleRemoveExercise}
+        />
       );
     });
-    const { title } = this.state;
     return (
       <Container>
         <Segment textAlign="center">
@@ -197,10 +195,10 @@ class CurrentWorkout extends Component {
             <Button floated="left" negative onClick={this.handleDeleteWorkout}>
               Delete Workout
             </Button>
-            <Button floated="right" primary onClick={this.handleEndWorkout}>
+            <Button floated="right" primary onClick={this.handleFinishWorkout}>
               Finish Workout
             </Button>
-            <Input value={this.state.title} onChange={this.handleChangeTitle} />
+            <Input value={this.state.title} onChange={this.handleTitleInput} />
             <h1>{title}</h1>
             <AddExercise handleSelection={this.handleSelection} />
           </Header>
@@ -221,6 +219,8 @@ const mapStateToProps = ({ currentWorkout }) => ({
   id: currentWorkout.id,
   exercises: currentWorkout.exercises,
   routine: currentWorkout.routine,
-  inProgress: currentWorkout.inProgress
+  title: currentWorkout.title,
+  inProgress: currentWorkout.inProgress,
+  currentWorkout
 });
 export default connect(mapStateToProps, actions)(CurrentWorkout);

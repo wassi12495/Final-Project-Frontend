@@ -10,6 +10,7 @@ import {
   REMOVE_EXERCISE_FROM_CURRENT_WORKOUT,
   DELETE_CURRENT_WORKOUT,
   UPDATE_CURRENT_WORKOUT_EXERCISE,
+  UPDATE_CURRENT_WORKOUT_TITLE,
   FINISH_WORKOUT,
   ADD_WORKOUT
 } from "./types";
@@ -63,7 +64,11 @@ export const updateCurrentWorkoutExercise = (exercise, index) => dispatch => {
   dispatch({ type: UPDATE_CURRENT_WORKOUT_EXERCISE, data: exercise, index });
 };
 
-export const finishWorkout = (data, history) => dispatch => {
+export const updateCurrentWorkoutTitle = data => dispatch => {
+  dispatch({ type: UPDATE_CURRENT_WORKOUT_TITLE, data });
+};
+
+export const finishWorkout = (history, data) => dispatch => {
   dispatch({ type: ASYNC_START_CURRENT_WORKOUT });
   dispatch({ type: ASYNC_START_WORKOUTS });
   adapter.workouts.completeCurrentWorkout(data).then(res => {

@@ -21,6 +21,7 @@ export {
   addExerciseToCurrentWorkout,
   deleteCurrentWorkout,
   updateCurrentWorkoutExercise,
+  updateCurrentWorkoutTitle,
   finishWorkout,
   removeExerciseFromCurrentWorkout
 } from "./currentWorkoutActions";

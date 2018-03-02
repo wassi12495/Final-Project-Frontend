@@ -5,14 +5,15 @@ import { Table, Card } from "semantic-ui-react";
 import RoutineExerciseSet from "./RoutineExerciseSet";
 
 class NewRoutineExercise extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sets: [{ set: 1, reps: 10 }],
-      amt: 1,
-      index: props.index
-    };
-  }
+  componentWillMount = () => {
+    const { exercise, index } = this.props;
+    console.log("New Routine Exercise", exercise);
+    this.setState({
+      sets: exercise.sets,
+      measure: exercise.measure,
+      index
+    });
+  };
 
   componentDidUpdate() {
     const { sets, amt, index } = this.state;
@@ -62,23 +63,36 @@ class NewRoutineExercise extends Component {
     });
   };
   renderSetRows() {
-    let setRows = this.state.sets.map((s, index) => {
+    const { measure } = this.state;
+    for (let i = 0; i < measure; i++) {
       return (
         <RoutineExerciseSet
-          index={index}
-          key={index}
-          set={s.set}
-          reps={s.reps}
+          index={i}
+          key={i}
+          set={i + 1}
+          measure={measure[i]}
           handleReps={this.handleReps}
           handleDelete={this.handleDeleteRow}
         />
       );
-    });
-    return setRows;
+    }
+    // let setRows = this.state.sets.map((s, index) => {
+    //   return (
+    //     <RoutineExerciseSet
+    //       index={index}
+    //       key={index}
+    //       set={s.set}
+    //       measure={s.measure}
+    //       handleReps={this.handleReps}
+    //       handleDelete={this.handleDeleteRow}
+    //     />
+    //   );
+    // });
+    // return setRows;
   }
   render() {
     const { exercise, handleRemove } = this.props;
-    const { index } = this.state;
+    const { index, sets } = this.state;
 
     return (
       <Card>
@@ -96,7 +110,7 @@ class NewRoutineExercise extends Component {
                   {"       "}
                   <button
                     className="ui button negative"
-                    onClick={() => handleRemove(exercise, this.props.index)}
+                    onClick={() => handleRemove(exercise, index)}
                   >
                     <i className="remove circle icon" />
                   </button>
@@ -104,7 +118,7 @@ class NewRoutineExercise extends Component {
               </Table.HeaderCell>
             </Table.Row>
             <Table.Row>
-              <Table.HeaderCell>Sets (x{this.state.amt})</Table.HeaderCell>
+              <Table.HeaderCell>Sets (x{sets})</Table.HeaderCell>
               <Table.HeaderCell>
                 {exercise.exercise_category.measure_of_duration.toUpperCase()}
               </Table.HeaderCell>

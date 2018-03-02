@@ -1,12 +1,18 @@
 import React from "react";
 import { Table } from "semantic-ui-react";
 
-const RoutineExerciseSet = ({ set, index, handleReps, reps, handleDelete }) => {
+const RoutineExerciseSet = ({
+  set,
+  index,
+  measure,
+  handleReps,
+  handleDelete
+}) => {
   return (
     <Table.Row key={index}>
-      <Table.Cell>{index + 1}</Table.Cell>
+      <Table.Cell>{set}</Table.Cell>
       <Table.Cell>
-        <input type="text" value={reps} name={set} onChange={handleReps} />
+        <input type="text" value={measure} name={set} onChange={handleReps} />
         <button
           className="small negative floated right"
           onClick={() => handleDelete(index)}

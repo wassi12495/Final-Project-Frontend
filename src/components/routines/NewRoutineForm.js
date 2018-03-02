@@ -44,14 +44,11 @@ class NewRoutineForm extends Component {
     });
   };
 
-  handleSelection = e => {
+  handleAddExercise = e => {
     const exercise = Object.assign({}, e, {
       sets: 1,
       measure: [10]
     });
-    console.log(exercise);
-    debugger;
-    const index = this.state.exercises.length;
     const data = { exercise };
     this.props.addExerciseToNewRoutine(data);
     this.setState({
@@ -59,7 +56,7 @@ class NewRoutineForm extends Component {
     });
   };
 
-  handleRemoveExercise = (exercise, index) => {
+  handleDeleteExercise = (exercise, index) => {
     this.props.deleteNewRoutineExercise(index);
     this.setState({
       exercises: [
@@ -96,7 +93,7 @@ class NewRoutineForm extends Component {
           index={index}
           key={index}
           updateState={this.updateState}
-          handleRemove={this.handleRemoveExercise}
+          handleDelete={this.handleDeleteExercise}
         />
       );
     });
@@ -108,7 +105,7 @@ class NewRoutineForm extends Component {
             <Button positive onClick={this.handleSubmit}>
               Save Routine
             </Button>
-            <AddExercise handleSelection={this.handleSelection} />
+            <AddExercise handleSelection={this.handleAddExercise} />
             <Button negative onClick={this.handleClearRoutine}>
               Delete Routine
             </Button>

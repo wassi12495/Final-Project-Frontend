@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Table, Button, Card, Icon } from "semantic-ui-react";
+import CurrentWorkoutExerciseSet from "./CurrentWorkoutExerciseSet";
 
 class CurrentWorkoutExercise extends Component {
   componentWillMount = () => {
@@ -8,7 +9,7 @@ class CurrentWorkoutExercise extends Component {
       name: exercise.name,
       description: exercise.description,
       sets: exercise.sets,
-      measure: exercise.measure,
+      measureInput: exercise.measure_input,
       index
     });
   };
@@ -17,17 +18,21 @@ class CurrentWorkoutExercise extends Component {
     const { exercise } = nextProps;
     this.setState({
       sets: exercise.sets,
-      measure: exercise.measure
+      measureInput: exercise.measure_input
     });
   }
 
   handleMeasureInput = (input, i) => {
     const { exercise, update } = this.props;
-    const { measure, index } = this.state;
+    const { measureInput, index } = this.state;
 
-    const newM = [...measure.slice(0, i), input, ...measure.slice(i + 1)];
+    const newM = [
+      ...measureInput.slice(0, i),
+      input,
+      ...measureInput.slice(i + 1)
+    ];
     const newE = Object.assign({}, exercise, {
-      measure: newM
+      measure_input: newM
     });
     debugger;
     // this.props.handleChangeMeasure(e, exercise);
@@ -39,24 +44,24 @@ class CurrentWorkoutExercise extends Component {
     // this.props.handleDeleteSet(e, exercise);
   };
 
-  // renderSetRows() {
-  //   return measure.map((m, i) => {
-  //     return (
-  //       <RoutineExerciseSet
-  //         index={i}
-  //         key={i}
-  //         set={i + 1}
-  //         measure={m}
-  //         handleMeasureInput={this.handleMeasureInput}
-  //         handleDelete={this.handleDeleteRow}
-  //       />
-  //     );
-  //   });
-  // }
+  renderSetRows() {
+    const { measureInput } = this.state;
+    return measureInput.map((m, i) => {
+      return (
+        <CurrentWorkoutExerciseSet
+          index={i}
+          key={i}
+          set={i + 1}
+          measure={m}
+          handleMeasureInput={this.handleMeasureInput}
+          handleDelete={this.handleDeleteRow}
+        />
+      );
+    });
+  }
 
   render() {
     const { exercise } = this.props;
-    const rows = "hi";
     return (
       <Card fluid>
         <Card.Content>
@@ -92,7 +97,7 @@ class CurrentWorkoutExercise extends Component {
                   </Table.HeaderCell>
                 </Table.Row>
               </Table.Header>
-              <Table.Body>{rows}</Table.Body>
+              <Table.Body>{this.renderSetRows()}</Table.Body>
             </Table>
           </Card.Description>
         </Card.Content>
@@ -100,50 +105,5 @@ class CurrentWorkoutExercise extends Component {
     );
   }
 }
-//
-// const CurrentWorkoutExercise = ({
-//   exercise,
-//   handleClick,
-//   handleChangeMeasure,
-//   handleChangeReps,
-//   handleDeleteSet,
-//   handleRemoveExercise
-// }) => {
-//   const rows = [];
-//   for (let i = 0; i < exercise.sets; i++) {
-//     rows.push(
-//       <Table.Row key={i}>
-//         <Table.Cell>Set {i + 1}</Table.Cell>
-//         <Table.Cell>
-//           <div className="ui input">
-//             {exercise.reps.length === 0 ? (
-//               <label>N/A</label>
-//             ) : (
-//               <input
-//                 type="text"
-//                 name={i}
-//                 value={exercise.reps[i]}
-//                 onChange={handleRepsInput}
-//               />
-//             )}
-//           </div>
-//         </Table.Cell>
-//         <Table.Cell>
-//           <div className="ui input">
-//             {exercise.measure === "N/a" ? null : (
-//               <input name={i} type="text" onChange={handleMeasureInput} />
-//             )}
-//           </div>
-//           <button
-//             className="small negative floated right"
-//             onClick={() => handleDeleteRow(i)}
-//           >
-//             <i className="minus icon" />
-//           </button>
-//         </Table.Cell>
-//       </Table.Row>
-//     );
-//   }
-// };
 
 export default CurrentWorkoutExercise;

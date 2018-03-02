@@ -23,12 +23,8 @@ class NewRoutineExercise extends Component {
       sets: exercise.sets,
       measure: exercise.measure
     });
-    // const { sets, amt, index } = this.state;
-    // const update = { sets, amt };
-    // const params = { update, index };
-    // this.props.updateNewRoutineExercises(params);
-    // this.props.updateCurrentNewRoutine(params);
   }
+
   addSet = () => {
     const { measure, sets, index } = this.state;
     const { exercise, update } = this.props;
@@ -38,34 +34,18 @@ class NewRoutineExercise extends Component {
       sets: newSets
     });
     update(newE, index);
-
-    // this.setState({
-    //   sets: [
-    //     ...this.state.sets,
-    //     {
-    //       set: this.state.amt + 1,
-    //       reps: 10
-    //     }
-    //   ],
-    //   amt: this.state.amt + 1
-    // });
   };
 
-  handleReps = e => {
-    const num = e.target.name;
-    const set = {
-      set: parseInt(`${num}`, 10),
-      reps: e.target.value
-    };
-    const sets = [
-      ...this.state.sets.slice(0, num - 1),
-      set,
-      ...this.state.sets.slice(num)
-    ];
+  handleMeasureInput = (input, i) => {
+    const { exercise, update } = this.props;
+    const { measure, index } = this.state;
 
-    this.setState({
-      sets
+    const newM = [...measure.slice(0, i), input, ...measure.slice(i + 1)];
+    const newE = Object.assign({}, exercise, {
+      measure: newM
     });
+
+    update(newE, index);
   };
 
   handleDeleteRow = row => {
@@ -88,7 +68,7 @@ class NewRoutineExercise extends Component {
           key={i}
           set={i + 1}
           measure={m}
-          handleReps={this.handleReps}
+          handleMeasureInput={this.handleMeasureInput}
           handleDelete={this.handleDeleteRow}
         />
       );

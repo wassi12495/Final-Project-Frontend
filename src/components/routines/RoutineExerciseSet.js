@@ -5,14 +5,19 @@ const RoutineExerciseSet = ({
   set,
   index,
   measure,
-  handleReps,
+  handleMeasureInput,
   handleDelete
 }) => {
+  const handleChange = e => {
+    const input = e.target.value;
+    handleMeasureInput(input, index);
+  };
+
   return (
     <Table.Row>
       <Table.Cell>{set}</Table.Cell>
       <Table.Cell>
-        <input type="text" value={measure} name={set} onChange={handleReps} />
+        <input type="text" value={measure} name={set} onChange={handleChange} />
         <button
           className="small negative floated right"
           onClick={() => handleDelete(index)}

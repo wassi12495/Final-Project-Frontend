@@ -55,15 +55,13 @@ class CurrentWorkout extends Component {
   };
 
   handleAddExercise = e => {
+    const { id } = this.props;
     const exercise = Object.assign({}, e, {
       sets: 1,
       measure: [10]
     });
-    const index = this.state.exercises.length;
-    const { id } = this.props;
-
-    // const params = { update, index, id };
-    this.props.addExerciseToCurrentWorkout(exercise);
+    const data = { exercise, id };
+    this.props.addExerciseToCurrentWorkout(data);
   };
 
   handleAddSet = exercise => {
@@ -200,7 +198,7 @@ class CurrentWorkout extends Component {
             </Button>
             <Input value={this.state.title} onChange={this.handleTitleInput} />
             <h1>{title}</h1>
-            <AddExercise handleSelection={this.handleSelection} />
+            <AddExercise handleSelection={this.handleAddExercise} />
           </Header>
           <div className="ui  cards">{exerciseCards}</div>
         </Segment>

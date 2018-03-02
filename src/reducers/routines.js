@@ -2,14 +2,13 @@ import {
   ASYNC_START_ROUTINES,
   ASYNC_ERROR_ROUTINES,
   GET_ROUTINES,
-  POST_NEW_ROUTINE,
+  SAVE_NEW_ROUTINE,
   LOGOUT
 } from "../actions/types";
 
 // Handle Routines
 const initialState = {
   routines: [],
-  currentRoutine: null,
   loading: false,
   error: false,
   errorMessages: null
@@ -28,11 +27,10 @@ export const routinesReducer = (state = initialState, action) => {
     case GET_ROUTINES:
       return { ...state, routines: action.data, loading: false, error: false };
 
-    case POST_NEW_ROUTINE:
+    case SAVE_NEW_ROUTINE:
       return {
         ...state,
         routines: [...state.routines, action.data],
-        currentRoutine: null,
         error: false,
         loading: false
       };

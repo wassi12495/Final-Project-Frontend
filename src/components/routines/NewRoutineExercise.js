@@ -7,7 +7,6 @@ import RoutineExerciseSet from "./RoutineExerciseSet";
 class NewRoutineExercise extends Component {
   componentWillMount = () => {
     const { exercise, index } = this.props;
-    console.log("New Routine Exercise", exercise);
     this.setState({
       name: exercise.name,
       description: exercise.description,
@@ -60,7 +59,7 @@ class NewRoutineExercise extends Component {
   };
 
   renderSetRows() {
-    const { measure, sets } = this.state;
+    const { measure } = this.state;
     return measure.map((m, i) => {
       return (
         <RoutineExerciseSet
@@ -76,7 +75,7 @@ class NewRoutineExercise extends Component {
   }
 
   render() {
-    const { exercise, handleRemove } = this.props;
+    const { exercise, handleDelete } = this.props;
     const { index, sets } = this.state;
 
     return (
@@ -95,7 +94,7 @@ class NewRoutineExercise extends Component {
                   {"       "}
                   <button
                     className="ui button negative"
-                    onClick={() => handleRemove(exercise, index)}
+                    onClick={() => handleDelete(index)}
                   >
                     <i className="remove circle icon" />
                   </button>

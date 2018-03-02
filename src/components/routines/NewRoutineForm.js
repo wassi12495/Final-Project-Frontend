@@ -27,17 +27,16 @@ class NewRoutineForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { exercises } = nextProps;
+    const { exercises, title } = nextProps;
     this.setState({
-      exercises
+      exercises,
+      title
     });
   }
 
   handleSubmit = () => {
-    const data = {
-      routine: this.props.currentRoutine
-    };
-    this.props.addRoutine(this.props.history, data);
+    const { newRoutine } = this.props;
+    this.props.saveNewRoutine(this.props.history, newRoutine);
   };
 
   handleClearRoutine = () => {
@@ -46,9 +45,6 @@ class NewRoutineForm extends Component {
 
   handleTitleInput = e => {
     this.props.updateNewRoutineTitle(e.target.value);
-    this.setState({
-      [e.target.name]: e.target.value
-    });
   };
 
   handleAddExercise = e => {
@@ -58,19 +54,10 @@ class NewRoutineForm extends Component {
     });
     const data = { exercise };
     this.props.addExerciseToNewRoutine(data);
-    this.setState({
-      exercises: [...this.state.exercises, exercise]
-    });
   };
 
-  handleDeleteExercise = (exercise, index) => {
+  handleDeleteExercise = index => {
     this.props.deleteNewRoutineExercise(index);
-    this.setState({
-      exercises: [
-        ...this.state.exercises.slice(0, index),
-        ...this.state.exercises.slice(index + 1)
-      ]
-    });
   };
 
   update = (exercise, index) => {
@@ -143,7 +130,8 @@ const mapStateToProps = ({ auth, newRoutine }) => ({
   title: newRoutine.title,
   loading: newRoutine.loading,
   error: newRoutine.error,
-  errorMessages: newRoutine.errorMessages
+  errorMessages: newRoutine.errorMessages,
+  newRoutine
 });
 
 export default connect(mapStateToProps, actions)(NewRoutineForm);

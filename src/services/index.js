@@ -30,9 +30,9 @@ const getCurrentUser = () => {
   }).then(res => res.json());
 };
 
-//  ROUTINES SERVICES
+// NEW ROUTINE SERVICES
 
-const addRoutine = data => {
+const saveNewRoutine = data => {
   const token = localStorage.getItem("token");
   return fetch(`${API_URL}/routines`, {
     method: "POST",
@@ -44,6 +44,8 @@ const addRoutine = data => {
     body: JSON.stringify(data)
   }).then(res => res.json());
 };
+
+//  ROUTINES SERVICES
 
 const getRoutines = () => {
   const token = localStorage.getItem("token");
@@ -244,8 +246,10 @@ export const adapter = {
     signup
   },
   routines: {
-    addRoutine,
     getRoutines
+  },
+  newRoutine: {
+    saveNewRoutine
   },
   exercises: {
     getExCas,

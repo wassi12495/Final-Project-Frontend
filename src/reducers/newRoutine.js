@@ -3,6 +3,7 @@ import {
   ASYNC_ERROR_NEW_ROUTINE,
   BEGIN_NEW_ROUTINE,
   DELETE_NEW_ROUTINE,
+  SAVE_NEW_ROUTINE,
   UPDATE_NEW_ROUTINE_TITLE,
   UPDATE_NEW_ROUTINE_EXERCISES,
   ADD_EXERCISE_TO_NEW_ROUTINE,
@@ -37,6 +38,9 @@ export const newRoutineReducer = (state = initialState, action) => {
         userId: action.data.user_id
       };
     case DELETE_NEW_ROUTINE:
+      return initialState;
+
+    case SAVE_NEW_ROUTINE:
       return initialState;
 
     case UPDATE_NEW_ROUTINE_TITLE:

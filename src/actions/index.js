@@ -8,6 +8,7 @@ export { getRoutines, addRoutine } from "./routinesActions";
 export {
   beginNewRoutine,
   deleteNewRoutine,
+  saveNewRoutine,
   updateNewRoutineTitle,
   updateNewRoutineExercises,
   addExerciseToNewRoutine,

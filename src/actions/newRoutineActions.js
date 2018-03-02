@@ -24,7 +24,6 @@ export const updateNewRoutineTitle = data => dispatch => {
 };
 
 export const updateNewRoutineExercises = data => dispatch => {
-  debugger;
   dispatch({ type: UPDATE_NEW_ROUTINE_EXERCISES, data });
 };
 

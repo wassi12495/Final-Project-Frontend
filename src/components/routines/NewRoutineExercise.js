@@ -9,17 +9,24 @@ class NewRoutineExercise extends Component {
     const { exercise, index } = this.props;
     console.log("New Routine Exercise", exercise);
     this.setState({
+      name: exercise.name,
+      description: exercise.description,
       sets: exercise.sets,
       measure: exercise.measure,
       index
     });
   };
 
-  componentDidUpdate() {
-    const { sets, amt, index } = this.state;
-    const update = { sets, amt };
-    const params = { update, index };
-    this.props.updateNewRoutineExercises(params);
+  componentWillReceiveProps(nextProps) {
+    const { exercise } = nextProps;
+    this.setState({
+      sets: exercise.sets,
+      measure: exercise.measure
+    });
+    // const { sets, amt, index } = this.state;
+    // const update = { sets, amt };
+    // const params = { update, index };
+    // this.props.updateNewRoutineExercises(params);
     // this.props.updateCurrentNewRoutine(params);
   }
   addSet = () => {
@@ -52,16 +59,17 @@ class NewRoutineExercise extends Component {
     });
   };
 
-  handleDeleteRow = index => {
-    const sets = [...this.state.sets.slice(0, index)];
-    this.state.sets.slice(index + 1).forEach(s => {
-      sets.push({ set: s.set - 1, reps: s.reps });
+  handleDeleteRow = row => {
+    const { measure, sets, index } = this.state;
+    const { exercise, update } = this.props;
+    const newSets = sets - 1;
+    const newE = Object.assign({}, exercise, {
+      measure: [...measure.slice(0, row), ...measure.slice(row + 1)],
+      sets: newSets
     });
-    this.setState({
-      sets,
-      amt: this.state.amt - 1
-    });
+    update(newE, index);
   };
+
   renderSetRows() {
     const { measure } = this.state;
     for (let i = 0; i < measure; i++) {
@@ -76,19 +84,6 @@ class NewRoutineExercise extends Component {
         />
       );
     }
-    // let setRows = this.state.sets.map((s, index) => {
-    //   return (
-    //     <RoutineExerciseSet
-    //       index={index}
-    //       key={index}
-    //       set={s.set}
-    //       measure={s.measure}
-    //       handleReps={this.handleReps}
-    //       handleDelete={this.handleDeleteRow}
-    //     />
-    //   );
-    // });
-    // return setRows;
   }
   render() {
     const { exercise, handleRemove } = this.props;

@@ -26,6 +26,13 @@ class NewRoutineForm extends Component {
     this.props.beginNewRoutine(this.state);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { exercises } = nextProps;
+    this.setState({
+      exercises
+    });
+  }
+
   handleSubmit = () => {
     const data = {
       routine: this.props.currentRoutine
@@ -65,23 +72,31 @@ class NewRoutineForm extends Component {
       ]
     });
   };
-  update = () => {
-    console.log("this.Update");
-  };
 
-  updateState = state => {
-    console.log("this.updateState");
-    const exercise = this.state.exercises[state.index];
-    exercise.sets = state.sets;
-    exercise.amt = state.amt;
-    this.setState({
-      exercises: [
-        ...this.state.exercises.slice(0, state.index),
-        exercise,
-        ...this.state.exercises.slice(state.index + 1)
-      ]
-    });
+  update = (exercise, index) => {
+    const { exercises } = this.props;
+    const newExercises = [
+      ...exercises.slice(0, index),
+      exercise,
+      ...exercises.slice(index + 1)
+    ];
+
+    this.props.updateNewRoutineExercises(newExercises);
   };
+  //
+  // updateState = state => {
+  //   console.log("this.updateState");
+  //   const exercise = this.state.exercises[state.index];
+  //   exercise.sets = state.sets;
+  //   exercise.amt = state.amt;
+  //   this.setState({
+  //     exercises: [
+  //       ...this.state.exercises.slice(0, state.index),
+  //       exercise,
+  //       ...this.state.exercises.slice(state.index + 1)
+  //     ]
+  //   });
+  // };
 
   render() {
     const { title } = this.state;
@@ -92,7 +107,7 @@ class NewRoutineForm extends Component {
           exercise={exercise}
           index={index}
           key={index}
-          updateState={this.updateState}
+          update={this.update}
           handleDelete={this.handleDeleteExercise}
         />
       );

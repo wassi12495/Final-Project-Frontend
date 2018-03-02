@@ -9,7 +9,7 @@ const RoutineExerciseSet = ({
   handleDelete
 }) => {
   return (
-    <Table.Row key={index}>
+    <Table.Row>
       <Table.Cell>{set}</Table.Cell>
       <Table.Cell>
         <input type="text" value={measure} name={set} onChange={handleReps} />

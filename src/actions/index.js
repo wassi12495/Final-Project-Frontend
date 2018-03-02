@@ -20,7 +20,7 @@ export {
   getCurrentWorkout,
   addExerciseToCurrentWorkout,
   deleteCurrentWorkout,
-  updateCurrentWorkoutExercise,
+  updateCurrentWorkoutExercises,
   updateCurrentWorkoutTitle,
   finishWorkout,
   removeExerciseFromCurrentWorkout

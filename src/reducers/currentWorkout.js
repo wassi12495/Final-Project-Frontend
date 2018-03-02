@@ -8,7 +8,7 @@ import {
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
   REMOVE_EXERCISE_FROM_CURRENT_WORKOUT,
   DELETE_CURRENT_WORKOUT,
-  UPDATE_CURRENT_WORKOUT_EXERCISE,
+  UPDATE_CURRENT_WORKOUT_EXERCISES,
   UPDATE_CURRENT_WORKOUT_TITLE,
   LOGOUT
 } from "../actions/types";
@@ -74,14 +74,10 @@ export const currentWorkoutReducer = (state = initialState, action) => {
         loading: false
       };
 
-    case UPDATE_CURRENT_WORKOUT_EXERCISE:
+    case UPDATE_CURRENT_WORKOUT_EXERCISES:
       return {
         ...state,
-        exercises: [
-          ...state.exercises.slice(0, action.index),
-          action.data,
-          ...state.exercises.slice(action.index + 1)
-        ]
+        exercises: action.data
       };
 
     case UPDATE_CURRENT_WORKOUT_TITLE:

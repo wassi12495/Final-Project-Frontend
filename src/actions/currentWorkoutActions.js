@@ -9,7 +9,7 @@ import {
   ADD_EXERCISE_TO_CURRENT_WORKOUT,
   REMOVE_EXERCISE_FROM_CURRENT_WORKOUT,
   DELETE_CURRENT_WORKOUT,
-  UPDATE_CURRENT_WORKOUT_EXERCISE,
+  UPDATE_CURRENT_WORKOUT_EXERCISES,
   UPDATE_CURRENT_WORKOUT_TITLE,
   FINISH_WORKOUT,
   ADD_WORKOUT
@@ -60,8 +60,8 @@ export const deleteCurrentWorkout = (id, history) => dispatch => {
   });
 };
 
-export const updateCurrentWorkoutExercise = (exercise, index) => dispatch => {
-  dispatch({ type: UPDATE_CURRENT_WORKOUT_EXERCISE, data: exercise, index });
+export const updateCurrentWorkoutExercises = data => dispatch => {
+  dispatch({ type: UPDATE_CURRENT_WORKOUT_EXERCISES, data });
 };
 
 export const updateCurrentWorkoutTitle = data => dispatch => {

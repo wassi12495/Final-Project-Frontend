@@ -22,6 +22,17 @@ class CurrentWorkoutExercise extends Component {
     });
   }
 
+  addSet = () => {
+    const { measureInput, sets, index } = this.state;
+    const { exercise, update } = this.props;
+    const newSets = sets + 1;
+    const newE = Object.assign({}, exercise, {
+      measure_input: [...measureInput, 0],
+      sets: newSets
+    });
+    update(newE, index);
+  };
+
   handleMeasureInput = (input, i) => {
     const { exercise, update } = this.props;
     const { measureInput, index } = this.state;
@@ -73,7 +84,7 @@ class CurrentWorkoutExercise extends Component {
                   <Table.HeaderCell colSpan="2">
                     {exercise.name}
                   </Table.HeaderCell>
-                  <Table.HeaderCell>
+                  <Table.HeaderCell colSpan="2">
                     <Button
                       negative
                       onClick={() => this.props.handleRemoveExercise(exercise)}
@@ -92,7 +103,7 @@ class CurrentWorkoutExercise extends Component {
                       inverted
                       name="plus"
                       color="green"
-                      onClick={() => this.props.handleClick(exercise)}
+                      onClick={this.addSet}
                     />
                   </Table.HeaderCell>
                 </Table.Row>

@@ -64,27 +64,19 @@ class CurrentWorkout extends Component {
     this.props.addExerciseToCurrentWorkout(data);
   };
 
-  handleAddSet = exercise => {
-    const reps = [...exercise.reps];
-    const measure_input = [...exercise.measure_input];
-    reps.push("0");
-    measure_input.push("0");
+  handleDeleteExercise = exercise => {
+    const index = this.state.exercises.findIndex(e => e.id === exercise.id);
+    this.props.removeExerciseFromCurrentWorkout(exercise, index);
+  };
 
-    const newE = Object.assign({}, exercise, {
-      sets: exercise.sets + 1,
-      reps,
-      measure_input
-    });
+  update = (exercise, index) => {
     const { exercises } = this.props;
-    const i = exercises.findIndex(e => exercise.id === e.id);
-    this.props.updateCurrentWorkoutExercise(newE, i);
-    this.setState({
-      exercises: [
-        ...this.state.exercises.slice(0, i),
-        newE,
-        ...this.state.exercises.slice(i + 1)
-      ]
-    });
+    const newExercises = [
+      ...exercises.slice(0, index),
+      exercise,
+      ...exercises.slice(index + 1)
+    ];
+    this.props.updateCurrentWorkoutExercises(newExercises);
   };
 
   handleDeleteSet = (e, exercise) => {
@@ -154,18 +146,6 @@ class CurrentWorkout extends Component {
     });
   };
 
-  handleRemoveExercise = exercise => {
-    const index = this.state.exercises.findIndex(e => e.id === exercise.id);
-
-    this.props.removeExerciseFromCurrentWorkout(exercise, index);
-    this.setState({
-      exercises: [
-        ...this.state.exercises.slice(0, index),
-        ...this.state.exercises.slice(index + 1)
-      ]
-    });
-  };
-
   renderLoading() {
     return <Loader />;
   }
@@ -178,11 +158,8 @@ class CurrentWorkout extends Component {
           exercise={exercise}
           index={index}
           key={index}
-          handleClick={this.handleAddSet}
-          handleChangeMeasure={this.handleChangeMeasure}
-          handleChangeReps={this.handleChangeReps}
-          handleDeleteSet={this.handleDeleteSet}
-          handleRemoveExercise={this.handleRemoveExercise}
+          update={this.update}
+          handleDelete={this.handleDeleteExercise}
         />
       );
     });

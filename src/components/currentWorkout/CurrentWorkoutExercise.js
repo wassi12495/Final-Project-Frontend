@@ -26,11 +26,12 @@ class CurrentWorkoutExercise extends Component {
   }
 
   addSet = () => {
-    const { measureInput, sets, index } = this.state;
+    const { measureInput, sets, reps, index } = this.state;
     const { exercise, update } = this.props;
     const newSets = sets + 1;
     const newE = Object.assign({}, exercise, {
       measure_input: [...measureInput, 0],
+      reps: [...reps, 0],
       sets: newSets
     });
     update(newE, index);
@@ -62,8 +63,19 @@ class CurrentWorkoutExercise extends Component {
     update(newE, index);
   };
 
-  handleDeleteRow = e => {
-    // this.props.handleDeleteSet(e, exercise);
+  handleDeleteRow = row => {
+    const { measureInput, sets, reps, index } = this.state;
+    const { exercise, update } = this.props;
+    const newSets = sets - 1;
+    const newE = Object.assign({}, exercise, {
+      measure_input: [
+        ...measureInput.slice(0, row),
+        ...measureInput.slice(row + 1)
+      ],
+      reps: [...reps.slice(0, row), ...reps.slice(row + 1)],
+      sets: newSets
+    });
+    update(newE, index);
   };
 
   renderSetRows() {
@@ -101,7 +113,7 @@ class CurrentWorkoutExercise extends Component {
                   <Table.HeaderCell colSpan="2">
                     <Button
                       negative
-                      onClick={() => this.props.handleRemoveExercise(exercise)}
+                      onClick={() => this.props.handleDelete(exercise)}
                     >
                       Remove Exercise
                     </Button>

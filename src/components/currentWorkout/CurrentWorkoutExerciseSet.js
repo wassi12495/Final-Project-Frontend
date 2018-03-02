@@ -17,7 +17,6 @@ const CurrentWorkoutExerciseSet = ({
   };
   const handleChangeRepsInput = e => {
     const input = e.target.value;
-    console.log(input);
     handleRepsInput(input, index);
   };
   return (

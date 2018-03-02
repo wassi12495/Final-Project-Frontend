@@ -13,13 +13,6 @@ import CurrentWorkoutExercise from "./CurrentWorkoutExercise";
 import AddExercise from "../exercises/AddExercise";
 
 class CurrentWorkout extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      exercises: [],
-      title: ""
-    };
-  }
   componentWillMount() {
     if (this.props.inProgress) {
       const { exercises, title } = this.props;
@@ -51,6 +44,7 @@ class CurrentWorkout extends Component {
   };
 
   handleTitleInput = e => {
+    console.log(e.target.value);
     this.props.updateCurrentWorkoutTitle(e.target.value);
   };
 
@@ -79,79 +73,11 @@ class CurrentWorkout extends Component {
     this.props.updateCurrentWorkoutExercises(newExercises);
   };
 
-  handleDeleteSet = (e, exercise) => {
-    const reps = [...exercise.reps.slice(0, e), ...exercise.reps.slice(e + 1)];
-    const measure_input = [
-      ...exercise.measure_input.slice(0, e),
-      ...exercise.measure_input.slice(e + 1)
-    ];
-    const sets = exercise.sets - 1;
-    const newE = Object.assign({}, exercise, {
-      sets,
-      reps,
-      measure_input
-    });
-    const { exercises } = this.props;
-    const i = exercises.findIndex(e => exercise.id === e.id);
-    this.props.updateCurrentWorkoutExercise(newE, i);
-
-    this.setState({
-      exercises: [
-        ...this.state.exercises.slice(0, i),
-        newE,
-        ...this.state.exercises.slice(i + 1)
-      ]
-    });
-  };
-
-  handleChangeMeasure = (e, exercise) => {
-    const newE = Object.assign({}, exercise, {
-      measure_input: [
-        ...exercise.measure_input.slice(0, e.target.name),
-        e.target.value,
-        ...exercise.measure_input.slice(e.target.name + 1)
-      ]
-    });
-
-    const i = this.state.exercises.findIndex(ex => exercise.id === ex.id);
-    this.props.updateCurrentWorkoutExercise(newE, i);
-
-    this.setState({
-      exercises: [
-        ...this.state.exercises.slice(0, i),
-        newE,
-        ...this.state.exercises.slice(i + 1)
-      ]
-    });
-  };
-
-  handleChangeReps = (e, exercise) => {
-    const newE = Object.assign({}, exercise, {
-      reps: [
-        ...exercise.reps.slice(0, e.target.name),
-        e.target.value,
-        ...exercise.reps.slice(e.target.name + 1)
-      ]
-    });
-
-    const i = this.state.exercises.findIndex(ex => exercise.id === ex.id);
-    this.props.updateCurrentWorkoutExercise(newE, i);
-
-    this.setState({
-      exercises: [
-        ...this.state.exercises.slice(0, i),
-        newE,
-        ...this.state.exercises.slice(i + 1)
-      ]
-    });
-  };
-
   renderLoading() {
     return <Loader />;
   }
   renderPage() {
-    const { title } = this.state;
-    const { exercises } = this.props;
+    const { exercises, title } = this.props;
     const exerciseCards = exercises.map((exercise, index) => {
       return (
         <CurrentWorkoutExercise
@@ -173,7 +99,7 @@ class CurrentWorkout extends Component {
             <Button floated="right" primary onClick={this.handleFinishWorkout}>
               Finish Workout
             </Button>
-            <Input value={this.state.title} onChange={this.handleTitleInput} />
+            <Input type="text" value={title} onChange={this.handleTitleInput} />
             <h1>{title}</h1>
             <AddExercise handleSelection={this.handleAddExercise} />
           </Header>

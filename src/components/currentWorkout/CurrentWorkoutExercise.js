@@ -9,7 +9,9 @@ class CurrentWorkoutExercise extends Component {
       name: exercise.name,
       description: exercise.description,
       sets: exercise.sets,
+      reps: exercise.reps,
       measureInput: exercise.measure_input,
+      measure: exercise.measure,
       index
     });
   };
@@ -18,7 +20,8 @@ class CurrentWorkoutExercise extends Component {
     const { exercise } = nextProps;
     this.setState({
       sets: exercise.sets,
-      measureInput: exercise.measure_input
+      measureInput: exercise.measure_input,
+      reps: exercise.reps
     });
   }
 
@@ -45,26 +48,37 @@ class CurrentWorkoutExercise extends Component {
     const newE = Object.assign({}, exercise, {
       measure_input: newM
     });
-    debugger;
-    // this.props.handleChangeMeasure(e, exercise);
+    update(newE, index);
   };
-  handleRepsInput = e => {
-    // this.props.handleChangeReps(e, exercise);
+
+  handleRepsInput = (input, i) => {
+    const { exercise, update } = this.props;
+    const { reps, index } = this.state;
+
+    const newR = [...reps.slice(0, i), input, ...reps.slice(i + 1)];
+    const newE = Object.assign({}, exercise, {
+      reps: newR
+    });
+    update(newE, index);
   };
+
   handleDeleteRow = e => {
     // this.props.handleDeleteSet(e, exercise);
   };
 
   renderSetRows() {
-    const { measureInput } = this.state;
+    const { measureInput, reps, measure } = this.state;
     return measureInput.map((m, i) => {
       return (
         <CurrentWorkoutExerciseSet
           index={i}
           key={i}
           set={i + 1}
-          measure={m}
+          reps={reps[i]}
+          measureInput={m}
+          measure={measure}
           handleMeasureInput={this.handleMeasureInput}
+          handleRepsInput={this.handleRepsInput}
           handleDelete={this.handleDeleteRow}
         />
       );

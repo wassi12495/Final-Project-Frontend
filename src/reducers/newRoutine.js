@@ -62,12 +62,13 @@ export const newRoutineReducer = (state = initialState, action) => {
     case ADD_EXERCISE_TO_NEW_ROUTINE:
       return {
         ...state,
-        exercises: [
-          ...state.exercises.slice(0, action.data.index),
-          action.data.update,
-          ...state.exercises.slice(action.data.index + 1)
-        ]
+        exercises: [...state.exercises, action.data.exercise]
       };
+    // exercises: [
+    //   ...state.exercises.slice(0, action.data.index),
+    //   action.data.update,
+    //   ...state.exercises.slice(action.data.index + 1)
+    // ]
 
     case DELETE_NEW_ROUTINE_EXERCISE:
       return {

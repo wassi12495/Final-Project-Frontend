@@ -44,16 +44,18 @@ class NewRoutineForm extends Component {
     });
   };
 
-  handleSelection = exercise => {
-    const update = Object.assign({}, exercise, {
-      sets: [{ set: 1, reps: 10 }],
-      amt: 1
+  handleSelection = e => {
+    const exercise = Object.assign({}, e, {
+      sets: 1,
+      measure: [10]
     });
+    console.log(exercise);
+    debugger;
     const index = this.state.exercises.length;
-    const params = { update, index };
-    this.props.addExerciseToNewRoutine(params);
+    const data = { exercise };
+    this.props.addExerciseToNewRoutine(data);
     this.setState({
-      exercises: [...this.state.exercises, update]
+      exercises: [...this.state.exercises, exercise]
     });
   };
 
@@ -71,6 +73,7 @@ class NewRoutineForm extends Component {
   };
 
   updateState = state => {
+    console.log("this.updateState");
     const exercise = this.state.exercises[state.index];
     exercise.sets = state.sets;
     exercise.amt = state.amt;

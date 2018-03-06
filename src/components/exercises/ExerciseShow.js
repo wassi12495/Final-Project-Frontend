@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Segment } from "semantic-ui-react";
+import { Header, Segment, Table } from "semantic-ui-react";
 
 const ExerciseShow = ({ exercise }) => {
   console.log(exercise);
@@ -9,12 +9,18 @@ const ExerciseShow = ({ exercise }) => {
       <Segment>{exercise.name}</Segment>
       <Segment.Group>
         <Segment>Description: {exercise.description}</Segment>
-        <Segment>Category: {exercise.exercise_category.name}</Segment>
+        <Segment>Category: {exercise.exercise_category}</Segment>
         <Segment>
           Measurements:{" "}
-          {`${exercise.exercise_category.subject_of_measurement} ${
-            exercise.exercise_category.unit
-          }`}
+          <Table collapsing textAlign="center">
+            <Table.Header>
+              <Table.Row>
+                {exercise.columns.map((c, i) => {
+                  return <Table.HeaderCell key={i}>{c}</Table.HeaderCell>;
+                })}
+              </Table.Row>
+            </Table.Header>
+          </Table>
         </Segment>
       </Segment.Group>
     </Segment.Group>

@@ -3,13 +3,10 @@ import { connect } from "react-redux";
 import { Card } from "semantic-ui-react";
 
 const ExerciseCard = ({ exercise, exerciseCategories, handleClick }) => {
-  // const exercise_category = exerciseCategories.find(ec => {
-  //   return exercise.exercise_category_id === ec.id;
-  // });
   return (
     <Card onClick={() => handleClick(exercise)}>
       <h4>{exercise.name}</h4>
-      <p> Category: {exercise.exercise_category.name}</p>
+      <p> Category: {exercise.exercise_category}</p>
     </Card>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Segment, Table, Grid } from "semantic-ui-react";
+import { Header, Segment } from "semantic-ui-react";
 
 const ExerciseShow = ({ exercise }) => {
   console.log(exercise);

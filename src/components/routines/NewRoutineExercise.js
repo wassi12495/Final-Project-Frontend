@@ -108,13 +108,7 @@ class NewRoutineExercise extends Component {
                 </div>
               </Table.HeaderCell>
             </Table.Row>
-            <Table.Row>
-              {/* <Table.HeaderCell>Sets (x{sets})</Table.HeaderCell>
-              <Table.HeaderCell>
-                {exercise.exercise_category.measure_of_duration.toUpperCase()}
-              </Table.HeaderCell> */}
-              {this.renderColumnNames()}
-            </Table.Row>
+            <Table.Row>{this.renderColumnNames()}</Table.Row>
           </Table.Header>
           <Table.Body>{this.renderSetRows()}</Table.Body>
         </Table>

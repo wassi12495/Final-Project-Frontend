@@ -65,15 +65,9 @@ class NewExerciseForm extends Component {
   };
 
   renderModal() {
-    const { exerciseCategories, error, errorMessages } = this.props;
+    const { error, errorMessages } = this.props;
     const { name, description, exerciseCategory } = this.state;
-    const categories = exerciseCategories.map(c => {
-      return (
-        <option value={c.id} key={c.id}>
-          {c.name}
-        </option>
-      );
-    });
+
     console.log(this.props);
     return (
       <Modal
@@ -115,11 +109,10 @@ class NewExerciseForm extends Component {
             <Form.Field>
               <label>Exercise Category: </label>
               <select
-                value={exerciseCategory.name}
+                value={exerciseCategory}
                 onChange={this.handleOptionChange}
               >
                 <option value="">Pick one...</option>
-                {categories}
               </select>
             </Form.Field>
 
@@ -136,10 +129,9 @@ class NewExerciseForm extends Component {
   }
 }
 
-const mapStateToProps = ({ auth, exerciseCategories, exercises }) => ({
+const mapStateToProps = ({ auth, exercises }) => ({
   currentUser: auth.currentUser,
   loggedIn: !!auth.currentUser.id,
-  exerciseCategories: exerciseCategories,
   error: exercises.error,
   errorMessages: exercises.errorMessages
 });

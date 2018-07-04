@@ -58,7 +58,7 @@ class NewRoutineExercise extends Component {
     update(newE, index);
   };
 
-  renderSetRows() {
+  renderSetRows = () => {
     const { measure } = this.state;
     return measure.map((m, i) => {
       return (
@@ -72,7 +72,14 @@ class NewRoutineExercise extends Component {
         />
       );
     });
-  }
+  };
+
+  renderColumnNames = () => {
+    const { exercise } = this.props;
+    return exercise.columns.map((c, i) => {
+      return <Table.HeaderCell key={i}>{c}</Table.HeaderCell>;
+    });
+  };
 
   render() {
     const { exercise, handleDelete } = this.props;
@@ -102,10 +109,11 @@ class NewRoutineExercise extends Component {
               </Table.HeaderCell>
             </Table.Row>
             <Table.Row>
-              <Table.HeaderCell>Sets (x{sets})</Table.HeaderCell>
+              {/* <Table.HeaderCell>Sets (x{sets})</Table.HeaderCell>
               <Table.HeaderCell>
                 {exercise.exercise_category.measure_of_duration.toUpperCase()}
-              </Table.HeaderCell>
+              </Table.HeaderCell> */}
+              {this.renderColumnNames()}
             </Table.Row>
           </Table.Header>
           <Table.Body>{this.renderSetRows()}</Table.Body>
@@ -115,4 +123,7 @@ class NewRoutineExercise extends Component {
   }
 }
 
-export default connect(null, actions)(NewRoutineExercise);
+export default connect(
+  null,
+  actions
+)(NewRoutineExercise);

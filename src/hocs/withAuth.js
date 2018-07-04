@@ -10,7 +10,6 @@ const withAuth = WrappedComponent => {
       if (localStorage.getItem("token")) {
         this.props.fetchUser();
         this.props.getCurrentWorkout();
-        this.props.getExerciseCategories();
       } else {
         this.setState({ authenticated: true });
       }
@@ -44,6 +43,9 @@ const withAuth = WrappedComponent => {
     errorMessages: auth.errorMessages
   });
 
-  return connect(mapStateToProps, actions)(AuthenticatedComponent);
+  return connect(
+    mapStateToProps,
+    actions
+  )(AuthenticatedComponent);
 };
 export default withAuth;

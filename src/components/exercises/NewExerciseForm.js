@@ -24,7 +24,6 @@ class NewExerciseForm extends Component {
   }
 
   componentDidMount = () => {
-    this.props.getExerciseCategories();
     if (this.props.open) {
       this.setState({
         modal: true

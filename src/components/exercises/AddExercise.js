@@ -40,7 +40,7 @@ class AddExercise extends Component {
       return (
         <Table.Row key={index}>
           <Table.Cell>{exercise.name}</Table.Cell>
-          <Table.Cell>{exercise.exercise_category.name}</Table.Cell>
+          <Table.Cell>{exercise.exercise_category}</Table.Cell>
           <Table.Cell>{exercise.description}</Table.Cell>
           <Table.Cell>
             <Button onClick={() => this.handleAdd(exercise)}>Add</Button>
@@ -99,4 +99,7 @@ const mapStateToProps = ({ exercises, exerciseCategories }) => ({
   exerciseCategories: exerciseCategories
 });
 
-export default connect(mapStateToProps, actions)(AddExercise);
+export default connect(
+  mapStateToProps,
+  actions
+)(AddExercise);

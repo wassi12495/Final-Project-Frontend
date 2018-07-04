@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import ExerciseCategoryOptions from "./ExerciseCategoryOptions";
 import {
   Message,
   // Loader,
@@ -113,6 +114,7 @@ class NewExerciseForm extends Component {
                 onChange={this.handleOptionChange}
               >
                 <option value="">Pick one...</option>
+                <ExerciseCategoryOptions />
               </select>
             </Form.Field>
 

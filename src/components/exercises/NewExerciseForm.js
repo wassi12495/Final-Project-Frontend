@@ -75,7 +75,7 @@ class NewExerciseForm extends Component {
         </option>
       );
     });
-
+    console.log(this.props);
     return (
       <Modal
         trigger={
@@ -145,4 +145,7 @@ const mapStateToProps = ({ auth, exerciseCategories, exercises }) => ({
   errorMessages: exercises.errorMessages
 });
 
-export default connect(mapStateToProps, actions)(NewExerciseForm);
+export default connect(
+  mapStateToProps,
+  actions
+)(NewExerciseForm);
